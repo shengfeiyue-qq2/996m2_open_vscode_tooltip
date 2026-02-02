@@ -768,12 +768,12 @@ function SetFormAllowFunc(funname) end
 ---* targetMapId 当 sendScope=5 时生效，指定目标地图的ID
 ---@param actor table
 ---@param msgId integer
----@param param1 integer
----@param param2 integer
----@param param3 integer
----@param sMsg string
----@param sendScope integer
----@param targetMapId string
+---@param param1? integer
+---@param param2? integer
+---@param param3? integer
+---@param sMsg? string
+---@param sendScope? integer
+---@param targetMapId? string
 ---```lua
 ---sendluamsg(actor, 996, 1, 2, 3, "发送给自己的网络消息",0)
 ---sendluamsg(actor, 996, 4, 5, 6, "发送给全服的网络消息1",1)
