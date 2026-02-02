@@ -17,11 +17,11 @@
 ---* overLap 叠加层数，默认1
 ---* objOwner 施放者
 ---* abil 属性表 {[1]=200, [4]=20}，属性id=值
----@param base table
+---@param base number|string
 ---@param buffId integer
 ---@param time integer
 ---@param overLap integer
----@param objOwner table
+---@param objOwner number|string
 ---@param abil table
 ---@return boolean "是否添加成功"
 ---```tips
@@ -38,7 +38,7 @@ function addbuff(base, buffId, time, overLap, objOwner, abil) end
 ---删除buff
 ---* base 玩家、怪物对象
 ---* buffId buff id
----@param base table
+---@param base number|string
 ---@param buffId integer
 ---```tips
 ---buff触发中无法添加/删除buff
@@ -55,7 +55,7 @@ function delbuff(base, buffId) end
 ---是否有buff
 ---* base 玩家、怪物对象
 ---* buffId buff id
----@param base table
+---@param base number|string
 ---@param buffId integer
 ---@return boolean "是否有"
 ---```lua
@@ -70,7 +70,7 @@ function hasbuff(base, buffId) end
 ---* base 玩家、怪物对象
 ---* buffId buff id
 ---* type 1=叠加层数<br>2=剩余时间(单位跟配置一致)<br>3=获取施法者对象(对象离线返回nil)<br>4=获取额外属性
----@param base table
+---@param base number|string
 ---@param buffId integer
 ---@param type integer
 ---@return integer "buff信息"
@@ -97,7 +97,7 @@ function getstdbuffinfo(buffInfo, id) end
 
 ---获取角色所有buff
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "buff列表"
 ---```lua
 ---local list_buff = getallbuffid(actor)
@@ -113,7 +113,7 @@ function getallbuffid(actor) end
 ---* opt 操作符 “+” “-“ “=”
 ---* stack buff层数 不可超出表中最大层数
 ---* iTimer 是否重置buff 时间
----@param actor table
+---@param actor number|string
 ---@param buffId integer
 ---@param opt string
 ---@param stack integer
@@ -181,7 +181,7 @@ function DelNpcByUserId(npc) end
 ---根据ID获取NPC对象
 ---* NPCIndex NPC索引（NPC配置表中的ID）
 ---@param NPCIndex integer
----@return table "NPC唯一ID"
+---@return number|string "NPC唯一ID"
 ---```lua
 ---local npc = getnpcbyindex(NPCIndex)
 ---```
@@ -191,7 +191,7 @@ function getnpcbyindex(NPCIndex) end
 ---* actor 玩家对象
 ---* NPCIndex NPC索引（NPC配置表中的ID）
 ---* nRange 范围值，在此范围内允许打开(无法跨地图打开)
----@param actor table
+---@param actor number|string
 ---@param NPCIndex integer
 ---@param nRange integer
 ---```lua
@@ -204,7 +204,7 @@ function opennpcshow(actor, NPCIndex, nRange) end
 ---* NPCIndex NPC索引（NPC配置表中的ID）
 ---* nRange 范围值，<br>不在此范围内则移动到NPC附近
 ---* nRange2 范围值2，移动到NPC附近的范围内
----@param actor table
+---@param actor number|string
 ---@param NPCIndex integer
 ---@param nRange integer
 ---@param nRange2 integer
@@ -215,8 +215,8 @@ function opennpcshowex(actor, NPCIndex, nRange, nRange2) end
 
 ---获取当前NPC对象
 ---* actor 玩家对象
----@param actor table
----@return table "NPC对象"
+---@param actor number|string
+---@return number|string "NPC对象"
 ---```lua
 ---local npc=getcurrnpc(actor)
 ---```
@@ -228,7 +228,7 @@ function getcurrnpc(actor) end
 ---* Effect 特效ID<br>5055-感叹号<br>5056-问号
 ---* X X坐标
 ---* Y Y坐标
----@param actor table
+---@param actor number|string
 ---@param NPCIndex integer
 ---@param Effect integer
 ---@param X integer
@@ -241,7 +241,7 @@ function setnpceffect(actor, NPCIndex, Effect, X, Y) end
 ---删除NPC特效
 ---* actor 玩家对象
 ---* NPCIndex NPC索引（NPC配置表中的ID）
----@param actor table
+---@param actor number|string
 ---@param NPCIndex integer
 ---```lua
 ---delnpceffect(actor,NPCIndex)
@@ -250,7 +250,7 @@ function delnpceffect(actor, NPCIndex) end
 
 ---关闭当前的NPC对话框
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---close(actor)
 ---```
@@ -268,7 +268,7 @@ function regnpcmsg(msgId, NPCIndex) end
 
 ---获取NPC对象的Idx
 ---* NPC NPC对象
----@param NPC table
+---@param NPC number|string
 ---@return integer "NPC索引（NPC配置表中的ID）"
 ---```lua
 ---local npc = getnpcbyindex(33)
@@ -282,7 +282,7 @@ function getnpcindex(NPC) end
 ---* delayTime 延迟时间ms,0立即执行
 ---* func 函数名
 ---* sParam 参数
----@param actor table
+---@param actor number|string
 ---@param NPCIndex integer
 ---@param delayTime integer
 ---@param func string
@@ -333,7 +333,7 @@ function getsysindex() end
 ---NPC界面文本发送
 ---* actor 玩家对象
 ---* msg 界面文本内容，支持普通文本和自定义UI标签
----@param actor table
+---@param actor number|string
 ---@param msg string
 ---```lua
 --- -- 基础对话调用
@@ -463,7 +463,7 @@ function say(actor, msg) end
 ---* windowId 主窗口ID
 ---* buttonId 按钮ID
 ---* icon 图标内容
----@param actor table
+---@param actor number|string
 ---@param windowId integer
 ---@param buttonId integer
 ---@param icon string
@@ -610,7 +610,7 @@ function addbutton(actor, windowId, buttonId, icon) end
 ---* actor 玩家对象
 ---* windowId 主窗口ID
 ---* buttonId 按钮ID
----@param actor table
+---@param actor number|string
 ---@param windowId integer
 ---@param buttonId integer
 ---```lua
@@ -621,7 +621,7 @@ function delbutton(actor, windowId, buttonId) end
 ---打开OK框
 ---* actor 玩家对象
 ---* title OK框标题
----@param actor table
+---@param actor number|string
 ---@param title string
 ---```lua
 ---openupgradedlg(actor,title)
@@ -631,7 +631,7 @@ function openupgradedlg(actor, title) end
 ---回收OK框物品
 ---* actor 玩家对象
 ---* count 数量(针对叠加物品有效)
----@param actor table
+---@param actor number|string
 ---@param count integer
 ---```lua
 ---takedlgitem(actor,count)
@@ -640,7 +640,7 @@ function takedlgitem(actor, count) end
 
 ---返回OK框物品到背包
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---reclaimitem(actor)
 ---```
@@ -650,7 +650,7 @@ function reclaimitem(actor) end
 ---* actor 玩家对象
 ---* item 物品名称<br>物品唯一id
 ---* index OK框编号(0~99)
----@param actor table
+---@param actor number|string
 ---@param item integer|string
 ---@param index integer
 ---```lua
@@ -661,7 +661,7 @@ function bagitemintobox(actor, item, index) end
 ---把自定义OK框物品返回到包裹
 ---* actor 玩家对象
 ---* index OK框编号(0~99)
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---```lua
 ---returnboxitem(actor,index)
@@ -672,7 +672,7 @@ function returnboxitem(actor, index) end
 ---* actor 玩家对象
 ---* index OK框编号(0~99)
 ---* num 删除数量;参数只有是叠加物品时才会有效，为空则全部删除
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param num integer
 ---```lua
@@ -683,7 +683,7 @@ function delboxitem(actor, index, num) end
 ---获取自定义OK框中的物品
 ---* actor 玩家对象
 ---* index OK框编号(0~99)
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@return string "物品唯一ID"
 ---```lua
@@ -694,7 +694,7 @@ function getboxitem(actor, index) end
 ---更新OK框物品
 ---* actor 玩家对象
 ---* boxId OK框编号
----@param actor table
+---@param actor number|string
 ---@param boxId integer
 ---```lua
 ---updateboxitem(actor,boxId)
@@ -706,7 +706,7 @@ function updateboxitem(actor, boxId) end
 ---* npcid npcid
 ---* time 显示时间(秒)
 ---* str 喊话内容
----@param actor table|integer
+---@param actor number|string|integer
 ---@param npcid integer
 ---@param time integer
 ---@param str string
@@ -721,7 +721,7 @@ function NPCTalk(actor, npcid, time, str) end
 ---* actor 玩家对象
 ---* FormName 文件名
 ---* Content Win_Create节点ID<br>(参数用#号拼接)
----@param actor table
+---@param actor number|string
 ---@param FormName string
 ---@param Content string
 ---```tips
@@ -766,7 +766,7 @@ function SetFormAllowFunc(funname) end
 ---* sMsg 消息体
 ---* sendScope 消息的发送范围类型<br>0=自己<br>1=全服<br>2=当前地图<br>3=视野内<br>4=当前行会<br>5=指定地图id
 ---* targetMapId 当 sendScope=5 时生效，指定目标地图的ID
----@param actor table
+---@param actor number|string
 ---@param msgId integer
 ---@param param1? integer
 ---@param param2? integer
@@ -789,7 +789,7 @@ function sendluamsg(actor, msgId, param1, param2, param3, sMsg, sendScope, targe
 ---修改人物名称
 ---* actor 玩家对象
 ---* name 要查询的名字
----@param actor table
+---@param actor number|string
 ---@param name string
 ---```lua
 ---1. 会先执行查询人物名称操作，并触发：queryinghumname;
@@ -836,7 +836,7 @@ function changehumname(actor, name) end
 ---修改人物名字颜色
 ---* actor 玩家对象
 ---* color 颜色索引
----@param actor table
+---@param actor number|string
 ---@param color integer
 ---```lua
 ---changenamecolor(actor,200)
@@ -848,7 +848,7 @@ function changenamecolor(actor, color) end
 
 ---刷新人物属性
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---recalcabilitys(actor)
 ---```
@@ -857,7 +857,7 @@ function recalcabilitys(actor) end
 ---获取人物属性
 ---* actor 玩家对象
 ---* id 属性ID（1-20）
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---@return integer "对应的属性值"
 ---```lua
@@ -871,7 +871,7 @@ function gethumability(actor, id) end
 ---* id 属性ID<br>1=防御下限<br>2=防御上限<br>3=魔御下限<br>4=魔御上限<br>5=攻击下限<br>6=攻击上限<br>7=魔法下限<br>8=魔法上限<br>9=道术下限<br>10=道术上限<br>11=MaxHP<br>12=MaxMP<br>13=HP恢复<br>14=MP恢复<br>15=毒恢复<br>16=毒躲避<br>17=魔法躲避<br>18=准确<br>19=敏捷<br>20= 幸运
 ---* value 属性值
 ---* time 时间(秒)
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---@param value integer
 ---@param time integer
@@ -886,7 +886,7 @@ function changehumability(actor, id, value, time) end
 ---* nWhere 位置 对应cfg_att_score 属性ID
 ---* nValue 对应属性值
 ---* nTime 有效时间，秒
----@param actor table
+---@param actor number|string
 ---@param nWhere integer
 ---@param nValue integer
 ---@param nTime integer
@@ -900,7 +900,7 @@ function changehumnewvalue(actor, nWhere, nValue, nTime) end
 ---获取人物临时属性
 ---* actor 玩家对象
 ---* nWhere 位置 对应cfg_att_score 属性ID
----@param actor table
+---@param actor number|string
 ---@param nWhere integer
 ---@return integer "属性值"
 ---```lua
@@ -912,7 +912,7 @@ function gethumnewvalue(actor, nWhere) end
 ---获取人物永久属性
 ---* actor 玩家对象
 ---* nIndex 索引
----@param actor table
+---@param actor number|string
 ---@param nIndex integer
 ---@return integer "属性值"
 ---```lua
@@ -925,7 +925,7 @@ function getusebonuspoint(actor, nIndex) end
 ---* actor 玩家对象
 ---* nIndex 索引<br>nIndex 取值<br>1:攻击下限(0~65535)<br>2:攻击上限(0~65535)<br>3:魔法下限(0~65535)<br>4:魔法上限(0~65535)<br>5:道术下限(0~65535)<br>6:道术上限(0~65535)<br>7:防御下限(0~65535)<br>8:防御上限(0~65535)<br>9:魔防下限(0~65535)<br>10:魔防上限(0~65535)<br>11:生命值(支持21亿)<br>12:魔法值(支持21亿)<br>13:准确(支持21亿)<br>14:躲避(支持21亿)<br>15:防御下限(支持21亿)<br>16:防御上限(支持21亿)<br>17:魔防下限(支持21亿)<br>18:魔防上限(支持21亿)
 ---* nValue 属性值
----@param actor table
+---@param actor number|string
 ---@param nIndex integer
 ---@param nValue integer
 ---```lua
@@ -940,7 +940,7 @@ function setusebonuspoint(actor, nIndex, nValue) end
 ---* opt 操作符 +、-、=
 ---* attrStr 属性字符串
 ---* type 0或空=计算套装属性增加 1=增加固定值;不计算套装属性(属性加成类无效)
----@param actor table
+---@param actor number|string
 ---@param attrIndex string
 ---@param opt string
 ---@param attrStr string
@@ -954,7 +954,7 @@ function addattlist(actor, attrIndex, opt, attrStr, type) end
 ---获取字符串属性
 ---* actor 玩家对象
 ---* attrIndex 自定义属性组名称
----@param actor table
+---@param actor number|string
 ---@param attrIndex string
 ---@return string "属性字符串"
 ---```lua
@@ -966,7 +966,7 @@ function getattlist(actor, attrIndex) end
 ---清除字符串属性
 ---* actor 玩家对象
 ---* attrIndex 自定义属性组名称
----@param actor table
+---@param actor number|string
 ---@param attrIndex string
 ---```lua
 -----删属性
@@ -979,7 +979,7 @@ function delattlist(actor, attrIndex) end
 ---* where 装备部位
 ---* sFlag 操作符(=,+,-)
 ---* pro 倍数(万分比)
----@param actor table
+---@param actor number|string
 ---@param where integer
 ---@param sFlag string
 ---@param pro integer
@@ -992,7 +992,7 @@ function setequipaddvalue(actor, where, sFlag, pro) end
 ---获取装备部位属性加成(万分比)
 ---* actor 玩家对象
 ---* where 装备部位
----@param actor table
+---@param actor number|string
 ---@param where integer
 ---@return boolean "倍数(万分比)"
 ---```lua
@@ -1004,7 +1004,7 @@ function getequipaddvalue(actor, where) end
 ---获取人物标记/标识值
 ---* actor 玩家对象
 ---* nIndex 索引（1-800）
----@param actor table
+---@param actor number|string
 ---@param nIndex integer
 ---@return integer "对应属性值"
 ---```lua
@@ -1017,7 +1017,7 @@ function getflagstatus(actor, nIndex) end
 ---* actor 玩家对象
 ---* nIndex 索引（1-800）
 ---* nValue 对应属性值(flag标记只能支持0,1两个值，>0的值视为1)
----@param actor table
+---@param actor number|string
 ---@param nIndex integer
 ---@param nValue integer
 ---```lua
@@ -1031,7 +1031,7 @@ function setflagstatus(actor, nIndex, nValue) end
 ---* opt 操作符 + - =
 ---* count 数量
 ---* addexp 是否增加聚灵珠经验
----@param actor table
+---@param actor number|string
 ---@param opt string
 ---@param count integer
 ---@param addexp boolean
@@ -1045,7 +1045,7 @@ function changeexp(actor, opt, count, addexp) end
 ---* actor 玩家对象
 ---* opt 操作符 + - =
 ---* count 数量
----@param actor table
+---@param actor number|string
 ---@param opt string
 ---@param count integer
 ---```lua
@@ -1058,7 +1058,7 @@ function changelevel(actor, opt, count) end
 ---* actor 玩家对象
 ---* iType 0:解除锁定<br>1锁定到达最大等级时并且不获取怪物经验<br>2:锁定到达最大等级时累积经验(int64)
 ---* level 锁住最大等级
----@param actor table
+---@param actor number|string
 ---@param iType integer
 ---@param level integer
 ---```lua
@@ -1073,7 +1073,7 @@ function setlocklevel(actor, iType, level) end
 ---* time 状态时间(秒,1-65535)
 ---* param1 参数1,12,13,18,20,21代表几率其余代表属性值
 ---* param2 参数2
----@param actor table
+---@param actor number|string
 ---@param mode integer
 ---@param time integer
 ---@param param1 integer
@@ -1115,7 +1115,7 @@ function changemode(actor, mode, time, param1, param2) end
 ---* autoDrop 自动补全空白位置0,1(0=掉 1=不掉)
 ---* selfSee 是否只有自己看见<br>0=所有人都可见;<br>1=仅仅自己可见;
 ---* posM 播放位置(不填默认为0)<br>0=在角色之上;<br>1=在角色之下;
----@param actor table
+---@param actor number|string
 ---@param where integer
 ---@param effType integer
 ---@param resName any
@@ -1143,7 +1143,7 @@ function seticon(actor, where, effType, resName, x, y, autoDrop, selfSee, posM) 
 ---* times 播放次数<br>0-一直播放
 ---* behind 播放模式<br>0-前面<br>1-后面
 ---* selfShow 仅自己可见<br>0-视野内均可见，<br>1-仅自己可见
----@param actor table
+---@param actor number|string
 ---@param effectId integer
 ---@param offsetX integer
 ---@param offsetY integer
@@ -1159,7 +1159,7 @@ function playeffect(actor, effectId, offsetX, offsetY, times, behind, selfShow) 
 ---清除人物身上播放的特效
 ---* actor 玩家对象
 ---* effectId 特效ID;传入nil则清除全部特效
----@param actor table
+---@param actor number|string
 ---@param effectId integer
 ---```lua
 ---clearplayeffect(actor,60120)
@@ -1176,12 +1176,12 @@ function clearplayeffect(actor, effectId) end
 ---* hitter 伤害来源对象
 ---* isSend 释放广播飘血<br>0/nil=不广播<br>1=广播
 ---* isRob 是否强制修改归属<br>0/nil=强制修改归属;<br>1=已有归属的情况不抢归属
----@param actor table
+---@param actor number|string
 ---@param operate string
 ---@param nvalue integer
 ---@param effId integer
 ---@param delay integer
----@param hitter table
+---@param hitter number|string
 ---@param isSend integer
 ---@param isRob integer
 ---```lua
@@ -1194,7 +1194,7 @@ function humanhp(actor, operate, nvalue, effId, delay, hitter, isSend, isRob) en
 ---* actor 玩家对象
 ---* operate 操作符号<br>‘+’-增加<br>‘-‘-减少<br>‘=’-等于
 ---* nValue MP点数
----@param actor table
+---@param actor number|string
 ---@param operate string
 ---@param nValue integer
 ---```lua
@@ -1206,7 +1206,7 @@ function humanmp(actor, operate, nValue) end
 ---* actor 玩家(怪物)对象
 ---* opt 控制符(=,+,-)
 ---* value 数值
----@param actor table
+---@param actor number|string
 ---@param opt string
 ---@param value integer
 ---```lua
@@ -1218,7 +1218,7 @@ function addhpper(actor, opt, value) end
 ---* actor 玩家(怪物)对象
 ---* opt 控制符(=,+,-)
 ---* value 数值
----@param actor table
+---@param actor number|string
 ---@param opt string
 ---@param value integer
 ---```lua
@@ -1232,7 +1232,7 @@ function addmpper(actor, opt, value) end
 ---* sum 总吸收量
 ---* rate 吸收比率，千分比<br>1=0.1%，100=10%
 ---* success 吸收成功率
----@param actor table
+---@param actor number|string
 ---@param operate string
 ---@param sum integer
 ---@param rate integer
@@ -1245,7 +1245,7 @@ function setsuckdamage(actor, operate, sum, rate, success) end
 
 ---获取人物伤害吸收
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "伤害吸收值"
 ---```lua
 ---setsuckdamage(actor,"=",1000,200,95)
@@ -1258,7 +1258,7 @@ function getsuckdamage(actor) end
 ---* actor 玩家对象
 ---* color 颜色(0~255); 255时清除颜色; -1则为转生设置的颜色在人物身体上进行变色
 ---* time 改变时长(秒)
----@param actor table
+---@param actor number|string
 ---@param color integer
 ---@param time integer
 ---```lua
@@ -1276,7 +1276,7 @@ function setbodycolor(actor, color, time) end
 ---* time 时间（秒）
 ---* behind 播放模式-0-前面-1-后面
 ---* selfShow 仅自己可见0-否，视野内均可见，1-是
----@param actor table
+---@param actor number|string
 ---@param mapId integer
 ---@param x integer
 ---@param y integer
@@ -1296,7 +1296,7 @@ function mobfireburn(actor, mapId, x, y, type, time, behind, selfShow) end
 ---脚本设置防秒杀功能
 ---* actor 玩家对象
 ---* maxHp 最大血量(百分比)
----@param actor table
+---@param actor number|string
 ---@param maxHp integer
 ---```lua
 ---killedprotect(actor,90)
@@ -1310,8 +1310,8 @@ function killedprotect(actor,maxHp) end
 ---立即杀死角色
 ---* actor 被杀的对象
 ---* killer 凶手的对象
----@param actor table
----@param killer table
+---@param actor number|string
+---@param killer number|string
 ---```lua
 ---local mapID = getbaseinfo(actor,3)
 ---local x = getbaseinfo(actor,3)
@@ -1327,7 +1327,7 @@ function kill(actor, killer) end
 ---查询人物货币
 ---* actor 玩家对象
 ---* id 货币ID（1-100）
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---@return integer "对应货币值"
 ---```lua
@@ -1343,7 +1343,7 @@ function querymoney(actor, id) end
 ---* count 数量
 ---* desc 描述
 ---* send 是否推送到客户端，true-更新
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---@param opt string
 ---@param count integer
@@ -1359,7 +1359,7 @@ function changemoney(actor, id, opt, count, desc, send) end
 ---获取人物通用货币数量(多货币计算)
 ---* actor 玩家对象
 ---* moneyName 货币名称
----@param actor table
+---@param actor number|string
 ---@param moneyName string
 ---@return integer "对应货币数"
 ---```lua
@@ -1375,7 +1375,7 @@ function getbindmoney(actor, moneyName) end
 ---* moneyName 货币名称
 ---* count 对应货币值
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param moneyName string
 ---@param count integer
 ---@param desc string
@@ -1388,7 +1388,7 @@ function consumebindmoney(actor, moneyName, count, desc) end
 ---设置人物背包格子数
 ---* actor 玩家对象
 ---* count 格子大小<br>（不小于46，不大于206）
----@param actor table
+---@param actor number|string
 ---@param count integer
 ---```lua
 ---setbagcount(actor,50)
@@ -1398,7 +1398,7 @@ function setbagcount(actor, count) end
 
 ---获取背包剩余空格数
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "背包剩余格子数"
 ---```lua
 ---local bagBlank=getbagblank(actor)
@@ -1409,7 +1409,7 @@ function getbagblank(actor) end
 ---遍历背包勾选物品
 ---* actor 玩家对象
 ---* makeIndex 选中的物品唯一ID<br>多个物品用“,”分隔
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---```lua
 ---local items = getbagitems(actor)
@@ -1425,9 +1425,9 @@ function selectbagitems(actor, makeIndex) end
 ---* actor 玩家对象
 ---* where 位置
 ---* makeIndex 物品唯一ID
----@param actor table
+---@param actor number|string
 ---@param where integer
----@param makeIndex integer
+---@param makeIndex string
 ---```lua
 ---local items = getbagitems(actor)
 ---if items and type(items) == "table" then
@@ -1449,9 +1449,9 @@ function takeonitem(actor, where, makeIndex) end
 ---* actor 玩家对象
 ---* where 位置
 ---* makeIndex 物品唯一ID
----@param actor table
+---@param actor number|string
 ---@param where integer
----@param makeIndex integer
+---@param makeIndex string
 ---```lua
 ---local makeIndex=GetItemByPos(actor,1)
 ---if makeIndex then
@@ -1463,7 +1463,7 @@ function takeoffitem(actor, where, makeIndex) end
 ---开/关首饰盒
 ---* actor 玩家对象
 ---* bState 0：关闭，1：开启
----@param actor table
+---@param actor number|string
 ---@param bState integer
 ---```lua
 ---setsndaitembox(actor,1)
@@ -1474,8 +1474,8 @@ function setsndaitembox(actor, bState) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
 ---* looks 外观值
----@param actor table
----@param makeIndex table
+---@param actor number|string
+---@param makeIndex string
 ---@param looks integer
 ---```lua
 ---local makeIndex=GetItemByPos(actor,1)
@@ -1488,7 +1488,7 @@ function changeitemshape(actor, makeIndex, looks) end
 ---* where 位置 0，1
 ---* effId 特效ID
 ---* selfSee 是否只有自己看见<br>(1=所有人都可见<br> 0=仅仅自己可见)
----@param actor table
+---@param actor number|string
 ---@param where integer
 ---@param effId integer
 ---@param selfSee integer
@@ -1504,7 +1504,7 @@ function changedresseffect(actor, where, effId, selfSee) end
 ---* time 时间 (秒)
 ---* param1 仅在参数1位置为0时有效<br>0=覆盖时装外观<br>1=时装外观优先
 ---* param2 仅在参数1位置为0时有效<br>0-斗笠、头发不变<br>1-隐藏斗笠<br>2-隐藏头发<br>3-隐藏斗笠和头发 4-隐藏盾牌和盾牌特效
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param shape integer
 ---@param time integer
@@ -1528,7 +1528,7 @@ function setfeature(actor, type, shape, time, param1, param2) end
 ---* actor 玩家对象
 ---* effectId 特效ID， 0-删除特效
 ---* position 显示位置：0-前面 1-后面
----@param actor table
+---@param actor number|string
 ---@param effectId integer
 ---@param position integer
 ---```lua
@@ -1540,7 +1540,7 @@ function updateequipeffect(actor, effectId, position) end
 ---* actor 玩家对象
 ---* skillId 技能ID
 ---* type 获取类型:<br>1:等级;<br>2:强化等级;<br>3:熟练度(技能经验值);<br>4:熟练度上限(技能经验值上限);
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@param type integer
 ---@return integer "返回值(对应属性值) ,没有技能，返回nil"
@@ -1553,7 +1553,7 @@ function getskillinfo(actor, skillId, type) end
 ---* actor 玩家对象
 ---* skillId 技能ID
 ---* level 等级
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@param level integer
 ---```lua
@@ -1564,7 +1564,7 @@ function addskill(actor, skillId, level) end
 ---删除技能
 ---* actor 玩家对象
 ---* skillId 技能ID
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---```lua
 ---delskill(actor, 11)
@@ -1573,7 +1573,7 @@ function delskill(actor, skillId) end
 
 ---删除非本职业技能
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---delnojobskill(actor)
 ---```
@@ -1581,7 +1581,7 @@ function delnojobskill(actor) end
 
 ---删除所有技能
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---clearskill(actor)
 ---```
@@ -1590,7 +1590,7 @@ function clearskill(actor) end
 ---是否有该技能
 ---* actor 玩家对象
 ---* skillId 技能ID
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@return boolean "是否有该技能"
 ---```lua
@@ -1607,7 +1607,7 @@ function HasSkill(actor, skillId) end
 ---* skillId 技能ID
 ---* flag 类型：<br>1-技能等级<br>2-强化等级<br>3-熟练度(技能经验值)
 ---* point 等级或点数
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@param flag integer
 ---@param point integer
@@ -1623,7 +1623,7 @@ function setskillinfo(actor, skillId, flag, point) end
 ---* level 技能等级
 ---* target 技能对象：<br>1-攻击目标，<br>2-自身
 ---* flag 是否显示施法动作：<br>0-不显示，1-显示
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@param type integer
 ---@param level integer
@@ -1642,11 +1642,11 @@ function releasemagic(actor, skillId, type, level, target, flag) end
 ---* sLevel 技能等级
 ---* target 目标对象
 ---* data 是否显示施法动作<br>0-不显示<br>1-显示
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@param sType integer
 ---@param sLevel integer
----@param target table
+---@param target number|string
 ---@param data integer
 ---```lua
 ---releasemagic_target(actor,skill_id,1,skill_lv,mon,0)
@@ -1661,7 +1661,7 @@ function releasemagic_target(actor, skillId, sType, sLevel, target, data) end
 ---* X 目标点X坐标
 ---* Y 目标点Y坐标
 ---* data 是否显示施法动作<br>0-不显示<br>1-显示
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@param sType integer
 ---@param sLevel integer
@@ -1677,7 +1677,7 @@ function releasemagic_pos(actor, skillId, sType, sLevel, X, Y, data) end
 ---* actor 玩家对象
 ---* rate 攻击威力比率，100=100%
 ---* time 有效时间，超过时间恢复正常
----@param actor table
+---@param actor number|string
 ---@param rate integer
 ---@param time integer
 ---```lua
@@ -1690,7 +1690,7 @@ function powerrate(actor, rate, time) end
 ---* skillName 技能名称
 ---* char 操作符(+/-/=)<br>=0就是还原技能CD
 ---* time 时间（秒)
----@param actor table
+---@param actor number|string
 ---@param skillName string
 ---@param char string
 ---@param time integer
@@ -1714,7 +1714,7 @@ function getskillcscd(skillName) end
 ---获取当前技能冷却时间
 ---* actor 玩家对象
 ---* skillName 技能名称
----@param actor table
+---@param actor number|string
 ---@param skillName string
 ---@return integer "冷却时间(毫秒)"
 ---```tips
@@ -1729,7 +1729,7 @@ function getskilldqcd(actor, skillName) end
 ---* actor 玩家对象
 ---* skillInfo 技能名称/技能ID
 ---* time 减免的cd时间(秒)<br>传入0则重置技能CD
----@param actor table
+---@param actor number|string
 ---@param skillInfo integer|string
 ---@param time integer
 ---```tips
@@ -1743,7 +1743,7 @@ function skillrestcd(actor, skillInfo, time) end
 ---获取技能等级
 ---* actor 玩家对象
 ---* skillId 技能ID
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@return integer "技能等级"
 ---```lua
@@ -1754,7 +1754,7 @@ function getskilllevel(actor, skillId) end
 ---获取技能强化等级
 ---* actor 玩家对象
 ---* skillId 技能ID
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@return integer "技能强化等级"
 ---```lua
@@ -1765,7 +1765,7 @@ function getskilllevelup(actor, skillId) end
 ---获取技能熟练度
 ---* actor 玩家对象
 ---* skillId 技能ID
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@return integer "技能熟练度(技能经验值)"
 ---```lua
@@ -1778,7 +1778,7 @@ function getskilltrain(actor, skillId) end
 ---* skillName 技能名称
 ---* value 威力值
 ---* type 计算方式(0按点数计算,1按百分比计算)
----@param actor table
+---@param actor number|string
 ---@param skillName string
 ---@param value integer
 ---@param type integer
@@ -1792,7 +1792,7 @@ function setmagicpower(actor, skillName, value, type) end
 ---* skillName 技能名称
 ---* value 抵消威力值
 ---* type 计算方式(0按点数计算,1按百分比计算)
----@param actor table
+---@param actor number|string
 ---@param skillName string
 ---@param value integer
 ---@param type integer
@@ -1824,7 +1824,7 @@ function getskillindex(skillName) end
 ---* skillName 技能名称
 ---* effectId 特效id,=0为关闭<br>(cfg_skill_present.xls表id)
 ---* effectId2 持续性ID(魔法盾BUFF表id/火墙/群体雷电术/其他的技能无效)
----@param actor table
+---@param actor number|string
 ---@param skillName string
 ---@param effectId integer
 ---@param effectId2 integer
@@ -1836,7 +1836,7 @@ function setmagicskillefft(actor, skillName, effectId, effectId2) end
 ---根据玩家名获取玩家对象
 ---* actorName 玩家名字
 ---@param actorName string
----@return table "玩家对象 失败返回 '' 空字符串"
+---@return number|string "玩家对象 失败返回 '' 空字符串"
 ---```lua
 ---local userName=getbaseinfo(actor,1)
 ---local player=getplayerbyname(userName)
@@ -1846,7 +1846,7 @@ function getplayerbyname(actorName) end
 ---根据玩家唯一ID获取玩家对象
 ---* id 玩家唯一id
 ---@param id string
----@return table "玩家对象"
+---@return number|string "玩家对象"
 ---```lua
 ---local userId=getbaseinfo(actor,2)
 ---local player=getplayerbyid(userId)
@@ -1857,7 +1857,7 @@ function getplayerbyid(id) end
 ---* actor 玩家对象
 ---* name 称号物品名称
 ---* use 开启激活，1激活
----@param actor table
+---@param actor number|string
 ---@param name string
 ---@param use integer
 ---@return boolean "是否成功"
@@ -1875,7 +1875,7 @@ function confertitle(actor, name, use) end
 ---删除称号
 ---* actor 玩家对象
 ---* name 称号物品名称
----@param actor table
+---@param actor number|string
 ---@param name string
 ---@return boolean "是否成功"
 ---```lua
@@ -1892,7 +1892,7 @@ function deprivetitle(actor, name) end
 ---检测人物称号
 ---* actor 玩家对象
 ---* title 称号
----@param actor table
+---@param actor number|string
 ---@param title string
 ---@return boolean "返回值，是否有该称号"
 ---```lua
@@ -1903,7 +1903,7 @@ function checktitle(actor, title) end
 
 ---获取人物所有称号
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "返回称号列表(称号id和截至时间戳)"
 ---```lua
 ---local titlelist = newgettitlelist(actor)
@@ -1919,7 +1919,7 @@ function newgettitlelist(actor) end
 ---* titleName 称号名称
 ---* operation 操作符（+,-,=）
 ---* cour 时间(+,-传入操作时间(秒), =传入时间戳)
----@param actor table
+---@param actor number|string
 ---@param titleName string
 ---@param operation string
 ---@param cour integer
@@ -1933,7 +1933,7 @@ function changetitletime(actor, titleName, operation, cour) end
 ---完美封号系统
 ---* actor 玩家对象
 ---* levelName 称号文本，和名字一起显示
----@param actor table
+---@param actor number|string
 ---@param levelName string
 ---```lua
 -----"\\"为换行符，换行显示在名字上方，添加此换行符后需在设置里关闭只显示人名的选项，否则将不做显示
@@ -1950,7 +1950,7 @@ function setranklevelname(actor, levelName) end
 ---修改攻击模式
 ---* actor 玩家对象
 ---* attackMode 攻击模式：<br>0-全体攻击<br>1-和平攻击<br>2-夫妻攻击<br>3-师徒攻击<br>4-编组攻击<br>5-行会攻击<br>6-红名攻击<br>7-国家攻击
----@param actor table
+---@param actor number|string
 ---@param attackMode integer
 ---```lua
 ---changeattackmode(actor,6)
@@ -1962,7 +1962,7 @@ function changeattackmode(actor, attackMode) end
 ---* actor 玩家对象
 ---* attackMode 攻击模式<br>-1-提前结束强制状态
 ---* time 强制切换时间时间
----@param actor table
+---@param actor number|string
 ---@param attackMode integer
 ---@param time integer
 ---```lua
@@ -1972,7 +1972,7 @@ function setattackmode(actor, attackMode, time) end
 
 ---获取当前攻击模式
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "攻击模式： 0-全体攻击 1-和平攻击 2-夫妻攻击 3-师徒攻击 4-编组攻击 5-行会攻击 6-红名攻击 7-国家攻击 8-阵营攻击 9-区服攻击"
 ---```lua
 ---local attackMode=getattackmode(actor)
@@ -1982,7 +1982,7 @@ function getattackmode(actor) end
 ---打开仓库面板
 ---* actor 玩家对象
 ---* isOpenUI 0/nil=打开UI<br>1=只下发数据
----@param actor table
+---@param actor number|string
 ---@param isOpenUI integer
 ---```lua
 ---openstorage(actor,1)
@@ -1992,7 +1992,7 @@ function openstorage(actor, isOpenUI) end
 ---新解锁仓库格子
 ---* actor 玩家对象
 ---* nCount 新解锁的格子数
----@param actor table
+---@param actor number|string
 ---@param nCount integer
 ---```tips
 ---最大支持240格 ,cfg_game_data.xls表 字段：warehouse_max_num 设置最大总仓库格子数
@@ -2005,7 +2005,7 @@ function changestorage(actor, nCount) end
 
 ---获取仓库剩余格子数
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "仓库剩余格子数"
 ---```lua
 ---local blankNum=getsblank(actor)
@@ -2014,7 +2014,7 @@ function getsblank(actor) end
 
 ---获取玩家仓库最大格子数
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "仓库最大格子数"
 ---```lua
 ---local size=getssize(actor)
@@ -2024,7 +2024,7 @@ function getssize(actor) end
 ---跳转地图（随机坐标）
 ---* actor 玩家对象
 ---* mapId 装备对地图ID象
----@param actor table
+---@param actor number|string
 ---@param mapId string
 ---```lua
 ---local mapID = getbaseinfo(actor,3)
@@ -2040,7 +2040,7 @@ function map(actor, mapId) end
 ---* nY Y坐标
 ---* nRange 范围
 ---* effect 是否播放传送特效<br>0=播放<br>1=不播放
----@param actor table
+---@param actor number|string
 ---@param mapId string
 ---@param nX integer
 ---@param nY integer
@@ -2058,7 +2058,7 @@ function mapmove(actor, mapId, nX, nY, nRange, effect) end
 ---* actor 玩家对象
 ---* X X坐标
 ---* Y Y坐标
----@param actor table
+---@param actor number|string
 ---@param X integer
 ---@param Y integer
 ---```lua
@@ -2098,7 +2098,7 @@ function getplayerlst(offline) end
 
 ---获取玩家GM权限值
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "GM权限值"
 ---```lua
 ---local GM=getgmlevel(actor)
@@ -2108,7 +2108,7 @@ function getgmlevel(actor) end
 ---设置玩家GM权限值
 ---* actor 玩家对象
 ---* gmlevel GM权限值
----@param actor table
+---@param actor number|string
 ---@param gmlevel integer
 ---```lua
 ---setgmlevel(actor,10)
@@ -2118,7 +2118,7 @@ function setgmlevel(actor, gmlevel) end
 
 ---复活
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---realive(actor)
 ---```
@@ -2126,7 +2126,7 @@ function realive(actor) end
 
 ---人物强制掉线(踢人下线)
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---kick(actor)
 ---```
@@ -2137,7 +2137,7 @@ function kick(actor) end
 ---* time 时间(毫秒)
 ---* func 触发函数 函数名 使用 aa_cc 带底杠规则(消除部分隐患)
 ---* del 换地图是否删除此延时(0或为空时=不删除 1=删除)
----@param actor table
+---@param actor number|string
 ---@param time integer
 ---@param func string
 ---@param del integer
@@ -2156,7 +2156,7 @@ function delaygoto(actor, time, func, del) end
 ---删除延迟
 ---* actor 玩家对象
 ---* func 需要删除的延时函数<br>不填为清除全部
----@param actor table
+---@param actor number|string
 ---@param func string
 ---```lua
 ----- 对照组
@@ -2181,7 +2181,7 @@ function cleardelaygoto(actor, func) end
 ---* actor 玩家对象
 ---* time 时间(毫秒)
 ---* func 触发函数
----@param actor table
+---@param actor number|string
 ---@param time integer
 ---@param func string
 ---```lua
@@ -2208,7 +2208,7 @@ function delaymsggoto(actor, time, func) end
 ---* targetType 目标类型(0或空=所有目标;1=仅人物;2=仅怪物)
 ---* sffectId 目标身上播放的特效ID
 ---* harmNum 群体伤害目标个数
----@param actor table
+---@param actor number|string
 ---@param targetX integer
 ---@param targetY integer
 ---@param range integer
@@ -2229,7 +2229,7 @@ function rangeharm(actor, targetX, targetY, range, power, addType, addValue, che
 
 ---获取人物战斗力
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return number "战斗力"
 ---```lua
 ---getfightpower(actor)
@@ -2239,7 +2239,7 @@ function getfightpower(actor) end
 ---设置人物战斗力
 ---* actor 玩家对象
 ---* power 战斗力
----@param actor table
+---@param actor number|string
 ---@param power number
 ---```lua
 ---setfightpower(actor, "888")
@@ -2248,7 +2248,7 @@ function setfightpower(actor, power) end
 
 ---获取推广包ID
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return number "推广包id"
 ---```lua
 ---getpromoteid(actor)
@@ -2259,9 +2259,9 @@ function getpromoteid(actor) end
 ---* actor 玩家对象
 ---* num 倍率
 ---* obj 默认actor，调整对象
----@param actor table
+---@param actor number|string
 ---@param num integer
----@param obj table
+---@param obj number|string
 ---```lua
 ---SetNextDamage(actor,num,obj)
 ---```
@@ -2271,7 +2271,7 @@ function SetNextDamage(actor, num, obj) end
 ---* actor 玩家对象
 ---* per 减伤万分比数值
 ---* type 减伤类型（0-所有，1-仅物理伤害，2-仅魔法伤害）
----@param actor table
+---@param actor number|string
 ---@param per integer
 ---@param type integer
 ---```lua
@@ -2281,7 +2281,7 @@ function SetSheildDec(actor, per, type) end
 
 ---获取玩家登录账号id
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return string "玩家登录账号id"
 ---```lua
 ---local accountid = GetUserAccount(actor)
@@ -2292,7 +2292,7 @@ function GetUserAccount(actor) end
 
 ---获取等级锁
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "锁住的最大等级,无锁定返回0,失败返回-1"
 ---```lua
 ---local var=getlocklevel(actor)
@@ -2301,7 +2301,7 @@ function getlocklevel(actor) end
 
 ---全身所有装备星星数量总和
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "全身所有装备星星数量总和,失败返回-1"
 ---```lua
 ---local StarCountAll=GetStarCountAll(actor)
@@ -2312,7 +2312,7 @@ function GetStarCountAll(actor) end
 ---获取剩余复活时间
 ---* actor 玩家对象
 ---* type 0/nil=复活戒指时间,1=套装复活时间
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@return integer "复活时间,失败返回-1"
 ---```lua
@@ -2323,7 +2323,7 @@ function GetRevivalTime(actor, type) end
 ---开启一键拾取按钮
 ---* actor 玩家对象
 ---* set 0:关闭,1:开启
----@param actor table
+---@param actor number|string
 ---@param set integer
 ---```lua
 ---SetAutoPick(actor,1)
@@ -2332,7 +2332,7 @@ function SetAutoPick(actor, set) end
 
 ---获取人物背包最大格子数
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "背包最大格子数"
 ---```lua
 ---local count=GetBagMaxCount(actor)
@@ -2343,7 +2343,7 @@ function GetBagMaxCount(actor) end
 ---获取角色技能最大冷却时间
 ---* actor 玩家对象
 ---* skillId 技能id
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@return integer "技能最大冷却时间（毫秒）"
 ---```lua
@@ -2356,7 +2356,7 @@ function GetSkillMaxCD(actor, skillId) end
 ---* actor 玩家对象
 ---* skillId 技能id
 ---* time 冷却时间（毫秒）
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@param time integer
 ---```lua
@@ -2369,7 +2369,7 @@ function SetSkillMaxCD(actor, skillId, time) end
 ---* actor 玩家对象
 ---* skillId 技能id
 ---* time 冷却时间（毫秒）
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@param time integer
 ---```lua
@@ -2381,7 +2381,7 @@ function SetSkillCD(actor, skillId, time) end
 ---获取角色技能剩余冷却时间
 ---* actor 玩家对象
 ---* skillId 技能id
----@param actor table
+---@param actor number|string
 ---@param skillId integer
 ---@return integer "技能剩余冷却时间（毫秒）"
 ---```lua
@@ -2392,7 +2392,7 @@ function GetSkillCD(actor, skillId) end
 
 ---获取角色所有属性基准值
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "所有属性值基准值"
 ---```lua
 ---local attr = AttrTabPre(actor)
@@ -2405,7 +2405,7 @@ function AttrTabPre(actor) end
 ---设置杀怪掉落是否绑定
 ---* actor 玩家对象
 ---* isbind 是否开启绑定
----@param actor table
+---@param actor number|string
 ---@param isbind boolean
 ---@return boolean "成功时返回true，失败返回false"
 ---```tips
@@ -2421,7 +2421,7 @@ function SetBind(actor, isbind) end
 
 ---获取杀怪掉落是否绑定
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return boolean "true or false"
 ---```lua
 ---local ccc = GetBind(actor)
@@ -2431,7 +2431,7 @@ function GetBind(actor) end
 
 ---获取角色所有技能
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "技能列表"
 ---```lua
 ---local skill_list = getallskills(actor)
@@ -2467,10 +2467,10 @@ function globalcleardelaygoto(funcName, value) end
 ---* type 显示类型<br>1- 伤害，<br>2- 暴击伤害，<br>4- 加HP，<br>5- 格挡，<br>8- 扣减HP和MP，<br>9- 伤害，<br>10-扣减MP，<br>11- 致命一击<br>对应cfg_damage_number表里的ID
 ---* damage 显示的点数
 ---* hitter 可看到飘血飘字的主体，一般为攻击者
----@param target table
+---@param target number|string
 ---@param type integer
 ---@param damage integer
----@param hitter table
+---@param hitter number|string
 ---```lua
 ---[[
 ---参数1[target]可以为玩家对象、怪物对象
@@ -2483,7 +2483,7 @@ function sendattackeff(target, type, damage, hitter) end
 ---设定人物攻击飘血飘字类型
 ---* actor 玩家对象
 ---* type 显示类型<br>1- 伤害，<br>2- 暴击伤害，<br>4- 加HP，<br>5- 格挡，<br>8- 扣减HP和MP，<br>9- 伤害，<br>10-扣减MP，<br>11- 致命一击<br>对应cfg_damage_number表里的ID
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---```tips
 ---1. 支持在bufftriggerhpchange使用
@@ -2495,7 +2495,7 @@ function setattackefftype(actor, type) end
 
 ---停止自动挂机
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---stopautoattack(actor)
 ---```
@@ -2508,7 +2508,7 @@ function stopautoattack(actor) end
 ---* msg 提示消息
 ---* canStop 能否中断<br>0-不可中断<br>1-可以中断
 ---* fail 中断触发的函数
----@param actor table
+---@param actor number|string
 ---@param time integer
 ---@param succ string
 ---@param msg string
@@ -2534,7 +2534,7 @@ function showprogressbardlg(actor, time, succ, msg, canStop, fail) end
 ---* actor 玩家对象
 ---* type 速度类型：<br>1-移动速度<br>2-攻击速度<br>3-施法速度
 ---* level 速度等级 -10~10<br>0-原始速度，<br>-1时间间隔减少10%<br>+1时间间隔增加10%
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param level integer
 ---```lua
@@ -2547,7 +2547,7 @@ function changespeed(actor, type, level) end
 ---* model 计算方式<br>1=移动速度<br>2=攻击速度<br>3=魔法速度
 ---* value 速度值<br>0=原速度(大于0=加速 -=减速)
 ---* time 有效时间秒<br>(为空=表示不限制时间,最大值65535)
----@param actor table
+---@param actor number|string
 ---@param model integer
 ---@param value integer
 ---@param time integer
@@ -2561,7 +2561,7 @@ function changespeedex(actor, model, value, time) end
 ---* type 模式：0-恢复默认；1-穿人；2-穿怪；3-穿人穿怪
 ---* time 时间(秒)
 ---* objType 对象 ：0-玩家；1-宝宝
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param time integer
 ---@param objType integer
@@ -2573,8 +2573,8 @@ function throughhum(actor, type, time, objType) end
 ---设置当前攻击目标
 ---* hitter 攻击者(玩家/英雄/怪物)
 ---* target 被攻击者(玩家/英雄/怪物)
----@param hitter table
----@param target table
+---@param hitter number|string
+---@param target number|string
 ---```tips
 ---当攻击者为玩家时，仅用于获取玩家攻击对象前的强制设置，无法设置玩家真实攻击目标
 ---```
@@ -2586,8 +2586,8 @@ function settargetcert(hitter, target) end
 ---判断对象是否可被攻击
 ---* hitter 攻击对象(玩家/英雄/怪物)
 ---* target 被攻击对象(玩家/英雄/怪物)
----@param hitter table
----@param target table
+---@param hitter number|string
+---@param target number|string
 ---@return boolean "true:可以被攻击 false:不可被攻击"
 ---```lua
 ---local canBeTarget=ispropertarget(hitter,target)
@@ -2599,7 +2599,7 @@ function ispropertarget(hitter, target) end
 ---* id ID
 ---* name 显示名称
 ---* func 函数名(多参数用逗号分割)
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---@param name string
 ---@param func string
@@ -2617,7 +2617,7 @@ function addbutshow(actor, id, name, func) end
 ---删除气泡
 ---* actor 玩家对象
 ---* id 气泡ID
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---```lua
 ---delbutshow(actor,1)
@@ -2626,8 +2626,8 @@ function delbutshow(actor, id) end
 
 ---获取角色朝向前一格玩家对象
 ---* actor 玩家对象
----@param actor table
----@return table "获取对面人物对象"
+---@param actor number|string
+---@return number|string "获取对面人物对象"
 ---```lua
 ---local otherPlayer = getoppositeobj(actor)
 ---release_print("对面玩家",getbaseinfo(otherPlayer,1))
@@ -2640,7 +2640,7 @@ function getoppositeobj(actor) end
 ---* nState 0=打开<br>1=打开面板重复点按钮不会关闭,除非主动点关闭按钮(一般做任务配合新手引导用到)<br>2=关闭当前面板ID
 ---* rankWnd 面板ID(新排行榜用)
 ---* isHero 0/nil=玩家<br>1=英雄(新排行榜用)
----@param actor table
+---@param actor number|string
 ---@param nId integer
 ---@param nState integer
 ---@param rankWnd integer
@@ -2727,7 +2727,7 @@ function openhyperlink(actor, nId, nState, rankWnd, isHero) end
 
 ---开启自动挂机
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---startautoattack(actor)
 ---```
@@ -2736,7 +2736,7 @@ function startautoattack(actor) end
 ---离线挂机
 ---* actor 玩家对象
 ---* time 离线时间（分）
----@param actor table
+---@param actor number|string
 ---@param time integer
 ---```lua
 ---offlineplay(actor,100)
@@ -2757,7 +2757,7 @@ function tdummy(mapId, level, count) end
 
 ---获取玩家好友列表
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "好友的名字列表"
 ---```lua
 ---local list = getfriendnamelist(actor)
@@ -2772,7 +2772,7 @@ function getfriendnamelist(actor) end
 ---* rLevel 转生次数<br>一次转多少级(数值范围为1-255)
 ---* level 转生后等级<br>代表转生后人物的等级，0为不改变人物当前等级
 ---* num 分配点数<br>转生后可以得到的点数，此点数可能按比例换成人物属性点(数值范围 1 - 20000)
----@param actor table
+---@param actor number|string
 ---@param rLevel integer
 ---@param level integer
 ---@param num integer
@@ -2785,7 +2785,7 @@ function renewlevel(actor, rLevel, level, num) end
 ---* actor 玩家对象
 ---* sFlag 操作符(=,+)
 ---* value 点数(0-1000)
----@param actor table
+---@param actor number|string
 ---@param sFlag string
 ---@param value integer
 ---```lua
@@ -2796,7 +2796,7 @@ function bonuspoint(actor, sFlag, value) end
 
 ---获取人物转生属性点
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "人物转生属性点"
 ---```lua
 ---local zsPoint=getbonuspoint(actor)
@@ -2805,7 +2805,7 @@ function getbonuspoint(actor) end
 
 ---复位属性点数
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---local fwPoint=restbonuspoint(actor)
 ---```
@@ -2813,7 +2813,7 @@ function restbonuspoint(actor) end
 
 ---获取玩家pk等级
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "pk等级 0.白名;1.黄名;2.红名; 3.灰名"
 ---```lua
 ---pkLevel=getpklevel(actor)
@@ -2828,7 +2828,7 @@ function getpklevel(actor) end
 ---* y Y坐标
 ---* type 红点模式<br>0=图片<br>1=特效
 ---* mode 红点模式=0(填图片路径)<br>红点模式=1(填特效编号)
----@param actor table
+---@param actor number|string
 ---@param win_id integer
 ---@param btn_id integer
 ---@param x integer
@@ -2844,7 +2844,7 @@ function reddot(actor, win_id, btn_id, x, y, type, mode) end
 ---* actor 玩家对象
 ---* win_id 窗口ID
 ---* btn_ind 按钮ID/任务栏填任务ID
----@param actor table
+---@param actor number|string
 ---@param win_id integer
 ---@param btn_ind integer
 ---```lua
@@ -2856,7 +2856,7 @@ function reddel(actor, win_id, btn_ind) end
 ---* actor 玩家对象
 ---* win_id 窗口ID
 ---* btn_id 按钮ID
----@param actor table
+---@param actor number|string
 ---@param win_id integer
 ---@param btn_id integer
 ---```lua
@@ -2872,7 +2872,7 @@ function setpickitemtobag(actor, win_id, btn_id) end
 ---* type 0=不嘲讽玩家<br>1=嘲讽玩家
 ---* isMove 0=怪物漂移到人物边<br>1=怪物瞬移到目前人物坐标<br>2=怪物瞬移到目前人物面前
 ---* unLimit 0=无限制<br>1=怪物/人物攻击目标不归属自己的不可被吸
----@param actor table
+---@param actor number|string
 ---@param max integer
 ---@param min integer
 ---@param monLevel integer
@@ -2889,7 +2889,7 @@ function monmove(actor, max, min, monLevel, type, isMove, unLimit) end
 ---* actor 玩家对象
 ---* opacity 透明度(0~255)
 ---* time 显示时间(秒)
----@param actor table
+---@param actor number|string
 ---@param opacity integer
 ---@param time integer
 ---```lua
@@ -2903,7 +2903,7 @@ function showphantom(actor, opacity, time) end
 ---* attrId 属性ID
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")(-2操作物品)
 ---* MakeIndex 物品唯一ID
----@param actor table
+---@param actor number|string
 ---@param model integer
 ---@param attrId integer
 ---@param where integer
@@ -2922,7 +2922,7 @@ function getitemattidvalue(actor, model, attrId, where, MakeIndex) end
 
 ---获取角色所有属性
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "所有属性值"
 ---```lua
 ---local attr = attrtab(actor)
@@ -2934,7 +2934,7 @@ function attrtab(actor) end
 
 ---是否在骑马
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return boolean "是否在骑马"
 ---```lua
 ---local isRide=checkonhorse(actor)
@@ -2947,7 +2947,7 @@ function checkonhorse(actor) end
 ---* horseEff 坐骑特效外观
 ---* horseFature 人物骑马外观
 ---* Type 坐骑类型 0=单人 1=双人 2=连体
----@param actor table
+---@param actor number|string
 ---@param horseAppr integer
 ---@param horseEff integer
 ---@param horseFature integer
@@ -2960,7 +2960,7 @@ function ridehorse(actor, horseAppr, horseEff, horseFature, Type) end
 
 ---下马
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---dismounthorse(actor)
 ---```
@@ -2970,7 +2970,7 @@ function dismounthorse(actor) end
 ---* actor 玩家对象
 ---* effectId 特效id
 ---* modle 播放模式<br>0/nil=两步播放<br>1=单步播放
----@param actor table
+---@param actor number|string
 ---@param effectId integer
 ---@param modle integer
 ---```lua
@@ -2982,7 +2982,7 @@ function setmoveeff(actor, effectId, modle) end
 ---* actor 玩家对象
 ---* varIndex 属性id(1~5)
 ---* varValue 属性值
----@param actor table
+---@param actor number|string
 ---@param varIndex integer
 ---@param varValue integer
 ---```lua
@@ -3023,7 +3023,7 @@ function setotherparams(actor, varIndex, varValue) end
 
 ---收摊
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---StopShop(actor)
 ---```
@@ -3031,7 +3031,7 @@ function StopShop(actor) end
 
 ---禁止摆摊
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```tips
 ---注意:当前接口需在摆摊触发(startmyshop)中使用
 ---```
@@ -3050,7 +3050,7 @@ function ForbidMyShop(actor) end
 ---* actor 玩家对象
 ---* num 动画数量<br>比如3就是会出现3个骰子转动
 ---* funcName 动画结束触发
----@param actor table
+---@param actor number|string
 ---@param num integer
 ---@param funcName string
 ---```lua
@@ -3070,7 +3070,7 @@ function playdice(actor, num, funcName) end
 ---* actor 玩家对象
 ---* boxIndex 宝箱ID
 ---* num 次数(不读数据表次数,只认这里的次数)
----@param actor table
+---@param actor number|string
 ---@param boxIndex integer
 ---@param num integer
 ---```lua
@@ -3081,7 +3081,7 @@ function opendragonbox(actor, boxIndex, num) end
 
 ---立即推送前端变量
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---sendredvartoclient(actor)
 ---```
@@ -3090,7 +3090,7 @@ function sendredvartoclient(actor) end
 ---设置人物照亮范围（光照）
 ---* actor 玩家对象
 ---* value 人物照亮范围值<br>-1=读装备的光照值
----@param actor table
+---@param actor number|string
 ---@param value integer
 ---```lua
 -----注:黑夜模式需在`M2-假人设置-光照系统-是否免蜡`中开启
@@ -3116,7 +3116,7 @@ function getsortdata(rankIndex, isHero) end
 ---* aimX 目标X坐标
 ---* aimY 目标Y坐标
 ---* range 人物离镖车距离内自动寻路<br>取值范围：0-12<br>0-不检测
----@param actor table
+---@param actor number|string
 ---@param aimX integer
 ---@param aimY integer
 ---@param range integer
@@ -3129,7 +3129,7 @@ function dartmap(actor, aimX, aimY, range) end
 ---* actor 玩家对象
 ---* time 镖车存活时间，秒
 ---* isDie 下线是否消失<br>0-消失，1-时间到达消失
----@param actor table
+---@param actor number|string
 ---@param time integer
 ---@param isDie integer
 ---```tips
@@ -3155,7 +3155,7 @@ function darttime(actor, time, isDie) end
 ---* param8 参数8，用来替换任务内容里的%s
 ---* param9 参数9，用来替换任务内容里的%s
 ---* param10 参数10，用来替换任务内容里的%s
----@param actor table
+---@param actor number|string
 ---@param nId integer
 ---@param param1 string
 ---@param param2 string
@@ -3191,7 +3191,7 @@ function newpicktask(actor, nId, param1, param2, param3, param4, param5, param6,
 ---* param8 参数8，用来替换任务内容里的%s
 ---* param9 参数9，用来替换任务内容里的%s
 ---* param10 参数10，用来替换任务内容里的%s
----@param actor table
+---@param actor number|string
 ---@param nId integer
 ---@param param1 string
 ---@param param2 string
@@ -3214,7 +3214,7 @@ function newchangetask(actor, nId, param1, param2, param3, param4, param5, param
 ---完成任务
 ---* actor 玩家对象
 ---* nId 任务ID
----@param actor table
+---@param actor number|string
 ---@param nId integer
 ---```lua
 ---newcompletetask(actor,1)
@@ -3224,7 +3224,7 @@ function newcompletetask(actor, nId) end
 ---删除任务
 ---* actor 玩家对象
 ---* nId 任务ID
----@param actor table
+---@param actor number|string
 ---@param nId integer
 ---```lua
 ---newdeletetask(actor,1)
@@ -3234,7 +3234,7 @@ function newdeletetask(actor, nId) end
 ---任务置顶显示
 ---* actor 玩家对象
 ---* nId 任务ID
----@param actor table
+---@param actor number|string
 ---@param nId integer
 ---```tips
 ---客户端只支持1个任务置顶显示
@@ -3250,7 +3250,7 @@ function tasktopshow(actor, nId) end
 ---* time 倒计时时间(毫秒)
 ---* model 0=上线需重新开启否则消失<br>1=上线直接执行
 ---* isClear 0=开启新的<br>1=上线刷新当前时间
----@param actor table
+---@param actor number|string
 ---@param funcName string
 ---@param time integer
 ---@param model integer
@@ -3268,7 +3268,7 @@ function dsfuncall(actor, funcName, time, model, isClear) end
 ---删除系统任务计时
 ---* actor 玩家对象
 ---* funcName 回调函数名
----@param actor table
+---@param actor number|string
 ---@param funcName string
 ---```lua
 ---deldsfuncall(actor,"dingshicf_func")
@@ -3279,7 +3279,7 @@ function deldsfuncall(actor, funcName) end
 ---* actor 玩家对象
 ---* funcName 回调函数名
 ---* model 1=开启<br>0=停止
----@param actor table
+---@param actor number|string
 ---@param funcName string
 ---@param model integer
 ---```lua
@@ -3307,7 +3307,7 @@ function GetMapDummyPlayCount(mapId) end
 
 ---检测是否是假人
 ---* actor 假人对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---local function getMapIDXY(actor)
 ---local mapID = getbaseinfo(actor, 3)
@@ -3330,7 +3330,7 @@ function IsDummy(actor) end
 ---* actor 假人对象
 ---* x 地图坐标
 ---* y 地图坐标
----@param actor table
+---@param actor number|string
 ---@param x integer
 ---@param y integer
 ---```lua
@@ -3355,7 +3355,7 @@ function dummygoto(actor, x, y) end
 ---假人是否锁定目标攻击
 ---* actor 假人对象
 ---* type 0=随机搜索，1=锁定
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---```lua
 ---dummylocktarget(v,1)
@@ -3370,7 +3370,7 @@ function kickdummy() end
 
 ---假人停止行动
 ---* actor 假人对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---dummystopex(actor)
 ---```
@@ -3378,7 +3378,7 @@ function dummystopex(actor) end
 
 ---假人开始行动
 ---* actor 假人对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---dummystartex(actor)
 ---```
@@ -3395,7 +3395,7 @@ function dummystartex(actor) end
 ---* interval 间隔
 ---* mode 登录模式(0=顺序 1=倒顺 2=随机)
 ---* sexy 性别(0=男 1=女)
----@param actor table
+---@param actor number|string
 ---@param mapId string
 ---@param x integer
 ---@param y integer
@@ -3416,8 +3416,8 @@ function dummylogon(actor, mapId, x, y, range, job, num, interval, mode, sexy) e
 ---* actor 玩家对象
 ---* role 接收者对象
 ---* netid 关系id(100~255)
----@param actor table
----@param role table
+---@param actor number|string
+---@param role number|string
 ---@param netid integer
 ---@return boolean "是否建立参成功"
 ---```tips
@@ -3453,7 +3453,7 @@ function DisPlayNet(netIndex) end
 ---* actor 玩家对象
 ---* netid 关系序号
 ---* online 0：全部成员 1：在线成员
----@param actor table
+---@param actor number|string
 ---@param netid integer
 ---@param online integer
 ---@return string "关系成员json格式"
@@ -3468,7 +3468,7 @@ function GetNetMem(actor, netid, online) end
 ---获取关系成员允许召唤状态
 ---* actor 玩家对象
 ---* netid 关系id
----@param actor table
+---@param actor number|string
 ---@param netid integer
 ---@return boolean "允许召唤状态"
 ---```lua
@@ -3480,7 +3480,7 @@ function GetNetCallState(actor, netid) end
 ---* actor 玩家对象
 ---* netid 关系id
 ---* isSet 是否允许召唤
----@param actor table
+---@param actor number|string
 ---@param netid integer
 ---@param isSet boolean
 ---```lua
@@ -3491,8 +3491,8 @@ function SetNetCallState(actor, netid, isSet) end
 ---获取人物关系ID
 ---* actor 玩家对象
 ---* role 接受者对象
----@param actor table
----@param role table
+---@param actor number|string
+---@param role number|string
 ---@return string "关系ID"
 ---```lua
 ---local netid=GetPlayNet(actor,v)
@@ -3523,7 +3523,7 @@ function DelPlayNet(netIndex, userid) end
 ---* actor 玩家对象
 ---* netIndex 关系唯一id
 ---* level 等级 0/1
----@param actor table
+---@param actor number|string
 ---@param netIndex string
 ---@param level integer
 ---@return boolean "是否设置成功"
@@ -3542,7 +3542,7 @@ function SetNetRank(actor, netIndex, level) end
 ---获取关系的等级
 ---* actor 玩家对象
 ---* netIndex 关系唯一id
----@param actor table
+---@param actor number|string
 ---@param netIndex string
 ---@return integer "等级"
 ---```lua
@@ -3561,7 +3561,7 @@ function GetNetRank(actor, netIndex) end
 
 ---学习内功
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---readskillng(actor)
 ---```
@@ -3569,7 +3569,7 @@ function readskillng(actor) end
 
 ---获取内功等级
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "内功等级"
 ---```lua
 ---local ngLevel=getnglevel(actor)
@@ -3581,7 +3581,7 @@ function getnglevel(actor) end
 ---* actor 玩家对象
 ---* opt 控制符(=,+,-)
 ---* value 等级
----@param actor table
+---@param actor number|string
 ---@param opt string
 ---@param value integer
 ---```lua
@@ -3594,7 +3594,7 @@ function changenglevel(actor, opt, value) end
 ---* actor 玩家对象
 ---* opt 控制符(=,+,-)
 ---* value 经验
----@param actor table
+---@param actor number|string
 ---@param opt string
 ---@param value integer
 ---```lua
@@ -3607,7 +3607,7 @@ function changengexp(actor, opt, value) end
 ---* actor 玩家对象
 ---* pulse 经络<br>0=冲脉<br>1=阴跷<br>2=阴维<br>3=任脉3<br>4=奇经
 ---* isOpen 0=关闭<br>1=开启
----@param actor table
+---@param actor number|string
 ---@param pulse integer
 ---@param isOpen integer
 ---```lua
@@ -3624,7 +3624,7 @@ function setpulsestate(actor, pulse, isOpen) end
 ---* actor 玩家对象
 ---* pulse 经络<br>0=冲脉<br>1=阴跷<br>2=阴维<br>3=任脉3<br>4=奇经
 ---* acupoint 穴位（1~5,经络的五个穴位）
----@param actor table
+---@param actor number|string
 ---@param pulse integer
 ---@param acupoint integer
 ---```lua
@@ -3638,7 +3638,7 @@ function openpulse(actor, pulse, acupoint) end
 ---* pulse 经络<br>0=冲脉<br>1=阴跷<br>2=阴维<br>3=任脉3<br>4=奇经
 ---* opt 控制符(=,+,-)
 ---* level 等级
----@param actor table
+---@param actor number|string
 ---@param pulse integer
 ---@param opt string
 ---@param level integer
@@ -3652,7 +3652,7 @@ function changepulselevel(actor, pulse, opt, level) end
 ---* actor 玩家对象
 ---* skillName 技能名称
 ---* skillLevel 技能等级
----@param actor table
+---@param actor number|string
 ---@param skillName string
 ---@param skillLevel integer
 ---```lua
@@ -3665,7 +3665,7 @@ function addskillex(actor, skillName, skillLevel) end
 ---* actor 玩家对象
 ---* pro 倍率<br>倍数除以100为真正的倍率(200为2倍经验，150为1.5倍)
 ---* time 有效时间(秒)
----@param actor table
+---@param actor number|string
 ---@param pro integer
 ---@param time integer
 ---```lua
@@ -3680,7 +3680,7 @@ function killpulseexprate(actor, pro, time) end
 ---* actor 玩家对象
 ---* mapId 地图id(`*`代表所有地图)
 ---* pro 倍率<br>倍数除以100为真正的倍率<br>例如200为2倍经验
----@param actor table
+---@param actor number|string
 ---@param mapId string
 ---@param pro integer
 ---```lua
@@ -3694,7 +3694,7 @@ function plusemapkillmonexprate(actor, mapId, pro) end
 ---* sFlag 操作符(=,+,-)
 ---* value 内力值
 ---* model 计算方式<br>0=点数<br>1=万分比
----@param actor table
+---@param actor number|string
 ---@param sFlag string
 ---@param value integer
 ---@param model integer
@@ -3927,7 +3927,7 @@ function DelSysVar(sysVarName) end
 ---刷新物品变量到前端
 ---* actor 玩家对象
 ---* makeIndex 物品唯一id
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---```tips
 ---1. 客户端使用 SL:GetSerCustomVar 获取
@@ -3948,7 +3948,7 @@ function SendItemVarToc(actor, makeIndex) end
 ---* varName 变量名
 ---* varValue 变量值
 ---* isInt 变量类型<br>0=字符，1=数字
----@param actor table
+---@param actor number|string
 ---@param targetName string
 ---@param varName string
 ---@param varValue integer|string
@@ -3970,7 +3970,7 @@ function SetOffLinePlayVar(actor, targetName, varName, varValue, isInt) end
 ---请求离线玩家变量
 ---* UserID 玩家唯一id
 ---* varname 变量名称
----@param UserID table
+---@param UserID string
 ---@param varname string
 ---@return boolean "是否成功"
 ---```tips
@@ -4006,7 +4006,7 @@ function OffLineVar(UserID, varname) end
 ---* type 类型
 ---* obj 目标对象
 ---@param type integer
----@param obj table
+---@param obj number|string
 ---@return string|nil "全部变量"
 ---```lua
 ---local mujian = getbagitems(actor, "木剑", 0)
@@ -4021,7 +4021,7 @@ function GetObjVar(type, obj) end
 ---* obj 目标对象
 ---* json 目标对象
 ---@param type integer
----@param obj table
+---@param obj number|string
 ---@param json string
 ---```tips
 ---覆盖目标的全部变量，该操作相当于拷贝变量
@@ -4099,7 +4099,7 @@ function HasRankVar(sVName) end
 ---获取玩家排行
 ---* actor 玩家对象
 ---* sVName 排行变量名
----@param actor table
+---@param actor number|string
 ---@param sVName string
 ---@return integer, integer "排名，值"
 ---```lua
@@ -4522,7 +4522,7 @@ function delnation(nId) end
 ---* actor 玩家对象
 ---* nIndex 国家ID (1~100),填0退出国家
 ---* JobIndex 职位编号（0-9 不填 默认为0）
----@param actor table
+---@param actor number|string
 ---@param nIndex integer
 ---@param JobIndex integer
 ---```lua
@@ -4533,7 +4533,7 @@ function JoinNation(actor, nIndex, JobIndex) end
 
 ---获取角色国家ID
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "国家id"
 ---```lua
 ---GetPlayNation(actor)
@@ -4542,7 +4542,7 @@ function GetPlayNation(actor) end
 
 ---获取角色在国家的职位
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "职位"
 ---```lua
 ---GetPlayNationRank(actor)
@@ -4552,7 +4552,7 @@ function GetPlayNationRank(actor) end
 ---设置角色在国家的职位
 ---* actor 玩家对象
 ---* jobIndex 职位编号
----@param actor table
+---@param actor number|string
 ---@param jobIndex integer
 ---@return boolean "是否成功"
 ---```lua
@@ -4729,7 +4729,7 @@ function checkmirrormap(mapId) end
 ---@param effId integer
 ---@param time integer
 ---@param mode integer
----@param actor table
+---@param actor number|string
 ---@param effectModel integer
 ---```lua
 ---local mapID = getbaseinfo(actor,3)
@@ -4762,7 +4762,7 @@ function delmapeffect(id) end
 ---* xyinOrder true-按位置顺序，<br>true-随机位置
 ---* overlap 单个物品叠加数量，装备无效
 ---* isAuto true=可自动拾取<br>false=不可自动拾取<br>(onlyself=true时生效)
----@param actor table
+---@param actor number|string
 ---@param mapId string
 ---@param X integer
 ---@param Y integer
@@ -4792,7 +4792,7 @@ function throwitem(actor, mapId, X, Y, range, itemName, count, time, hint, take,
 ---* json 掉落json
 ---* data 物品来源(参考设置物品来源)
 ---@param mapId integer
----@param actor table
+---@param actor number|string
 ---@param X integer
 ---@param Y integer
 ---@param json string
@@ -4929,7 +4929,7 @@ function getmonrefresh(mapId, model) end
 ---* X2 到达地图X(小于0时随机坐标)
 ---* Y2 到达地图Y(小于0时随机坐标)
 ---* time 有效时间秒
----@param name table
+---@param name string
 ---@param mapFrom string
 ---@param X1 integer
 ---@param Y1 integer
@@ -5008,7 +5008,7 @@ function isemptyinmap(mapid, nX, nY) end
 ---@param nX integer
 ---@param nY integer
 ---@param nRange integer
----@return table "怪物对象"
+---@return number|string "怪物对象"
 ---```lua
 ---local mapID = getbaseinfo(actor,3)
 ---local x = getbaseinfo(actor,4)
@@ -5039,9 +5039,9 @@ function getplaycount(mapId, bIgnoreDied, bIgnoreDummy) end
 ---* actor 玩家对象<br>可传入系统对象"0"
 ---* mapId 地图ID
 ---* isAllGain 是否全部获取<br>0=全部获取<br>1=排除已死亡的
----@param actor table
----@param mapId table
----@param isAllGain table
+---@param actor number|string
+---@param mapId string
+---@param isAllGain integer
 ---@return integer "玩家数量"
 ---```lua
 ---local playerNum = getplaycountinmap("0","3",0)
@@ -5071,7 +5071,7 @@ function getmoncount(mapId, monId, isAllMon) end
 ---* X x坐标
 ---* Y y坐标
 ---* range 范围
----@param actor table
+---@param actor number|string
 ---@param aMapId string
 ---@param bMapId string
 ---@param X integer
@@ -5086,7 +5086,7 @@ function movemapplay(actor, aMapId, bMapId, X, Y, range) end
 ---* actor 玩家对象
 ---* mapId 地图id( * 号表示所有地图)
 ---* much 倍率 为杀怪经验倍数，倍数除以100为真正的倍率(200 为 2 倍经验，150 为1.5倍,0表示关闭地图的杀怪经验倍数)
----@param actor table
+---@param actor number|string
 ---@param mapId string
 ---@param much integer
 ---```lua
@@ -5118,13 +5118,13 @@ function randomkillmon(mapId, monsterName, num, isDrop) end
 ---* level 可以传送最低等级(可以为空，为空时不检测队员的等级直接传送)
 ---* value 传送范围。（以队长为中心传送队友，0为不需要范围）
 ---* obj 触发字段(可以为空)
----@param actor table
+---@param actor number|string
 ---@param mapId string
 ---@param X integer
 ---@param Y integer
 ---@param level integer
 ---@param value integer
----@param obj table
+---@param obj number|string
 ---```lua
 ---groupmapmove(actor,3,333,333,nil,0,"testjump")
 ---function testjump(actor)
@@ -5164,7 +5164,7 @@ function gridattr(mapId, x, y, type) end
 ---获取当前地图行会成员数量
 ---* mapId 地图编号
 ---* guildName 行会名字或 * (等于未加入行会角色)
----@param mapId table
+---@param mapId string
 ---@param guildName string
 ---```lua
 ---local num = maphanghcyguild(3,"*")
@@ -5176,10 +5176,10 @@ function maphanghcyguild(mapId, guildName) end
 ---* monName 怪物名称，*表示所有怪物
 ---* model 怪物名字格式<br>0=显示名称(不带数字)<br>1=表内名称(带数字)
 ---* param 0=获取表格内刷的怪物状态<br>1=获取表格内和脚本刷的怪物状态
----@param mapId table
+---@param mapId string
 ---@param monName string
 ---@param model integer
----@param param integer
+---@param param? integer
 ---@return table "地图怪物状态"
 ---```tips
 ---注意:
@@ -5199,7 +5199,7 @@ function mapbossinfo(mapId, monName, model, param) end
 ---* mapEvent 地图参数,参考mapinfo.txt配置说明
 ---* model1 不填表示关闭此地图参数，填地图参数里的需要的参数<br>不需要传参的地图事件也需要传入一个值
 ---* param2 地图参数里的需要的参数
----@param mapId table
+---@param mapId string
 ---@param mapEvent string
 ---@param model1 string
 ---@param param2 string
@@ -5244,7 +5244,7 @@ function delweathereffect(mapId, model) end
 ---获取当前地图随机xy坐标
 ---* actor 玩家对象
 ---* mapid 地图id
----@param actor table
+---@param actor number|string
 ---@param mapid string
 ---@return integer, integer "x,y"
 ---```lua
@@ -5256,7 +5256,7 @@ function GetMapRandXY(actor, mapid) end
 ---* actor 玩家对象
 ---* rate 倍率<br>倍数除以100为真正的倍率(200 为 2 倍经验，150 为1.5倍)
 ---* time 有效时间
----@param actor table
+---@param actor number|string
 ---@param rate number
 ---@param time number
 ---```lua
@@ -5303,7 +5303,7 @@ function hastimerex(timerId) end
 ---* id 定时器ID
 ---* runTick 执行间隔，秒
 ---* runTime 执行次数，>0执行完成后，自动移除
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---@param runTick integer
 ---@param runTime integer
@@ -5321,7 +5321,7 @@ function setontimer(actor, id, runTick, runTime) end
 ---移除个人定时器
 ---* actor 玩家对象
 ---* id 定时器ID
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---```lua
 ---setofftimer(actor, 1)
@@ -5331,7 +5331,7 @@ function setofftimer(actor, id) end
 ---判断玩家定时器是否存在
 ---* actor 玩家对象
 ---* timerId 计时器id
----@param actor table
+---@param actor number|string
 ---@param timerId integer
 ---@return boolean "true=存在 false=不存在"
 ---```lua
@@ -5345,7 +5345,7 @@ function hastimer(actor, timerId) end
 ---* actor 玩家对象
 ---* monName 自定义怪物名称
 ---* level 怪物等级
----@param actor table
+---@param actor number|string
 ---@param monName string
 ---@param level integer
 ---```lua
@@ -5357,7 +5357,7 @@ function createpet(actor, monName, level) end
 ---召唤宠物
 ---* actor 玩家对象
 ---* index 宠物序号
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---```lua
 ---recallpet(actor,0)
@@ -5368,9 +5368,9 @@ function recallpet(actor, index) end
 ---获取宠物
 ---* actor 玩家对象
 ---* index 宠物序号或’X’表示当前宠物
----@param actor table
+---@param actor number|string
 ---@param index integer|string
----@return table "返回宠物对象"
+---@return number|string "返回宠物对象"
 ---```lua
 ---local pet=getpet(actor,1)
 -----local pet=getpet(actor,"X")
@@ -5381,7 +5381,7 @@ function getpet(actor, index) end
 ---收回宠物
 ---* actor 玩家对象
 ---* index 宠物序号
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---```lua
 ---unrecallpet(actor,0)
@@ -5392,7 +5392,7 @@ function unrecallpet(actor, index) end
 ---删除宠物
 ---* actor 玩家对象
 ---* index 宠物序号
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---```lua
 ---delpet(actor,0)
@@ -5404,7 +5404,7 @@ function delpet(actor, index) end
 ---* actor 玩家对象
 ---* index 宠物序号
 ---* item 装备名称，多个装备用#分隔
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param item string
 ---```lua
@@ -5417,7 +5417,7 @@ function pettakeon(actor, index, item) end
 ---* actor 玩家对象
 ---* index 宠物序号
 ---* item 装备名称，多个装备用#分隔，-1表示脱下全部装备
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param item integer|string
 ---```lua
@@ -5428,7 +5428,7 @@ function pettakeoff(actor, index, item) end
 
 ---获取宠物数量
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "宠物数量"
 ---```lua
 ---local petNum=getpetcount(actor)
@@ -5439,7 +5439,7 @@ function getpetcount(actor) end
 ---获取宠物身上装备列表
 ---* actor 玩家对象
 ---* index 宠物序号
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---```lua
 ---local data=getpetbodyitem(actor,0)
@@ -5450,7 +5450,7 @@ function getpetbodyitem(actor, index) end
 ---设置宠物模式
 ---* actor 玩家对象
 ---* mode 宠物模式:<br>1-跟随;<br>2-攻击;<br>3-被动(被攻击时才设定目标);<br>4-休息
----@param actor table
+---@param actor number|string
 ---@param mode integer
 ---```lua
 ---setpetmode(actor,2)
@@ -5461,7 +5461,7 @@ function setpetmode(actor, mode) end
 ---获取宠物状态
 ---* actor 玩家对象
 ---* index 宠物序号
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@return integer "宠物状态： 0-收回状态， 1-召唤出状态， 2-死亡状态"
 ---```lua
@@ -5476,7 +5476,7 @@ function petstate(actor, index) end
 ---* attrName 自定义属性组名
 ---* opt 操作符 + - =
 ---* attr 属性字符串
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param attrName string
 ---@param opt string
@@ -5491,7 +5491,7 @@ function addpetattlist(actor, index, attrName, opt, attr) end
 ---* actor 玩家对象
 ---* index 宠物序号
 ---* attrName 装备清空对应属性组的属性;<br>nil=清除所有属性组对象
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param attrName string
 ---```lua
@@ -5504,7 +5504,7 @@ function delpetattlist(actor, index, attrName) end
 ---* actor 玩家对象
 ---* index 宠物序号
 ---* monIndex 怪物IDX
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param monIndex integer
 ---```lua
@@ -5517,7 +5517,7 @@ function petmon(actor, index, monIndex) end
 ---* actor 玩家对象
 ---* petIndex 宠物序号,X表示当前宠物
 ---* appr 怪物外观ID(怪物Appr)<br>0=还原
----@param actor table
+---@param actor number|string
 ---@param petIndex integer|string
 ---@param appr integer
 ---```lua
@@ -5530,7 +5530,7 @@ function setpetappr(actor, petIndex, appr) end
 ---* actor 玩家对象
 ---* index 宠物序号或’X’表示当前宠物
 ---* skillId 增加的攻击表现ID，为cfg_monattack表中的ID
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param skillId integer
 ---```lua
@@ -5543,8 +5543,8 @@ function addpetskill(actor, index, skillId) end
 ---* actor 玩家对象
 ---* itemMakeIndex 物品MakeIndex
 ---* type 需要返回的数值<br>1-转生等级;<br>2-等级;<br>3-经验;<br>0-同时返回三个值
----@param actor table
----@param itemMakeIndex integer
+---@param actor number|string
+---@param itemMakeIndex string
 ---@param type integer
 ---@return integer "宠物蛋信息"
 ---```lua
@@ -5559,11 +5559,11 @@ function getpetegglevel(actor, itemMakeIndex, type) end
 ---* level 等级，-1表示不修改值
 ---* zLevel 转生等级，-1表示不修改值
 ---* exp 经验值，-1表示不修改值
----@param actor table
----@param itemMakeIndex table
----@param level table
----@param zLevel table
----@param exp table
+---@param actor number|string
+---@param itemMakeIndex string
+---@param level integer
+---@param zLevel integer
+---@param exp integer
 ---```lua
 ---setpetegglevel(actor,itemMakeIndex,5,-1,-1)
 ---release_print("设置宠物蛋等级" )
@@ -5575,7 +5575,7 @@ function setpetegglevel(actor, itemMakeIndex, level, zLevel, exp) end
 ---* index 宠物序号
 ---* nHp 复活后的HP量
 ---* type 0-绝对值，1-百分比
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param nHp integer
 ---@param type integer
@@ -5588,7 +5588,7 @@ function realivepet(actor, index, nHp, type) end
 ---收回宠物为物品
 ---* actor 玩家对象
 ---* index 宠物序号
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---```lua
 ---retractpettoitem(actor,0)
@@ -5599,7 +5599,7 @@ function retractpettoitem(actor, index) end
 ---清除宠物所有技能
 ---* actor 玩家对象
 ---* index 宠物序号
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---```lua
 ---ClearPetSkill(actor,index)
@@ -5612,7 +5612,7 @@ function ClearPetSkill(actor, index) end
 ---* text 文本内容
 ---* actor 玩家对象
 ---@param text string
----@param actor table
+---@param actor number|string
 ---@return string "文本"
 ---```tips
 ---不推荐使用
@@ -5628,7 +5628,7 @@ function parsetext(text, actor) end
 ---* object 玩家/怪物 对象
 ---* nID 类型(详见说明)
 ---* param3 参数3<br>(仅ID=1时，可用)
----@param object table
+---@param object number|string
 ---@param nID integer
 ---@param param3? integer
 ---@return any "返回值"
@@ -5800,7 +5800,7 @@ function getbaseinfo(object, nID, param3) end
 ---* object 玩家对象
 ---* nID 类型（详见说明）
 ---* value 属性值
----@param object table
+---@param object number|string
 ---@param nID integer
 ---@param value integer
 ---```tips
@@ -5852,7 +5852,7 @@ function setbaseinfo(object, nID, value) end
 
 ---对象是否存在
 ---* object 玩家/怪物 对象
----@param object table
+---@param object number|string
 ---@return boolean "对象是否存在"
 ---```lua
 ---release_print("isnotnull-对象是否存在", isnotnull(object))
@@ -5861,7 +5861,7 @@ function isnotnull(object) end
 
 ---判断对象是否为玩家
 ---* object 判断对象
----@param object table
+---@param object number|string
 ---@return boolean "true=是玩家 false=不是玩家"
 ---```lua
 ---local isLive = isplayer(actor)
@@ -5871,7 +5871,7 @@ function isplayer(object) end
 
 ---判断对象是否为人形怪
 ---* object 判断对象
----@param object table
+---@param object number|string
 ---@return boolean "true=是人形怪 false=不是人形怪"
 ---```lua
 ---local isLive = isplaymon(actor)
@@ -5881,7 +5881,7 @@ function isplaymon(object) end
 
 ---判断对象是否为宝宝
 ---* object 判断对象是否为宝宝
----@param object table
+---@param object number|string
 ---@return boolean "true=是宝宝 false=不是宝宝"
 ---```lua
 ---local isLive = ismob(actor)
@@ -5891,7 +5891,7 @@ function ismob(object) end
 
 ---判断对象是否为怪物
 ---* object 判断对象
----@param object table
+---@param object number|string
 ---@return boolean "true=是怪物 false=不是怪物"
 ---```lua
 ---local isLive = ismon(actor)
@@ -5905,7 +5905,7 @@ function ismon(object) end
 ---* time 时间(秒)
 ---* value 威力，只针对绿毒有用
 ---* model 0=不进行防护的判断<br>1=判断防全毒、防麻痹、防冰冻、防蛛网状态
----@param object table
+---@param object number|string
 ---@param id integer
 ---@param time integer
 ---@param value integer
@@ -5922,7 +5922,7 @@ function makeposion(object, id, time, value, model) end
 ---* object 玩家/怪物 对象
 ---* type 类型:<br>1.魔法盾<br>2.护体神盾<br>3.无极真气<br>4.幽灵盾<br>5.神圣战甲术<br>6.隐身术<br>7.冰冻<br>8.麻痹<br>9.锁定<br>10.蛛网<br>11.中毒<br>12.禁止行为
 ---* forbid 参数2=11,传入毒类型<br>0=全毒;1=绿毒;2=红毒;<br>==============<br>参数2=12,传入禁止行为<br>1=禁止走<br>2=禁止跑<br>3=禁止攻击<br>4=禁止施法<br>5=禁止使用物品<br>6=禁止说话<br>7=禁止飞<br>8=锁血
----@param object table
+---@param object number|string
 ---@param type integer
 ---@param forbid integer
 ---@return boolean, integer "true：存在 false：不存在, 状态的剩余时间(禁止行为无法获取剩余时间)"
@@ -5953,7 +5953,7 @@ function checkhumanstate(object, type, forbid) end
 ---使用脚本命令解毒（红绿毒）
 ---* object 玩家/怪物 对象
 ---* opt -1，解所有毒;0,绿毒;1,红毒;3,紫毒;5,麻痹;6,冰冻;7,蛛网
----@param object table
+---@param object number|string
 ---@param opt integer
 ---```lua
 ---detoxifcation(actor,-1)
@@ -5963,7 +5963,7 @@ function detoxifcation(object, opt) end
 
 ---回到最近经过的城市安全区
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---gohome(actor)
 ---```
@@ -5978,7 +5978,7 @@ function gohome(actor) end
 ---* opt 聚灵珠是否能获取经验<br>(0=不可以 1= 可以)
 ---* allTime 泡点获得经验的时间<br>时间：秒(上限100万秒)
 ---* level 等级(多少级以下获得经验)
----@param actor table
+---@param actor number|string
 ---@param eveTime integer
 ---@param experience integer
 ---@param isSafe integer
@@ -5997,7 +5997,7 @@ function setautogetexp(actor, eveTime, experience, isSafe, mapId, opt, allTime, 
 ---* index 播放文件的索引<br>对应声音配置表id(cfg_sound.xls)
 ---* times 循环播放次数
 ---* flag 播放模式:<br>0.播放给自己<br>1.播放给全服<br>2.播放给同一地图<br>4.播放给同屏人物
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param times integer
 ---@param flag integer
@@ -6037,7 +6037,7 @@ function json2tbl(str) end
 ---* type 充值方式：<br>1-支付宝，<br>2-花呗，<br>3-微信
 ---* falgId 充值货币ID
 ---* productId 产品ID
----@param actor table
+---@param actor number|string
 ---@param money integer
 ---@param type integer
 ---@param falgId integer
@@ -6063,7 +6063,7 @@ function pullpay(actor, money, type, falgId, productId) end
 ---* param8 GM命令参数8
 ---* param9 GM命令参数9
 ---* param10 GM命令参数10
----@param actor table
+---@param actor number|string
 ---@param GM string
 ---@param param1 string
 ---@param param2 string
@@ -6089,7 +6089,7 @@ function gmexecute(actor, GM, param1, param2, param3, param4, param5, param6, pa
 ---* speed 播放速度
 ---* times 播放次数，0-持续播放
 ---* type 播放模式<br>0-自己<br>1-所有人
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---@param effectId integer
 ---@param X integer
@@ -6107,7 +6107,7 @@ function screffects(actor, id, effectId, X, Y, speed, times, type) end
 ---* actor 玩家对象
 ---* id 创建的特效编号
 ---* type 播放模式<br>0-自己<br>1-所有人
----@param actor table
+---@param actor number|string
 ---@param id integer
 ---@param type integer
 ---```lua
@@ -6119,7 +6119,7 @@ function deleffects(actor, id, type) end
 ---获取常量
 ---* actor 玩家对象<br>可用`"0"`，取系统玩家对象
 ---* varName 常量名称，支持带尖括号和不带尖括号<$Name>或$Name
----@param actor table
+---@param actor number|string
 ---@param varName string
 ---```lua
 ---local serverName = getconst("0", "")
@@ -6134,7 +6134,7 @@ function getconst(actor, varName) end
 ---* level 震级(1~3)
 ---* num 次数
 ---* mapId 地图ID(模式等于4时，需要该参数)
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param level integer
 ---@param num integer
@@ -6147,7 +6147,7 @@ function scenevibration(actor, type, level, num, mapId) end
 ---客户端复制
 ---* actor 玩家对象
 ---* str 文本内容
----@param actor table
+---@param actor number|string
 ---@param str string
 ---```lua
 ---mircopy(actor,str)
@@ -6157,7 +6157,7 @@ function mircopy(actor, str) end
 ---游戏中打开网站
 ---* actor 玩家对象
 ---* web 网站
----@param actor table
+---@param actor number|string
 ---@param web string
 ---```lua
 ---openwebsite(actor,"www.baidu.com")
@@ -6199,7 +6199,7 @@ function ransjstr(str, param1, param2) end
 ---* param3 整数型(可空)<br>最大支持21亿
 ---* param4 整数型(可空)<br>最大支持21亿
 ---* param5 整数型(可空)<br>最大支持21亿
----@param actor table
+---@param actor number|string
 ---@param logAct integer
 ---@param logInfo string
 ---@param param1 integer
@@ -6215,7 +6215,7 @@ function logact(actor, logAct, logInfo, param1, param2, param3, param4, param5) 
 ---日志上报接口
 ---* actor 玩家对象
 ---* jsonStr 日志json
----@param actor table
+---@param actor number|string
 ---@param jsonStr string
 ---```lua
 ---local str = parsetext(
@@ -6229,7 +6229,7 @@ function senddiymsg(actor, jsonStr) end
 ---打印脚本总耗时(微秒)
 ---* actor 玩家对象
 ---* onoff 1=开始计时<br>2=结束计时，并打印耗时信息
----@param actor table
+---@param actor number|string
 ---@param onoff integer
 ---```lua
 ---printusetime(actor,1)
@@ -6244,7 +6244,7 @@ function printusetime(actor, onoff) end
 ---* actor 玩家对象
 ---* type 0=允许添加<br>1=允许交易<br>2=允许挑战<br>3=允许组队<br>4=允许查看<br>5=允许添加为行会成员
 ---* time 1=允许(勾选)<br>0=不允许(不勾选)(秒)
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param time integer
 ---```lua
@@ -6259,7 +6259,7 @@ function clientswitch(actor, type, time) end
 ---* model 功能模式：<br>1：拉起 QQ<br>2：跳转 QQ 好友<br>3：跳转 QQ 群<br>4：拉起微信
 ---* param1 当model=2 时：填 QQ 号<br>当model=3 时：填 QQ 群号
 ---* param2 当model=3 时：填 QQ 群 Key
----@param actor table
+---@param actor number|string
 ---@param model integer
 ---@param param1 integer
 ---@param param2 string
@@ -6303,7 +6303,7 @@ function sendmail(userId, id, label, memo, rewards) end
 
 ---获取对象类型
 ---* object 对象
----@param object table
+---@param object number|string
 ---@return integer "对象类型"
 ---```tips
 ---OBJ_GAMEPLAY          = 0;    //游戏玩家
@@ -6424,7 +6424,7 @@ function genmon(mapId, x, y, monName, range, count, color) end
 ---@param monName string
 ---@param range integer
 ---@param count integer
----@param owner integer|table
+---@param owner number|string
 ---@param color integer
 ---@param showName string
 ---@param isFilt integer
@@ -6445,8 +6445,7 @@ function genmon(mapId, x, y, monName, range, count, color) end
 ---    release_print("monPosM",getbaseinfo(mon,1,4),getbaseinfo(mon,1,5))
 ---end
 ---```
-function genmonex(mapId, x, y, monName, range, count, owner, color, showName, isFilt, countryName, nAttack, nNatMonPK,
-                  nPlayerPk, nNg) end
+function genmonex(mapId, x, y, monName, range, count, owner, color, showName, isFilt, countryName, nAttack, nNatMonPK, nPlayerPk, nNg) end
 
 ---杀怪1
 ---* mapId 地图id
@@ -6472,8 +6471,8 @@ function killmonsters(mapId, monName, count, drop, trigger) end
 ---* drop 是否掉落物品，true掉落
 ---* trigger 是否触发killmon
 ---* showDie 是否显示死亡动画<br>=false视为系统杀怪,将不会掉落物品与经验
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---@param drop boolean
 ---@param trigger boolean
 ---@param showDie boolean
@@ -6511,7 +6510,7 @@ function killmapmon(mapId, X, Y, range, monName, isDrop, isClear) end
 ---杀怪物品再爆
 ---* actor 玩家对象
 ---* count 怪物物品掉落增加次数
----@param actor table
+---@param actor number|string
 ---@param count integer
 ---```lua
 ---monitems(actor,2)
@@ -6523,7 +6522,7 @@ function monitems(actor, count) end
 ---* itemName 怪物名称
 ---* value 可爆出次数<br>最大多爆20次
 ---* delayTime 延迟毫秒数
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param value integer
 ---@param delayTime integer
@@ -6545,14 +6544,14 @@ function monitemsex(actor, itemName, value, delayTime) end
 ---* param1 预留(填0)
 ---* param2 预留(填0)
 ---* param3 设置大于0，检测时不计算该宝宝数量(仅M2控制的召唤数量)
----@param actor table
+---@param actor number|string
 ---@param monName string
 ---@param level integer
 ---@param time integer
 ---@param param1 integer
 ---@param param2 integer
 ---@param param3 integer
----@return table "宝宝对象"
+---@return number|string "宝宝对象"
 ---```lua
 ---local mon = recallmob(actor,"神兽",7,30,1)
 ---release_print("成功召唤",getbaseinfo(mon,1))
@@ -6574,7 +6573,7 @@ function recallmob(actor, monName, level, time, param1, param2, param3) end
 ---* attr 继承人物伤害百分比
 ---* hp_value 宝宝血量数值
 ---* buff_id BUFF ID 多个BUFF ID用#号连接
----@param actor table
+---@param actor number|string
 ---@param Name string
 ---@param x integer
 ---@param y integer
@@ -6600,8 +6599,8 @@ function recallmobex(actor, Name, x, y, lv, num, time, color, count, upgard, hid
 ---* mon 怪物对象
 ---* actor 玩家对象
 ---* time 叛变时间（秒）
----@param mon table
----@param actor table
+---@param mon number|string
+---@param actor number|string
 ---@param time integer
 ---```lua
 ---function main(self)
@@ -6614,9 +6613,9 @@ function setmonmaster(mon, actor, time) end
 ---遍历宠物(宝宝)列表
 ---* actor 玩家对象
 ---* nIndex 索引(0开始)
----@param actor table
+---@param actor number|string
 ---@param nIndex integer
----@return table "怪物对象"
+---@return number|string "怪物对象"
 ---```lua
 ---function main(self)
 ---    local ncount=getbaseinfo(self,38)
@@ -6632,7 +6631,7 @@ function getslavebyindex(actor, nIndex) end
 ---修改宝宝名称
 ---* mon 宝宝对象
 ---* name 宝宝新名字
----@param mon table
+---@param mon number|string
 ---@param name string
 ---```lua
 ---local ncount = getbaseinfo(actor, 38)
@@ -6650,8 +6649,8 @@ function changemonname(mon, name) end
 ---* method 操作符(+ - =)
 ---* value 属性值
 ---* time 有效时间
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---@param attr integer
 ---@param method string
 ---@param value integer
@@ -6689,7 +6688,7 @@ function changemobability(actor, mon, attr, method, value, time) end
 
 ---获取宝宝等级
 ---* mon 宝宝对象
----@param mon table
+---@param mon number|string
 ---@return integer "宝宝等级"
 ---```lua
 ---local ncount=getbaseinfo(actor,38)
@@ -6706,8 +6705,8 @@ function getslavelevel(mon) end
 ---* mon 宝宝对象
 ---* operate 操作符号(+,-,=)
 ---* nLevel 等级
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---@param operate string
 ---@param nLevel integer
 ---```lua
@@ -6726,7 +6725,7 @@ function changeslavelevel(actor, mon, operate, nLevel) end
 ---* monUserId 怪物唯一id(UserID)
 ---@param mapId string
 ---@param monUserId string
----@return table "怪物对象"
+---@return number|string "怪物对象"
 ---```tips
 ---新三端中对象=唯一ID,该接口已无实际意义,保留防止转版本时报错
 ---```
@@ -6774,7 +6773,7 @@ function checkrangemoncount(mapId, monName, nX, nY, nRange) end
 ---召唤小精灵
 ---* actor 玩家对象
 ---* monName 精灵名称
----@param actor table
+---@param actor number|string
 ---@param monName string
 ---```lua
 ---createsprite(actor,monName)
@@ -6784,8 +6783,8 @@ function createsprite(actor, monName) end
 ---检测小精灵
 ---* actor 玩家对象
 ---* monName 精灵名称,为空 则检测全部
----@param actor table
----@param monName table
+---@param actor number|string
+---@param monName? string
 ---@return boolean "返回值，是否有小精灵"
 ---```lua
 ---local isHave=checkspritelevel(actor,"拾取精灵")
@@ -6795,7 +6794,7 @@ function checkspritelevel(actor, monName) end
 
 ---回收小精灵
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---releasesprite(actor)
 ---```
@@ -6806,7 +6805,7 @@ function releasesprite(actor) end
 ---* mode 模式<br>0=以人物为中心捡取<br>1=以小精灵为中心捡取<br>3=以小精灵为中心小精灵一个个捡取<br>4=以人物为中心小精灵一个个捡取<br>5=新人物自动拾取设置
 ---* range 范围
 ---* interval 间隔，最小500ms
----@param actor table
+---@param actor number|string
 ---@param mode integer
 ---@param range integer
 ---@param interval integer
@@ -6817,7 +6816,7 @@ function pickupitems(actor, mode, range, interval) end
 
 ---小精灵停止拾取
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---stoppickupitems(actor)
 ---```
@@ -6829,7 +6828,7 @@ function stoppickupitems(actor) end
 ---* X X坐标
 ---* Y Y坐标
 ---* monName 优先攻击的怪物名称
----@param actor table
+---@param actor number|string
 ---@param map string
 ---@param X integer
 ---@param Y integer
@@ -6846,8 +6845,8 @@ function killmobappoint(actor, map, X, Y, monName) end
 ---* obj 人物、怪物对象
 ---* mon 怪物对象
 ---* itemName 物品名称
----@param obj table
----@param mon table
+---@param obj number|string
+---@param mon number|string
 ---@param itemName string
 ---```lua
 ---additemtodroplist(actor,mon,"木剑")
@@ -6858,7 +6857,7 @@ function additemtodroplist(obj, mon, itemName) end
 ---* actor 玩家对象
 ---* distance 距离人物格子数
 ---* grade 受嘲讽影响的怪物等级上限（不大于指定等级均会被吸引）
----@param actor table
+---@param actor number|string
 ---@param distance integer
 ---@param grade integer
 ---```lua
@@ -6869,8 +6868,8 @@ function dotaunt(actor, distance, grade) end
 ---单独嘲讽怪物
 ---* actor 玩家对象
 ---* monster_obj 指定要吸引的怪物对象
----@param actor table
----@param monster_obj table
+---@param actor number|string
+---@param monster_obj number|string
 ---```lua
 ---local mapID = getbaseinfo(actor, 3)
 ---local x = getbaseinfo(actor, 4)
@@ -6885,7 +6884,7 @@ function dotauntex(actor, monster_obj) end
 ---* index 第几个宝宝（第一个宝宝为0）
 ---* range 距离格子数
 ---* levelMax 受嘲讽影响的怪物等级上限（不大于指定等级均会被吸引）
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param range integer
 ---@param levelMax integer
@@ -6898,7 +6897,7 @@ function mobdotaunt(actor, index, range, levelMax) end
 ---* actor 玩家对象
 ---* petName 宝宝名称(带数字和不带数字都可以)
 ---* pro 攻击人物威力倍率(威力倍数为0时不攻击人物, 110=攻击人物倍数1.1倍)
----@param actor table
+---@param actor number|string
 ---@param petName string
 ---@param pro integer
 ---```lua
@@ -6911,7 +6910,7 @@ function changeslaveattackhumpowerrate(actor, petName, pro) end
 ---* posX x坐标集<br>多坐标;分割<br>最多传入9个
 ---* posY y坐标集<br>多坐标;分割<br>最多传入9个
 ---* model 0=寻路<br>1=巡逻
----@param actor table
+---@param actor number|string
 ---@param posX integer|string
 ---@param posY integer|string
 ---@param model integer
@@ -7067,11 +7066,11 @@ function resetmongentick(mapId, monPosX, monPosY, monName) end
 ---* X 目标点X坐标
 ---* Y 目标点Y坐标
 ---* target 目标对象
----@param mon table
+---@param mon number|string
 ---@param skillId integer
 ---@param X integer
 ---@param Y integer
----@param target table
+---@param target number|string
 ---```lua
 ---local mapID = getbaseinfo(actor,3)
 ---local x = getbaseinfo(actor,4)
@@ -7087,7 +7086,7 @@ function mon_docustommagic(mon, skillId, X, Y, target) end
 ---添加自定义怪物攻击表现
 ---* mon 怪物对象
 ---* skillId 攻击表现id
----@param mon table
+---@param mon number|string
 ---@param skillId integer
 ---```lua
 ---local mapID = getbaseinfo(actor,3)
@@ -7104,7 +7103,7 @@ function addmonattack(mon, skillId) end
 ---设置宝宝叛变时间
 ---* mon 宝宝对象
 ---* time 时间（秒）
----@param mon table
+---@param mon number|string
 ---@param time integer
 ---```lua
 ---local mons = getslavebyindex(actor,0)
@@ -7115,7 +7114,7 @@ function setmobtreachery(mon, time) end
 
 ---获取宝宝叛变时间
 ---* mon 宝宝对象
----@param mon table
+---@param mon number|string
 ---@return integer "宝宝叛变时间"
 ---```lua
 ---local mons = getslavebyindex(actor,0)
@@ -7129,8 +7128,8 @@ function getmobtreachery(mon) end
 ---* monster_obj 指定要吸引的特定怪物
 ---* isMove 0=怪物漂移到人物边<br>1=怪物瞬移到当前人物坐标<br>2=怪物瞬移到当前人物面前
 ---* unLimit 0=无限制<br>1=怪物/人物攻击目标不归属自己的不可被吸
----@param actor table
----@param monster_obj table
+---@param actor number|string
+---@param monster_obj number|string
 ---@param isMove integer
 ---@param unLimit integer
 ---```lua
@@ -7151,7 +7150,7 @@ function monmoveex(actor, monster_obj, isMove, unLimit) end
 
 ---获取玩家沙巴克身份
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "0-非沙巴克成员 1-沙巴克成员 2-沙巴克老大"
 ---```lua
 ---local identity=castleidentity(actor)
@@ -7172,7 +7171,7 @@ function castleinfo(nID) end
 ---脚本命令设置沙巴克归属
 ---* guild 行会名称
 ---* param 是否忽略触发@beforgetcastle<br>0=不忽略<br>1=忽略
----@param guild table
+---@param guild number|string
 ---@param param integer
 ---```lua
 ---setcastleguild("对对对", 0)
@@ -7701,12 +7700,12 @@ function checkcontainstextlist(path, str, model) end
 ---* qty 数量
 ---* bind 物品规则
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param qty integer
 ---@param bind integer
 ---@param desc string
----@return table "(最后一个物品唯一id)"
+---@return string "(最后一个物品唯一id)"
 ---```tips
 ---1. 不建议使用在叠加物品
 ---   2.一次性给多个物品的情况，此物品在添加背包触发后，注意可能被回收的情况 生成失败则返回nil
@@ -7730,7 +7729,7 @@ function giveitem(actor, itemName, qty, bind, desc) end
 ---* qty 数量
 ---* bind 物品规则
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param where integer
 ---@param itemName string
 ---@param qty integer
@@ -7748,7 +7747,7 @@ function giveonitem(actor, where, itemName, qty, bind, desc) end
 ---* itemNum 数量
 ---* ignoreJP 忽略极品<br>0：所有都扣除<br>1：极品不扣除
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param itemNum integer
 ---@param ignoreJP integer
@@ -7767,7 +7766,7 @@ function takeitem(actor, itemName, itemNum, ignoreJP, desc) end
 ---* itemNum 数量
 ---* bind 0=忽略<br>1=扣除非绑定物品<br>2=扣除绑定物品
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param itemNum integer
 ---@param bind integer
@@ -7783,7 +7782,7 @@ function takeitemex(actor, itemName, itemNum, bind, desc) end
 ---根据唯一ID删除仓库物品
 ---* actor 玩家对象
 ---* itemMakeId 删除唯一ID物品
----@param actor table
+---@param actor number|string
 ---@param itemMakeId string
 ---```lua
 ---local items = getstorageitems(actor)
@@ -7797,7 +7796,7 @@ function delstorageitem(actor, itemMakeId) end
 ---根据idx删除仓库物品
 ---* actor 玩家对象
 ---* itemIndex 删除所有Idx物品
----@param actor table
+---@param actor number|string
 ---@param itemIndex string
 ---```lua
 ---local items = getstorageitems(actor)
@@ -7814,7 +7813,7 @@ function delstorageitembyidx(actor, itemIndex) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
 ---* id ~~1:唯一ID~~<br>2:物品ID<br>3:剩余持久<br>4:最大持久<br>5:叠加数量<br>6:绑定状态<br>7:物品名称<br>8:修改后物品名称
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param id integer
 ---@return any "相应物品信息"
@@ -7903,7 +7902,7 @@ function getstditematt(itemId, id) end
 ---刷新物品信息到前端
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---```lua
 ---function main(self)
@@ -7924,7 +7923,7 @@ function refreshitem(actor, makeIndex) end
 ---* actor 玩家对象
 ---* itemMakeId 唯一ID
 ---* itemIndex 新的模板数据的物品ID
----@param actor table
+---@param actor number|string
 ---@param itemMakeId string
 ---@param itemIndex integer
 ---```lua
@@ -7937,7 +7936,7 @@ function changeitemidx(actor, itemMakeId, itemIndex) end
 ---* actor 玩家对象
 ---* itemMakeId 唯一ID
 ---* num 次数
----@param actor table
+---@param actor number|string
 ---@param itemMakeId string
 ---@param num integer
 ---```lua
@@ -7949,7 +7948,7 @@ function addfunitemdura(actor, itemMakeId, num) end
 ---获取物品持久度
 ---* actor 玩家对象
 ---* itemMakeId 唯一ID
----@param actor table
+---@param actor number|string
 ---@param itemMakeId string
 ---@return integer "持久度"
 ---```tips
@@ -7966,7 +7965,7 @@ function getdura(actor, itemMakeId) end
 ---* itemMakeId 唯一ID
 ---* char 操作符(+ - =)
 ---* dura 持久度
----@param actor table
+---@param actor number|string
 ---@param itemMakeId string
 ---@param char string
 ---@param dura integer
@@ -7982,7 +7981,7 @@ function setdura(actor, itemMakeId, char, dura) end
 ---* char 操作符(+ - =)
 ---* picture 内观图片
 ---* makeIndex 物品唯一Id
----@param actor table
+---@param actor number|string
 ---@param itemPos integer
 ---@param char string
 ---@param picture integer
@@ -8002,7 +8001,7 @@ function setitemlooks(actor, itemPos, char, picture, makeIndex) end
 ---* ids 物品唯一ID，逗号(,)串联
 ---* count 叠加物品扣除数量，<br>不填此参数，默认全部扣除<br>不可叠加物品全部扣除
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param ids string
 ---@param count integer
 ---@param desc string
@@ -8025,7 +8024,7 @@ function delitembymakeindex(actor, ids, count, desc) end
 ---* actor 玩家对象
 ---* itemName 物品名称
 ---* count 数量
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param count integer
 ---```lua
@@ -8037,7 +8036,7 @@ function eatitem(actor, itemName, count) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
 ---* source json字符串
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param source string
 ---```lua
@@ -8071,7 +8070,7 @@ function setthrowitemly(source) end
 ---获取物品来源（使用物品唯一Id）
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return string "json字符串"
 ---```lua
@@ -8089,7 +8088,7 @@ function getthrowitemly(actor, makeIndex) end
 ---* order1 背包特效层级<br>0=前;1=后
 ---* order2 内观特效层级<br>0=前;1=后
 ---* makeIndex 物品唯一Id
----@param actor table
+---@param actor number|string
 ---@param itemPos integer
 ---@param bagEffectId integer
 ---@param inEffectId integer
@@ -8111,7 +8110,7 @@ function setitemeffect(actor, itemPos, bagEffectId, inEffectId, order1, order2, 
 ---根据物品获取Json
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return string "json字符串  ``` {  "MakeIndex":xxxx,  "Idx":xxxx,  "Name":xxxx,  "Dura":xxxx,  "DuraMax":xxxx,  "Overlap":xxxx,  "AddValue0":xxxx,  "AddValue1":xxxx,  "ExAbil":xxxx } ```"
 ---```lua
@@ -8127,7 +8126,7 @@ function getitemjson(actor, makeIndex) end
 ---* json json字符串
 ---* desc 描述
 ---* saveType 1 = 保留JSON中的来源信息(地图/时间)<br>其他 = 不保留<br>默认为 0 = 不保留
----@param actor table
+---@param actor number|string
 ---@param json string
 ---@param desc string
 ---@param saveType integer
@@ -8149,7 +8148,7 @@ function giveitembyjson(actor, json, desc, saveType) end
 ---根据物品获取前端显示的Json
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return string "json字符串"
 ---```lua
@@ -8183,7 +8182,7 @@ function getitemjsonex(actor, makeIndex) end
 ---* actor 玩家对象
 ---* order 1=物品唯一ID 2=物品IDX 3=物品名称
 ---* str 参数1的值
----@param actor table
+---@param actor number|string
 ---@param order integer
 ---@param str string
 ---```lua
@@ -8196,7 +8195,7 @@ function nothintitem(actor, order, str) end
 ---* makeIndex 物品唯一Id
 ---* bind 物品规则
 ---* state 绑定状态<br>0=不绑定<br>1=绑定
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param bind integer
 ---@param state integer
@@ -8253,7 +8252,7 @@ function setitemstate(actor, makeIndex, bind, state) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
 ---* bind 绑定类型
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param bind integer
 ---@return boolean "true = 绑定 false = 非绑定"
@@ -8271,8 +8270,8 @@ function checkitemstate(actor, makeIndex, bind) end
 ---判断角色是否有该物品
 ---* actor 玩家对象
 ---* itemMakeIndex 物品唯一id
----@param actor table
----@param itemMakeIndex table
+---@param actor number|string
+---@param itemMakeIndex string
 ---@return integer "返回值 0-装备，1-背包 2-仓库, -1-不存在"
 ---```lua
 ---local makeIndex=GetItemByPos(actor,1)
@@ -8287,7 +8286,7 @@ function hasitem(actor, itemMakeIndex) end
 
 ---修复所有装备
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---[[
 ---需要在npc脚本中使用,且文件头需设置itemstype表储存需要修复的装备位置
@@ -8312,8 +8311,8 @@ function repairall(actor) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
 ---* color 颜色(0-255)颜色=0时恢复默认颜色
----@param actor table
----@param makeIndex table
+---@param actor number|string
+---@param makeIndex string
 ---@param color integer
 ---```lua
 ---local makeIndex = GetItemByPos(actor,1)
@@ -8328,8 +8327,8 @@ function changeitemnamecolor(actor, makeIndex, color) end
 ---获取装备名字的颜色
 ---* actor 玩家对象
 ---* makeIndex 装备唯一Id
----@param actor table
----@param makeIndex table
+---@param actor number|string
+---@param makeIndex string
 ---@return integer "颜色值:1~255(0=表格配置颜色)"
 ---```lua
 ---local item = GetItemByPos(actor,1)
@@ -8346,7 +8345,7 @@ function getitemnamecolor(actor, makeIndex) end
 ---* actor 玩家对象
 ---* itemMakeIndex 物品唯一ID
 ---* itemName 装备名字
----@param actor table
+---@param actor number|string
 ---@param itemMakeIndex string
 ---@param itemName string
 ---```lua
@@ -8407,7 +8406,7 @@ function getdbitemfieldvalue(itemData, fieldName) end
 ---* actor 玩家对象
 ---* itemName 物品名称
 ---* model 物品绑定状态<br>0=忽略;<br>1=非绑定;<br>2=绑定;
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param model integer
 ---@return integer "对应物品的数量"
@@ -8420,7 +8419,7 @@ function getbagitemcount(actor, itemName, model) end
 ---根据索引返回背包物品信息
 ---* actor 玩家对象
 ---* index 索引号,0开始
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@return string "物品唯一ID"
 ---```lua
@@ -8431,7 +8430,7 @@ function getiteminfobyindex(actor, index) end
 
 ---整理背包里的物品
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---refreshbag(actor)
 ---```
@@ -8439,7 +8438,7 @@ function refreshbag(actor) end
 
 ---获取仓库所有物品
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "物品唯一Id列表"
 ---```lua
 ---getstorageitems(actor)
@@ -8450,7 +8449,7 @@ function getstorageitems(actor) end
 ---* actor 玩家对象
 ---* itemName 道具名字
 ---* isBind 是否绑定<br>0=忽略<br>1=非绑定<br>2=绑定
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param isBind integer
 ---@return table "道具列表（唯一Id）"
@@ -8488,7 +8487,7 @@ function getbagitems(actor, itemName, isBind) end
 ---* actor 玩家对象
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param where integer
 ---@param desc string
 ---@return boolean "true=扣除成功 false=扣除失败"
@@ -8519,7 +8518,7 @@ function getposbystdmode(stdMode) end
 ---* itemStr 物品名称#物品数量&物品名称#物品数量 (&=和的意思)
 ---* isBind 0=不检测;<br>1.非绑定<br>2.绑定
 ---* model 参数1中的物品名称是ID还是道具名称<br>0=道具名称<br>1=道具ID）
----@param actor table
+---@param actor number|string
 ---@param itemStr string
 ---@param isBind integer
 ---@param model integer
@@ -8537,7 +8536,7 @@ function checkitems(actor, itemStr, isBind, model, desc) end
 ---* model 参数2中的物品名称是ID还是道具名称<br>0=道具名称<br>1=道具ID）
 ---* isBindFirst 0=按照默认顺序<br>1=优先绑定
 ---* desc 备注
----@param actor table
+---@param actor number|string
 ---@param itemStr string
 ---@param isBind string
 ---@param model integer
@@ -8556,7 +8555,7 @@ function takes(actor, itemStr, isBind, model, isBindFirst, desc) end
 ---* itemName 装备名称
 ---* num 扣除物品数量
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param num integer
 ---@param desc string
@@ -8575,7 +8574,7 @@ function takew(actor, itemName, num, desc) end
 ---* actor 玩家对象
 ---* itemStr 物品参数<br>物品名称#数量#绑定状态&物品名称#数量#绑定状态
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param itemStr string
 ---@param desc string
 ---```lua
@@ -8588,7 +8587,7 @@ function gives(actor, itemStr, desc) end
 ---* actor 玩家对象
 ---* item_name 装备名称
 ---* item_num 检测数量
----@param actor table
+---@param actor number|string
 ---@param item_name string
 ---@param item_num integer
 ---@return boolean "是否穿戴"
@@ -8604,7 +8603,7 @@ function checkitemw(actor, item_name, item_num) end
 ---* actor 玩家对象
 ---* index 合成表idx
 ---* json json信息
----@param actor table
+---@param actor number|string
 ---@param index integer
 ---@param json string
 ---```lua
@@ -8637,7 +8636,7 @@ function delrecyclingtype(actor, index) end
 
 ---执行回收
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---execrecycling(actor)
 ---```
@@ -8667,7 +8666,7 @@ function autorecycling(actor, interval, maxBagSpace) end
 ---* job 职业
 ---* attId 属性id
 ---* attVar 属性值
----@param actor table
+---@param actor number|string
 ---@param itemmakeid string
 ---@param type integer
 ---@param job integer
@@ -8694,7 +8693,7 @@ function additemattr(actor, itemmakeid, type, job, attId, attVar) end
 ---* type 属性组(0-99)
 ---* job 职业
 ---* attTab 属性表{属性id = 属性值,属性id=属性值}
----@param actor table
+---@param actor number|string
 ---@param itemmakeid string
 ---@param type integer
 ---@param job integer
@@ -8717,8 +8716,8 @@ function additemattrEX(actor, itemmakeid, type, job, attTab) end
 ---* actor 玩家对象
 ---* itemmakeid 装备唯一id
 ---* type 属性组
----@param actor table
----@param itemmakeid table
+---@param actor number|string
+---@param itemmakeid string
 ---@param type integer
 ---@return string "自定义属性"
 ---```lua
@@ -8734,8 +8733,8 @@ function getitemattr(actor, itemmakeid, type) end
 ---获取物品自定义属性组
 ---* actor 玩家对象
 ---* makeid 物品唯一id
----@param actor table
----@param makeid table
+---@param actor number|string
+---@param makeid string
 ---@return table "物品属性组"
 ---```lua
 ---local b= getitemattrtype(actor,makeid)
@@ -8753,8 +8752,8 @@ function getitemattrtype(actor, makeid) end
 ---* makeIndex 物品唯一Id
 ---* type 属性组
 ---* attVar 属性id(为0时清除该组所有属性)
----@param actor table
----@param makeIndex table
+---@param actor number|string
+---@param makeIndex string
 ---@param type integer
 ---@param attVar integer
 ---```lua
@@ -8771,7 +8770,7 @@ function delitemattr(actor, makeIndex, type, attVar) end
 ---根据装备位置获取装备唯一id
 ---* actor 玩家对象
 ---* type [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@return string "装备唯一id<br>(没有穿戴返回`'0'`)"
 ---```lua
@@ -8786,7 +8785,7 @@ function GetItemByPos(actor, type) end
 ---* makeIndex 装备唯一ID
 ---* index 标记号
 ---* flag 标记
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param index integer
 ---@param flag integer
@@ -8806,7 +8805,7 @@ function SetItemFlag(actor, makeIndex, index, flag, str) end
 ---* actor 玩家对象
 ---* makeIndex 装备唯一ID
 ---* index 标记号
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param index integer
 ---@return integer "标记"
@@ -8825,7 +8824,7 @@ function GetItemFlag(actor, makeIndex, index) end
 ---* actor 玩家对象
 ---* makeIndex 装备唯一ID
 ---* num 投保次数
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param num number
 ---```lua
@@ -8838,7 +8837,7 @@ function SetInsurance(actor, makeIndex, num) end
 ---物品获取投保次数
 ---* actor 玩家对象
 ---* makeIndex 装备唯一ID
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return integer "投保次数"
 ---```lua
@@ -8851,7 +8850,7 @@ function GetInsurance(actor, makeIndex) end
 ---* actor 玩家对象
 ---* makeIndex 装备唯一ID
 ---* time 时间
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param time integer
 ---```lua
@@ -8864,7 +8863,7 @@ function SetItemLife(actor, makeIndex, time) end
 ---物品获取剩余时间
 ---* actor 玩家对象
 ---* makeIndex 装备唯一ID
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return integer "时间"
 ---```lua
@@ -8877,7 +8876,7 @@ function GetItemLife(actor, makeIndex) end
 ---* actor 玩家对象
 ---* makeIndex 装备唯一ID
 ---* starNum 星星数
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param starNum integer
 ---@return boolean "是否设置成功"
@@ -8891,7 +8890,7 @@ function SetItemStar(actor, makeIndex, starNum) end
 ---物品获取星级
 ---* actor 玩家对象
 ---* makeIndex 装备唯一ID
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return integer "星星数"
 ---```lua
@@ -8902,7 +8901,7 @@ function GetItemStar(actor, makeIndex) end
 
 ---获取玩家身上所有装备
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "玩家装备数据 makeid = index"
 ---```lua
 -----返回结构
@@ -8925,7 +8924,7 @@ function GetAllEquip(actor) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一id
 ---* value 幸运值
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param value integer
 ---```lua
@@ -8938,7 +8937,7 @@ function SetItemLuck(actor, makeIndex, value) end
 ---获取物品幸运值
 ---* actor 玩家对象
 ---* makeIndex 物品唯一id
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return integer "幸运值"
 ---```lua
@@ -8953,7 +8952,7 @@ function GetItemLuck(actor, makeIndex) end
 ---* makeIndex 唯一id
 ---* cellPos 孔位置（0~19）
 ---* type 0：闭孔，1：开孔
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param cellPos integer
 ---@param type integer
@@ -8976,7 +8975,7 @@ function SetInlayCell(actor, makeIndex, cellPos, type) end
 ---* actor 玩家对象
 ---* makeIndex 唯一id
 ---* cellPos 孔位置
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param cellPos integer
 ---@return boolean "false：未开孔；true：开孔；"
@@ -8998,7 +8997,7 @@ function GetInlayCell(actor, makeIndex, cellPos) end
 ---* makeIndex 唯一id
 ---* cellPos 孔位置（0~19）
 ---* type 镶嵌宝石idx；0：拆卸宝石不返还；1：拆卸宝石返还
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param cellPos integer
 ---@param type integer
@@ -9022,7 +9021,7 @@ function SetInlayGem(actor, makeIndex, cellPos, type) end
 ---* actor 玩家对象
 ---* itemMakeIndex 唯一id
 ---* cellPos 孔位置（0~19）
----@param actor table
+---@param actor number|string
 ---@param itemMakeIndex string
 ---@param cellPos integer
 ---@return integer "宝石IDX（-1=未镶嵌,0=未开孔；nil=获取出错）"
@@ -9042,7 +9041,7 @@ function GetInlayGem(actor, itemMakeIndex, cellPos) end
 ---获取装备镶嵌情况
 ---* actor 玩家对象
 ---* makeIndex 唯一id
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return table "镶嵌情况"
 ---```lua
@@ -9059,7 +9058,7 @@ function GetInlayInfo(actor, makeIndex) end
 ---获取物品最大持久度
 ---* actor 玩家对象
 ---* makeIndex 唯一id
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return integer "物品最大持久度"
 ---```lua
@@ -9076,7 +9075,7 @@ function GetMaxDura(actor, makeIndex) end
 ---* makeIndex 唯一id
 ---* type "+""-""="
 ---* value 持久度值
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param type string
 ---@param value integer
@@ -9096,7 +9095,7 @@ function SetMaxDura(actor, makeIndex, type, value) end
 ---* bind 0=忽略 <br>1=扣除非绑定物品<br>2=扣除绑定物品
 ---* istype 0=仅背包 <br>1=背包和身上 优先背包<br>2=背包和身上 优先身上
 ---* desc 描述
----@param actor table
+---@param actor number|string
 ---@param itemtab table
 ---@param bind integer
 ---@param istype integer
@@ -9119,7 +9118,7 @@ function DelItem(actor, itemtab, bind, istype, desc) end
 ---* id 极品属性id，例：ID1#ID2 (cfg_quality.xls表ID)
 ---* num 最大极品属性条数
 ---* type 0=叠加<br>1=覆盖
----@param actor table
+---@param actor number|string
 ---@param item string
 ---@param id string
 ---@param num integer
@@ -9136,7 +9135,7 @@ function SetItemQuality(actor, item, id, num, type) end
 ---* item 装备唯一id
 ---* operate 运算符(+,-,=)
 ---* att 属性ID#数值(cfg_att_score.xls表ID)
----@param actor table
+---@param actor number|string
 ---@param item string
 ---@param operate string
 ---@param att string
@@ -9150,7 +9149,7 @@ function SetQuality(actor, item, operate, att) end
 ---获取极品属性
 ---* actor 玩家对象
 ---* makeIndex 唯一id
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return string "属性Id#属性值|属性Id#属性值|属性Id#属性值.."
 ---```lua
@@ -9161,10 +9160,10 @@ function GetQuality(actor, makeIndex) end
 
 ---标记物品为极品
 ---* actor 玩家对象
----* item 装备对象
+---* item 装备唯一ID
 ---* isJp 0/1是否为极品
----@param actor table
----@param item table
+---@param actor number|string
+---@param item string
 ---@param isJp integer
 ---```lua
 ---local item = GetItemByPos(actor, 1)
@@ -9177,9 +9176,9 @@ function SetItemJP(actor, item, isJp) end
 
 ---判定物品是否极品
 ---* actor 玩家对象
----* item 装备对象
----@param actor table
----@param item table
+---* item 装备唯一ID
+---@param actor number|string
+---@param item string
 ---@return integer "0/1是否为极品"
 ---```lua
 ---local item = GetItemByPos(actor, 1)
@@ -9193,7 +9192,7 @@ function isitemjp(actor, item) end
 ---绑定角色掉落规则设置
 ---* actor 玩家对象
 ---* param1 1=开启掉落规则<br>0=关闭掉落规则
----@param actor table
+---@param actor number|string
 ---@param param1 integer
 ---```tips
 ---打怪掉落的物品根据表配置的规则掉落，由命令设置开关
@@ -9214,7 +9213,7 @@ function SetDropBindState(actor, param1) end
 ---* itemmakeid 装备唯一id
 ---* type 属性组别（0-99）
 ---* desc 内容显示(见上方功能设定：)
----@param actor table
+---@param actor number|string
 ---@param itemmakeid string
 ---@param type integer
 ---@param desc string
@@ -9247,7 +9246,7 @@ function customitemtext(actor, itemmakeid, type, desc) end
 ---精准爆率是否允许掉落
 ---* actor 玩家对象
 ---* param 1=允许掉落<br>0=阻止掉落
----@param actor table
+---@param actor number|string
 ---@param param integer
 ---```lua
 ----- 精准爆率需要使用接口 AllowDrop(actor,1) 才允许掉落,默认不掉
@@ -9270,7 +9269,7 @@ function AllowDrop(actor, param) end
 ---* param2 参数2
 ---* param3 参数3
 ---* sMsg 消息体
----@param actor table
+---@param actor number|string
 ---@param msgId integer
 ---@param param1 integer
 ---@param param2 integer
@@ -9311,7 +9310,7 @@ function sendmapmsg(mapId, msg) end
 ---* actor 玩家对象
 ---* prefix 前缀信息，空则清除聊天前缀
 ---* color 前缀颜色
----@param actor table
+---@param actor number|string
 ---@param prefix string
 ---@param color integer
 ---```lua
@@ -9333,7 +9332,7 @@ function release_print(...) end
 ---* BColor 背景色
 ---* Msg 消息内容
 ---* flag 发送对象：<br>0:自己；<br>1：所有人：<br>2：行会；<br>3：当前地图；<br>4：组队；
----@param actor table
+---@param actor number|string
 ---@param FColor integer
 ---@param BColor integer
 ---@param Msg string
@@ -9351,7 +9350,7 @@ function guildnoticemsg(actor, FColor, BColor, Msg, flag) end
 ---* time 显示时间，自动替换内容中的%d
 ---* msg 消息内容
 ---* shoeFlag 是否显示人物名称<br>0-是<br>1-否
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param FColor integer
 ---@param BColor integer
@@ -9371,7 +9370,7 @@ function sendtopchatboardmsg(actor, type, FColor, BColor, time, msg, shoeFlag) e
 ---* flag <br>发送对象：<br>0=发送给自己；<br>1=发送所有人物；<br>2=发送行会；<br>3=发送国家；<br>4=发送当前地图；<br>7=组队
 ---* time 显示时间
 ---* func 倒计时结束后跳转的脚本位置，对应脚本需要放QFunction脚本中，使用跳转时，消息文字提示中必须包含%d，用于显示倒计时时间
----@param actor table
+---@param actor number|string
 ---@param FColor integer
 ---@param BColor integer
 ---@param Msg string
@@ -9395,7 +9394,7 @@ function sendcentermsg(actor, FColor, BColor, Msg, flag, time, func) end
 ---* Y Y坐标
 ---* scroll 滚动次数
 ---* msg 消息内容
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param FColor integer
 ---@param BColor integer
@@ -9415,7 +9414,7 @@ function sendmovemsg(actor, type, FColor, BColor, Y, scroll, msg) end
 ---* BColor 背景色
 ---* X X坐标
 ---* Y Y坐标
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param msg string
 ---@param FColor integer
@@ -9434,7 +9433,7 @@ function sendcustommsg(actor, type, msg, FColor, BColor, X, Y) end
 ---* msg 公告内容
 ---* type 模式，发送对象<br>0-自己<br>1-所有人<br>2-行会<br>3-当前地图<br>4-组队
 ---* time 显示时间
----@param actor table
+---@param actor number|string
 ---@param FColor integer
 ---@param BColor integer
 ---@param msg string
@@ -9453,7 +9452,7 @@ function sendmsgnew(actor, FColor, BColor, msg, type, time) end
 ---* mapdelete 换地图是否删除<br>0-不删除<br>1-删除
 ---* tag 跳转的函数字段
 ---* X X坐标
----@param actor table
+---@param actor number|string
 ---@param msg string
 ---@param time integer
 ---@param FColor integer
@@ -9468,7 +9467,7 @@ function senddelaymsg(actor, msg, time, FColor, mapdelete, tag, X) end
 ---过滤全服提示信息
 ---* actor 玩家对象
 ---* flag 是否过滤<br>0-不过滤<br>1-过滤
----@param actor table
+---@param actor number|string
 ---@param flag integer
 ---```lua
 ---local flag = getflagstatus(actor,1) == 0 and 1 or 0
@@ -9482,7 +9481,7 @@ function filterglobalmsg(actor, flag) end
 ---* info 弹出内容
 ---* flag1 确定后跳转的接口
 ---* flag2 取消后跳转的接口
----@param actor table
+---@param actor number|string
 ---@param info string
 ---@param flag1 string
 ---@param flag2 string
@@ -9510,7 +9509,7 @@ function messagebox(actor, info, flag1, flag2) end
 ---* type <br>触发模式：<br>0小组成员触发<br>1行会成员触发<br>2当前地图的人物触发<br>3当前角色范围的人物触发
 ---* label 跳转后的接口
 ---* range 触发模式=3时<br>指定的范围大小
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param label string
 ---@param range integer
@@ -9531,7 +9530,7 @@ function gotolabel(actor, type, label, range) end
 ---* NPCIndex 界面ID
 ---* btnIndex 按钮索引
 ---* sMsg 显示的内容
----@param actor table
+---@param actor number|string
 ---@param NPCIndex integer|string
 ---@param btnIndex integer
 ---@param sMsg string
@@ -9574,7 +9573,7 @@ function navigation(actor, NPCIndex, btnIndex, sMsg) end
 ---* actor 玩家对象
 ---* useId 其他玩家的UserID
 ---* winId 面板ID：101-装备，106-称号，1011-时装
----@param actor table
+---@param actor number|string
 ---@param useId string
 ---@param winId integer
 ---```lua
@@ -9590,7 +9589,7 @@ function viewplayer(actor, useId, winId) end
 ---* actor 玩家对象
 ---* filename 文件名
 ---* label 标签
----@param actor table
+---@param actor number|string
 ---@param filename string
 ---@param label string
 ---```tips
@@ -9615,7 +9614,7 @@ function callscript(actor, filename, label) end
 ---* actor 玩家对象
 ---* scriptname 脚本接口
 ---* ... 参数1~参数10
----@param actor table
+---@param actor number|string
 ---@param scriptname string
 ---@param ... any
 ---```tips
@@ -9631,7 +9630,7 @@ function callscriptex(actor, scriptname, ...) end
 ---* actor 玩家对象
 ---* scriptName 脚本接口
 ---* ... 参数1~参数10
----@param actor table
+---@param actor number|string
 ---@param scriptName string
 ---@param ... any
 ---@return boolean "true/false"
@@ -9757,7 +9756,7 @@ function httppost(url, format, param1, param2, param3, param4) end
 ---是否满足指定条件显示（canshowshopitem触发中使用）
 ---* actor 玩家对象
 ---* canShow 1-不显示，0-显示
----@param actor table
+---@param actor number|string
 ---@param canShow integer
 ---```lua
 ---notallowshow(actor,canShow)
@@ -9767,7 +9766,7 @@ function notallowshow(actor, canShow) end
 ---是否满足指定条件购买（canbuyshopitem触发中使用）
 ---* actor 玩家对象
 ---* canBuy 1-不允许购买，0-允许购买
----@param actor table
+---@param actor number|string
 ---@param canBuy integer
 ---```lua
 ---notallowbuy(actor,canBuy)
@@ -9809,7 +9808,7 @@ function logincheckent(userId) end
 ---* actor 玩家对象
 ---* type 1:自己<br>2:全服<br>3:行会<br>4:当前地图<br>5:组队
 ---* msg 消息内容, 详情请看上面的功能设定：Json消息内容
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---@param msg string
 ---```tips
@@ -9923,7 +9922,7 @@ function GetStartServerTime() end
 
 ---获取客户端载体
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "客户端载体, 失败返回-1, 1=PC端, 2=移动端, 3=传统PC端"
 ---```lua
 ---local ClientFlag=GetClientFlag(actor)
@@ -9933,7 +9932,7 @@ function GetClientFlag(actor) end
 
 ---获取实时登录渠道ID
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "实时登录渠道ID,失败返回空字符串"
 ---```lua
 ---local BoxVar=GetBoxVar(actor)
@@ -9959,7 +9958,7 @@ function GetGameID() end
 
 ---获取ip地址
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return string "ip地址"
 ---```lua
 ---local IPAddr=GetIPAddr(actor)
@@ -9969,7 +9968,7 @@ function GetIPAddr(actor) end
 
 ---获取登录时间
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return string "登录时间"
 ---```lua
 ---local LogInTime=GetLogInTime(actor)
@@ -9979,7 +9978,7 @@ function GetLogInTime(actor) end
 
 ---获取登录时长
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return string "登录时长"
 ---```lua
 ---local LogInLong=GetLogInLong(actor)
@@ -10002,7 +10001,7 @@ function setvarlog(type, switch) end
 ---请求微信公众号KEY
 ---* actor 玩家对象
 ---* type 请求类型，1：绑定，2：解绑，3：验证
----@param actor table
+---@param actor number|string
 ---@param type integer
 ---```lua
 --- function triggerchat(actor, sMsg, chat)
@@ -10039,8 +10038,8 @@ function SetWX(actor, type) end
 
 ---获取英雄对象
 ---* actor 玩家对象
----@param actor table
----@return table "返回英雄对象 不存在返回”0”"
+---@param actor number|string
+---@return number|string "返回英雄对象 不存在返回”0”"
 ---```lua
 ---local heroObj = gethero(actor)
 ---release_print("获取英雄对象", heroObj)
@@ -10049,7 +10048,7 @@ function gethero(actor) end
 
 ---是否有英雄
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return boolean "true=有英雄 false=没有英雄"
 ---```lua
 ---local isHave=hashero(actor)
@@ -10059,7 +10058,7 @@ function hashero(actor) end
 
 ---判断对象是否为英雄
 ---* object 判断对象
----@param object table
+---@param object number|string
 ---@return boolean "true=是英雄 false=不是英雄"
 ---```lua
 ---local heroObj = gethero(actor)
@@ -10070,7 +10069,7 @@ function ishero(object) end
 
 ---判断英雄是否为唤出状态
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return boolean "英雄是否为唤出状态"
 ---```lua
 ---local isCall=isherorecall(actor)
@@ -10081,7 +10080,7 @@ function isherorecall(actor) end
 ---设置英雄名称
 ---* actor 玩家对象
 ---* name 英雄名称
----@param actor table
+---@param actor number|string
 ---@param name string
 ---```lua
 ---local hero = gethero(actor)
@@ -10095,7 +10094,7 @@ function checkheroname(actor, name) end
 ---* name 英雄名称
 ---* job 职业(0-战 1-法 2-道)
 ---* sex 性别(0-男 1-女)
----@param actor table
+---@param actor number|string
 ---@param name string
 ---@param job integer
 ---@param sex integer
@@ -10107,7 +10106,7 @@ function createhero(actor, name, job, sex) end
 
 ---删除英雄
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---delhero(actor)
 ---release_print("删除英雄" )
@@ -10116,7 +10115,7 @@ function delhero(actor) end
 
 ---召唤英雄
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---recallhero(actor)
 ---```
@@ -10124,7 +10123,7 @@ function recallhero(actor) end
 
 ---收回英雄
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---unrecallhero(actor)
 ---```
@@ -10133,7 +10132,7 @@ function unrecallhero(actor) end
 ---英雄改名接口
 ---* actor 玩家对象
 ---* heroName 英雄新名字
----@param actor table
+---@param actor number|string
 ---@param heroName string
 ---```lua
 ---changeheroname(player,role_name.."AA英雄")
@@ -10170,7 +10169,7 @@ function changeheroname(actor, heroName) end
 
 ---获取英雄模式
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "英雄模式 0=攻击 1=跟随 2= 休息"
 ---```lua
 ---local heroMode=getherosta(actor)
@@ -10181,7 +10180,7 @@ function getherosta(actor) end
 ---设置英雄模式
 ---* actor 玩家对象
 ---* model 英雄模式<br>0=攻击<br>1=跟随<br>2= 休息
----@param actor table
+---@param actor number|string
 ---@param model integer
 ---```lua
 ---setherosta(actor,1)
@@ -10190,7 +10189,7 @@ function setherosta(actor, model) end
 
 ---英雄传送到主体身边
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---herofollow(actor)
 ---release_print("英雄传送到主体身边" )
@@ -10209,7 +10208,7 @@ function herofollow(actor) end
 ---* weaponEffect 改变分身武器外观特效(0或空为不改变)
 ---* hpMax 分身血量数值（填0表示按参数4的继承百分比）
 ---* buffId BUFFID<br>多个BUFF用#号连接
----@param actor table
+---@param actor number|string
 ---@param time integer
 ---@param num integer
 ---@param attrPro integer
@@ -10228,7 +10227,7 @@ function recallself(actor, time, num, attrPro, color, dressLook, weaponLook, dre
 
 ---获取角色所有分身
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "玩家分身列表"
 ---```lua
 ---local selflist = clonelist(actor)
@@ -10240,7 +10239,7 @@ function clonelist(actor) end
 
 ---杀死角色所有分身
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "玩家分身列表"
 ---```lua
 ---killcopyself(actor)
@@ -10250,7 +10249,7 @@ function killcopyself(actor) end
 ---设置英雄忠诚度
 ---* hero 英雄对象
 ---* value 忠诚度
----@param hero table
+---@param hero number|string
 ---@param value integer
 ---```lua
 ---resetcastle(hero,value)
@@ -10259,7 +10258,7 @@ function setheroluck(hero, value) end
 
 ---获取英雄忠诚度
 ---* hero 英雄对象
----@param hero table
+---@param hero number|string
 ---@return integer "忠诚度"
 ---```lua
 ---local value = getheroluck(hero)
@@ -10271,7 +10270,7 @@ function getheroluck(hero) end
 ---创建行会
 ---* actor 玩家对象
 ---* guildName 行会名
----@param actor table
+---@param actor number|string
 ---@param guildName string
 ---```lua
 ---buildguild(actor,"红花会")
@@ -10280,7 +10279,7 @@ function buildguild(actor, guildName) end
 
 ---获取人物所在行会成员数量
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "人物所在行会成员数量"
 ---```lua
 ---local guildNum=getguildmembercount(actor)
@@ -10292,7 +10291,7 @@ function getguildmembercount(actor) end
 ---* guild 玩家对象
 ---* operate (操作符 + - = )
 ---* num 数量
----@param guild table
+---@param guild number|string
 ---@param operate string
 ---@param num integer
 ---```tips
@@ -10307,8 +10306,8 @@ function changeguildmemberlimit(guild, operate, num) end
 
 ---获取玩家所在的行会对象
 ---* actor 玩家对象
----@param actor table
----@return table "行会对象 没有行会返回'0'"
+---@param actor number|string
+---@return number|string "行会对象 没有行会返回'0'"
 ---```lua
 ---local guild=getmyguild(actor)
 ---release_print("获取玩家所在的行会对象",guild)
@@ -10320,7 +10319,7 @@ function getmyguild(actor) end
 ---* key 搜索关键词
 ---@param index integer
 ---@param key string
----@return table "行会对象"
+---@return number|string "行会对象"
 ---```lua
 ---local guild=findguild(1,"红花会")
 ---release_print("搜索行会",guild)
@@ -10330,9 +10329,9 @@ function findguild(index, key) end
 ---获取行会信息
 ---* guild 行会对象
 ---* index 索引
----@param guild table
----@param index table
----@return string "获取的结果"
+---@param guild number|string
+---@param index integer
+---@return string|table "获取的结果"
 ---```lua
 ---local guild=findguild(1,"红花会")
 ---local keyData={
@@ -10359,7 +10358,7 @@ function getguildinfo(guild, index) end
 ---* guild 行会对象
 ---* index 索引
 ---* value 要设置的内容
----@param guild table
+---@param guild number|string
 ---@param index integer
 ---@param value string
 ---```lua
@@ -10380,7 +10379,7 @@ function getallguild() end
 ---加入行会
 ---* actor 玩家对象
 ---* guildName 行会名
----@param actor table
+---@param actor number|string
 ---@param guildName string
 ---```lua
 ---addguildmember(actor,"红花会")
@@ -10392,7 +10391,7 @@ function addguildmember(actor, guildName) end
 ---* actorInfo 玩家对象/玩家名/唯一ID
 ---* guildName 行会名
 ---* type 参数1类型:<br>0 = 参数1填玩家对象;<br>1 = 参数1填玩家名字;<br>2 = 参数1填玩家唯一ID;<br>唯一id可用于踢离线玩家,不填默认为0
----@param actorInfo table|string
+---@param actorInfo number|string
 ---@param guildName string
 ---@param type integer
 ---```lua
@@ -10404,7 +10403,7 @@ function delguildmember(actorInfo, guildName, type) end
 ---设置行会成员在行会中的职位
 ---* actor 玩家对象
 ---* pos 在行会中的职位<br>0：会长;<br>1：副会长;<br>2：行会成员1;<br>3：行会成员2;<br>4：行会成员3;
----@param actor table
+---@param actor number|string
 ---@param pos integer
 ---@return boolean "true:设置成功 false:设置失败"
 ---```lua
@@ -10415,7 +10414,7 @@ function setplayguildlevel(actor, pos) end
 
 ---获取行会成员在行会中的职位
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return integer "在行会中的职位 0：会长; 1：副会长; 2：行会成员1; 3：行会成员2; 4：行会成员3; -1:获取失败;"
 ---```lua
 ---local job=getplayguildlevel(actor)
@@ -10448,7 +10447,7 @@ function changeguildname(actor, guildName, newGuildName) end
 
 ---创建队伍
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---creategroup(actor)
 ---release_print("创建队伍",job)
@@ -10458,8 +10457,8 @@ function creategroup(actor) end
 ---添加队员
 ---* actor 玩家对象
 ---* memberId 组员UserId
----@param actor table
----@param memberId table
+---@param actor number|string
+---@param memberId string
 ---```lua
 ---local mapID = getbaseinfo(actor,3)
 ---local x = getbaseinfo(actor,4)
@@ -10481,7 +10480,7 @@ function addgroupmember(actor, memberId) end
 ---删除队员
 ---* actor 玩家对象
 ---* memberId 组员UserId
----@param actor table
+---@param actor number|string
 ---@param memberId string
 ---```lua
 ---local membersList=getgroupmember(actor)
@@ -10502,7 +10501,7 @@ function delgroupmember(actor, memberId) end
 
 ---获取队员列表
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return table "队员列表"
 ---```lua
 ---local membersList=getgroupmember(actor)
@@ -10553,7 +10552,7 @@ function isallyguild(guildName1, guildName2) end
 
 ---解散行会
 ---* guild 行会对象
----@param guild table
+---@param guild number|string
 ---```lua
 ---local guild=getmyguild(actor)
 ---CloseGuild(guild)
@@ -10790,7 +10789,7 @@ function kuafuconnected() end
 
 ---检测当前人物是否在跨服的地图
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return boolean "true=在跨服;false=在本服"
 ---```lua
 ---local isKuafuMap = checkkuafu(actor)
@@ -10937,7 +10936,7 @@ function tonggetkeylistex() end
 ---设置阵营ID
 ---* actor 玩家/怪物 对象
 ---* campid 阵营id
----@param actor table
+---@param actor number|string
 ---@param campid integer
 ---```lua
 ---setcamp(actor,1)
@@ -10946,7 +10945,7 @@ function setcamp(actor, campid) end
 
 ---获取阵营ID
 ---* actor 玩家/怪物 对象
----@param actor table
+---@param actor number|string
 ---@return integer "阵营id"
 ---```lua
 ---local campid=getcamp(actor)
@@ -10960,7 +10959,7 @@ function getcamp(actor) end
 ---* buffId buffID
 ---* groupId 组id
 ---* model 操作类型<br>1=新增;<br>2=更新;<br>4=删除;
----@param actor table
+---@param actor number|string
 ---@param buffId integer
 ---@param groupId integer
 ---@param model integer
@@ -10985,8 +10984,8 @@ function buffchange(actor, buffId, groupId, model) end
 ---* buffId buffID
 ---* groupId 组id
 ---* model 操作类型<br>1=新增;<br>2=更新;<br>4=删除;
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---@param buffId integer
 ---@param groupId integer
 ---@param model integer
@@ -11008,12 +11007,12 @@ function herobuffchange(actor, hero, buffId, groupId, model) end
 ---* HP hp
 ---* buffHost 释放者对象
 ---* mon 怪物对象
----@param actor table
+---@param actor number|string
 ---@param buffId integer
 ---@param buffGroup integer
 ---@param HP integer
----@param buffHost table
----@param mon table
+---@param buffHost number|string
+---@param mon number|string
 ---@return integer "本次扣血"
 ---```tips
 ---buff触发中无法添加/删除buff
@@ -11030,7 +11029,7 @@ function bufftriggerhpchange(actor, buffId, buffGroup, HP, buffHost, mon) end
 ---接取任务触发
 ---* actor 玩家对象
 ---* taskId 任务id
----@param actor table
+---@param actor number|string
 ---@param taskId integer
 ---```lua
 ---function picktask(actor,taskId)
@@ -11042,7 +11041,7 @@ function picktask(actor, taskId) end
 ---点击任务触发
 ---* actor 玩家对象
 ---* taskId 任务id
----@param actor table
+---@param actor number|string
 ---@param taskId integer
 ---```lua
 ---function clicknewtask(actor,taskId)
@@ -11054,7 +11053,7 @@ function clicknewtask(actor, taskId) end
 ---刷新任务触发
 ---* actor 玩家对象
 ---* taskId 任务id
----@param actor table
+---@param actor number|string
 ---@param taskId integer
 ---```lua
 ---function changetask(actor,taskId)
@@ -11066,7 +11065,7 @@ function changetask(actor, taskId) end
 ---完成任务触发
 ---* actor 玩家对象
 ---* taskId 任务id
----@param actor table
+---@param actor number|string
 ---@param taskId integer
 ---```lua
 ---function completetask(actor,taskId)
@@ -11078,7 +11077,7 @@ function completetask(actor, taskId) end
 ---删除任务触发
 ---* actor 玩家对象
 ---* taskId 任务id
----@param actor table
+---@param actor number|string
 ---@param taskId integer
 ---```lua
 ---function deletetask(actor,taskId)
@@ -11093,9 +11092,9 @@ function deletetask(actor, taskId) end
 ---* actor 玩家对象
 ---* netid 关系id
 ---* role 接收者对象
----@param actor table
+---@param actor number|string
 ---@param netid integer
----@param role table
+---@param role number|string
 ---```lua
 ---function on_invite_united(actor,netid,role)
 ---    release_print("客户端发起建立关系请求时触发")
@@ -11108,7 +11107,7 @@ function on_invite_united(actor, netid, role) end
 ---* netIndex 关系唯一id
 ---* level 发起者职位等级
 ---* netId 关系id
----@param actor table
+---@param actor number|string
 ---@param netIndex string
 ---@param level integer
 ---@param netId integer
@@ -11124,10 +11123,10 @@ function on_convene_united(actor, netIndex, level, netId) end
 ---* netIndex 关系唯一id
 ---* netid 关系id
 ---* role 被踢出对象
----@param actor table
+---@param actor number|string
 ---@param netIndex string
 ---@param netid integer
----@param role table
+---@param role number|string
 ---```lua
 ---function on_getout_united(actor,netIndex,netid,role)
 ---    release_print("踢出触发")
@@ -11139,7 +11138,7 @@ function on_getout_united(actor, netIndex, netid, role) end
 ---* actor 玩家对象
 ---* netIndex 关系唯一id
 ---* netid 关系id
----@param actor table
+---@param actor number|string
 ---@param netIndex string
 ---@param netid integer
 ---```lua
@@ -11154,7 +11153,7 @@ function on_dissolve_united(actor, netIndex, netid) end
 ---* userId 用户id
 ---* netIndex 关系唯一id
 ---* netId 关系id
----@param actor table
+---@param actor number|string
 ---@param userId string
 ---@param netIndex string
 ---@param netId integer
@@ -11174,9 +11173,9 @@ function on_exit_united(actor, userId, netIndex, netId) end
 ---* moneyType 货币类型
 ---* price1 竞拍价
 ---* price2 一口价
----@param actor table
+---@param actor number|string
 ---@param itemIndex integer
----@param itemMakeIndex integer
+---@param itemMakeIndex string
 ---@param moneyType integer
 ---@param price1 integer
 ---@param price2 integer
@@ -11201,9 +11200,9 @@ function canpaimaiitem(actor, itemIndex, itemMakeIndex, moneyType, price1, price
 ---* moneyType 货币类型
 ---* price1 竞拍价
 ---* price2 一口价
----@param actor table
+---@param actor number|string
 ---@param itemIndex integer
----@param itemMakeIndex integer
+---@param itemMakeIndex string
 ---@param moneyType integer
 ---@param price1 integer
 ---@param price2 integer
@@ -11223,7 +11222,7 @@ function canrepaimaiitem(actor, itemIndex, itemMakeIndex, moneyType, price1, pri
 
 ---拍卖行下架触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function cangetbackpaimaiitem(actor)
 ---    release_print("拍卖行下架触发")
@@ -11233,7 +11232,7 @@ function cangetbackpaimaiitem(actor) end
 
 ---领取拍卖货币触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function getpaimaiitem(actor)
 ---    release_print("领取拍卖货币触发")
@@ -11247,9 +11246,9 @@ function getpaimaiitem(actor) end
 ---* itemMakeIndex 物品唯一id
 ---* moneyType 货币类型
 ---* price 价格
----@param actor table
+---@param actor number|string
 ---@param itemIndex integer
----@param itemMakeIndex integer
+---@param itemMakeIndex string
 ---@param moneyType integer
 ---@param price integer
 ---```tips
@@ -11272,9 +11271,9 @@ function buypaimaiitem(actor, itemIndex, itemMakeIndex, moneyType, price) end
 ---* itemMakeIndex 物品唯一id
 ---* moneyType 货币类型
 ---* price 价格
----@param actor table
+---@param actor number|string
 ---@param itemIndex integer
----@param itemMakeIndex integer
+---@param itemMakeIndex string
 ---@param moneyType integer
 ---@param price integer
 ---```tips
@@ -11295,7 +11294,7 @@ function biddingpaimaiitem(actor, itemIndex, itemMakeIndex, moneyType, price) en
 
 ---自定义排行榜刷新触发
 ---* sysObj 系统对象
----@param sysObj table
+---@param sysObj number|string
 ---```lua
 ---function inisort(sysObj)
 ---    release_print("自定义排行榜刷新触发")
@@ -11335,7 +11334,7 @@ function clicksortno(actor, ranking) end
 ---* itemIndex 求购物品idx
 ---* needNum 求购的物品数量
 ---* price 求购的货币金额(总值)
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param itemIndex integer
 ---@param needNum integer
@@ -11359,7 +11358,7 @@ function beforeaddqiugou(actor, itemName, itemIndex, needNum, price) end
 ---* itemIndex 求购物品idx
 ---* needNum 求购的物品数量
 ---* price 求购的货币金额(总值)
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param itemIndex integer
 ---@param needNum integer
@@ -11385,7 +11384,7 @@ function addqiugou(actor, itemName, itemIndex, needNum, price) end
 ---* itemIndex 出售物品idx
 ---* needNum 出售的物品数量
 ---* price 出售的货币金额(总值)
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param itemIndex integer
 ---@param needNum integer
@@ -11416,7 +11415,7 @@ function beforesellqiugou(actor, itemName, itemIndex, needNum, price) end
 ---* itemIndex 卖出物品idx
 ---* needNum 卖出的物品数量
 ---* price 卖出的货币金额(总值)
----@param actor table
+---@param actor number|string
 ---@param itemName string
 ---@param itemIndex integer
 ---@param needNum integer
@@ -11438,7 +11437,7 @@ function sellqiugou(actor, itemName, itemIndex, needNum, price) end
 
 ---玩家登录触发
 ---* actor actor
----@param actor table
+---@param actor number|string
 ---```lua
 ---function login(actor)
 ---    release_print("玩家",actor,"登录触发")
@@ -11451,10 +11450,10 @@ function login(actor) end
 ---* sMsg 说话内容
 ---* chat 聊天频道
 ---* target 私聊对象
----@param actor table
+---@param actor number|string
 ---@param sMsg string
 ---@param chat integer
----@param target table
+---@param target number|string
 ---@return boolean "true=接收私信;false=拒接接收私信"
 ---```lua
 ---function privatechat(actor,sMsg,chat,target)
@@ -11469,8 +11468,8 @@ function privatechat(actor, sMsg, chat,target) end
 ---* makeIndex 装备唯一ID
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* idx 物品id
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@param where integer
 ---@param idx integer
 ---@return boolean "true = 允许操作 false = 阻止操作"
@@ -11487,8 +11486,8 @@ function takeonbeforeex(actor, makeIndex, where, idx) end
 ---* makeIndex 装备唯一ID
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* idx 物品id
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@param where integer
 ---@param idx integer
 ---@return boolean "true = 允许操作 false = 阻止操作"
@@ -11504,8 +11503,8 @@ function takeoffbeforeex(actor, makeIndex, where, idx) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一Id
 ---* idx 物品id
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@param idx integer
 ---@return boolean "true = 允许操作 false = 阻止操作"
 ---```lua
@@ -11520,8 +11519,8 @@ function takeonbeforeX(actor, makeIndex, idx) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一ID
 ---* idx 物品id
----@param actor table
----@param makeIndex table
+---@param actor number|string
+---@param makeIndex string
 ---@param idx integer
 ---@return boolean "true = 允许操作 false = 阻止操作"
 ---```lua
@@ -11538,8 +11537,8 @@ function takeoffbeforeX(actor, makeIndex, idx) end
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* itemName 物品名
 ---* idx 物品id
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@param where integer
 ---@param itemName string
 ---@param idx integer
@@ -11556,8 +11555,8 @@ function takeonex(actor, makeIndex, where, itemName, idx) end
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* itemName 物品名
 ---* idx 物品id
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@param where integer
 ---@param itemName string
 ---@param idx integer
@@ -11572,8 +11571,8 @@ function takeoffex(actor, makeIndex, where, itemName, idx) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一ID
 ---* idx 物品id
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@param idx integer
 ---```lua
 ---function takeon1(actor,makeIndex,idxnij)
@@ -11586,8 +11585,8 @@ function takeonX(actor, makeIndex, idx) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一ID
 ---* idx 物品id
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@param idx integer
 ---```lua
 ---function takeoff1(actor,makeIndex,idx)
@@ -11600,7 +11599,7 @@ function takeoffX(actor, makeIndex, idx) end
 ---* actor 玩家对象
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* itemIndex 装备Index
----@param actor table
+---@param actor number|string
 ---@param where integer
 ---@param itemIndex integer
 ---@return boolean "true = 允许掉落 false = 阻止掉落"
@@ -11615,8 +11614,8 @@ function checkdropuseitems(actor, where, itemIndex) end
 ---参照装备投保已投保装备掉落触发
 ---* actor 玩家对象
 ---* makeIndex 唯一Id
----@param actor table
----@param makeIndex table
+---@param actor number|string
+---@param makeIndex string
 ---```lua
 ---function dropuseitemsX(actor,makeIndex)
 ---    release_print("参照装备投保已投保装备掉落触发")
@@ -11629,8 +11628,8 @@ function dropuseitemsX(actor, makeIndex) end
 ---* makeIndex 唯一Id<br>过期为称号时该参数为0
 ---* itemName 物品名字
 ---* itemid 物品ID
----@param actor table
----@param makeIndex table
+---@param actor number|string
+---@param makeIndex string
 ---@param itemName string
 ---@param itemid string
 ---```lua
@@ -11644,8 +11643,8 @@ function itemexpired(actor, makeIndex, itemName, itemid) end
 ---* actor 玩家对象
 ---* makeIndex 装备唯一ID
 ---* where 装位置
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@param where integer
 ---```lua
 ---function takeoffexchange(actor,makeIndex,where)
@@ -11657,8 +11656,8 @@ function takeoffexchange(actor, makeIndex, where) end
 ---装备持久消失触发
 ---* actor 玩家对象
 ---* makeIndex 唯一Id
----@param actor table
----@param makeIndex table
+---@param actor number|string
+---@param makeIndex string
 ---```lua
 ---function itemdamageX(actor,makeIndex)
 ---    release_print("装备持久消失触发")
@@ -11669,8 +11668,8 @@ function itemdamageX(actor, makeIndex) end
 ---武器加诅咒前触发
 ---* actor 玩家对象
 ---* makeIndex 唯一Id
----@param actor table
----@param makeIndex table
+---@param actor number|string
+---@param makeIndex string
 ---@return boolean "true = 诅咒 false = 阻止诅咒"
 ---```lua
 ---function makeweaponunluck(actor,makeIndex)
@@ -11685,7 +11684,7 @@ function makeweaponunluck(actor, makeIndex) end
 ---* makeIndex 物品唯一ID
 ---* itemIdx 物品id
 ---* nOverLap 数量
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param itemIdx integer
 ---@param nOverLap integer
@@ -11709,7 +11708,7 @@ function stdmodefuncX(actor, makeIndex, itemIdx, nOverLap) end
 ---* makeIndex 物品唯一ID
 ---* itemIdx 物品id
 ---* nOverLap 数量
----@param actor table
+---@param actor number|string
 ---@param Anicount integer
 ---@param makeIndex string
 ---@param itemIdx integer
@@ -11729,8 +11728,8 @@ function stdmodefunc(actor, Anicount, makeIndex, itemIdx, nOverLap) end
 ---* itemIndex 道具index
 ---* itemNum 道具数量
 ---* stdMode 物品表stdMode参数
----@param actor table
----@param itemMakeIndex integer
+---@param actor number|string
+---@param itemMakeIndex string
 ---@param itemIndex integer
 ---@param itemNum integer
 ---@param stdMode integer
@@ -11745,7 +11744,7 @@ function beforeeatitem(actor, itemMakeIndex, itemIndex, itemNum, stdMode) end
 
 ---货币改变触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function moneychange1(actor)
 ---    release_print("货币改变触发")
@@ -11757,8 +11756,8 @@ function moneychangeX(actor) end
 ---* actor 玩家对象
 ---* itemMakeIndex 物品唯一index
 ---* itemIndex 物品index
----@param actor table
----@param itemMakeIndex integer
+---@param actor number|string
+---@param itemMakeIndex string
 ---@param itemIndex integer
 ---```lua
 ---function addbagbefore(actor,itemMakeIndex,itemIndex)
@@ -11771,7 +11770,7 @@ function addbagbefore(actor, itemMakeIndex, itemIndex) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一ID
 ---* index 物品ID
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param index string
 ---```tips
@@ -11790,7 +11789,7 @@ function addbag(actor, makeIndex, index) end
 ---* makeIndex 物品唯一ID
 ---* itemName 掉落物品名
 ---* model 行为id<br>0=扔掉触发<br>1=人物掉落触发
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param itemName string
 ---@param model integer
@@ -11807,7 +11806,7 @@ function dropitemfrontex(actor, makeIndex, itemName, model) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一ID
 ---* itemName 物品名称
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@param itemName string
 ---```lua
@@ -11822,8 +11821,8 @@ function dropitemex(actor, makeIndex, itemName) end
 ---* attack 受击对象
 ---* damage 暴击后伤害值
 ---* magicId 技能id
----@param actor table
----@param attack table
+---@param actor number|string
+---@param attack number|string
 ---@param damage integer
 ---@param magicId integer
 ---@return integer "修改后的伤害"
@@ -11839,8 +11838,8 @@ function crittrigger(actor, attack, damage, magicId) end
 ---* hitter 伤害来源对象
 ---* damage 伤害值
 ---* magicId 技能id
----@param actor table
----@param hitter table
+---@param actor number|string
+---@param hitter number|string
 ---@param damage integer
 ---@param magicId integer
 ---@return integer "伤害值"
@@ -11858,9 +11857,9 @@ function reboundhurt(actor, hitter, damage, magicId) end
 ---* magicId 技能id
 ---* damage 伤害
 ---* model <br>当前攻击模式<br>0=正常<br>1=暴击<br>2=格挡<br>3=切割
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---@param damage integer
 ---@param model integer
@@ -11877,9 +11876,9 @@ function attackdamage(actor, target, hitter, magicId, damage, model) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function attack(actor,target,hitter,magicId)
@@ -11893,9 +11892,9 @@ function attack(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function magicattack(actor,target,hitter,magicId)
@@ -11910,9 +11909,9 @@ function magicattack(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* magicId 技能id
 ---* damage 伤害
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---@param damage integer
 ---@return integer "修改后的伤害"
@@ -11928,9 +11927,9 @@ function struckdamage(actor, hitter, target, magicId, damage) end
 ---* hitter 攻击对象
 ---* target 受击对象
 ---* magicId 技能id
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---```lua
 ---function struck(actor,target,hitter,magicId)
@@ -11944,9 +11943,9 @@ function struck(actor, target, hitter, magicId) end
 ---* hitter 攻击对象
 ---* target 受击对象
 ---* magicId 技能id
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---```lua
 ---function magicstruck(actor,target,hitter,magicId)
@@ -11957,7 +11956,7 @@ function magicstruck(actor, target, hitter, magicId) end
 
 ---自身使用技能触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function magselffunc104(actor)
 ---    release_print("自身使用技能触发")
@@ -11968,8 +11967,8 @@ function magselffuncX(actor) end
 ---对目标人物使用技能时自身触发
 ---* actor 玩家对象
 ---* roleObject 受击玩家对象
----@param actor table
----@param roleObject table
+---@param actor number|string
+---@param roleObject number|string
 ---```lua
 ---function magtagfunc104(actor，roleObject)
 ---    release_print("对目标人物使用技能时自身触发")
@@ -11980,8 +11979,8 @@ function magtagfuncX(actor, roleObject) end
 ---对目标怪物使用技能时自身触发
 ---* actor 玩家对象
 ---* monObject 受击对象
----@param actor table
----@param monObject table
+---@param actor number|string
+---@param monObject number|string
 ---```lua
 ---function magmonfunc104(actor，monObject)
 ---    release_print("对目标怪物使用技能时自身触发")
@@ -11996,10 +11995,10 @@ function magmonfuncX(actor, monObject) end
 ---* target 受击对象
 ---* x 受击对象x坐标
 ---* y 受击对象y坐标
----@param actor table
+---@param actor number|string
 ---@param magicId integer
 ---@param magicName string
----@param target table
+---@param target number|string
 ---@param x integer
 ---@param y integer
 ---@return boolean "true/nil=允许施法 false=阻止施法"
@@ -12015,9 +12014,9 @@ function beginmagic(actor, magicId, magicName, target, x, y) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---@return integer "0=不执行推动 1=执行推动 2=根据M2上的推动条件判断是否执行"
 ---```lua
@@ -12030,8 +12029,8 @@ function canpush(actor, target, hitter, magicId) end
 ---自定义技能处理伤害前触发
 ---* hitter 施法对象
 ---* target 受击对象
----@param hitter table
----@param target table
+---@param hitter number|string
+---@param target number|string
 ---@return boolean "返回值 true=正常施法 false=阻止施法(将不走后续伤害触发) 可用于群攻类技能,阻止部分受击对象的伤害流程"
 ---```lua
 ---function custommagicdamageX(hitter,target)
@@ -12043,8 +12042,8 @@ function custommagicdamageX(hitter, target) end
 ---杀死人物触发
 ---* actor 凶手或凶手主人
 ---* killed 被杀玩家(死者)
----@param actor table
----@param killed table
+---@param actor number|string
+---@param killed number|string
 ---```lua
 ---function killplay(actor,killed)
 ---    release_print("杀死人物触发")
@@ -12055,8 +12054,8 @@ function killplay(actor, killed) end
 ---玩家被杀
 ---* actor 被杀玩家
 ---* hitter 攻击者
----@param actor table
----@param hitter table
+---@param actor number|string
+---@param hitter number|string
 ---```lua
 ---function playdie(actor,hitter)
 ---    release_print("玩家被杀")
@@ -12067,8 +12066,8 @@ function playdie(actor, hitter) end
 ---杀死怪物或人物，爆物品触发
 ---* actor 玩家对象
 ---* dropRole 掉落者对象
----@param actor table
----@param dropRole table
+---@param actor number|string
+---@param dropRole number|string
 ---```lua
 ---function scatterbagitems(actor,dropRole)
 ---    release_print("杀死怪物或人物，爆物品触发")
@@ -12086,7 +12085,7 @@ function scatterbagitems(actor, dropRole) end
 ---* rechargeAmount 实际到账货币金额
 ---* giftAmount 额外赠送金额<br>运营后台配置
 ---* refundAmount 开启积分金额<br>运营后台配置
----@param actor table
+---@param actor number|string
 ---@param gold integer
 ---@param productId integer
 ---@param moneyId integer
@@ -12106,7 +12105,7 @@ function recharge(actor, gold, productId, moneyId, isReal, orderTime, rechargeAm
 ---* actor 玩家对象
 ---* npcId NPC索引<br>NPC配置表中的ID
 ---* script NPC文本路径
----@param actor table
+---@param actor number|string
 ---@param npcId integer
 ---@param script string
 ---@return boolean "false允许继续执行Txt脚本，true不允许"
@@ -12123,7 +12122,7 @@ function clicknpc(actor, npcId, script) end
 ---* x 进入地图x
 ---* y 进入地图y
 ---* mapId2 离开的地图id
----@param actor table
+---@param actor number|string
 ---@param mapId string
 ---@param x integer
 ---@param y integer
@@ -12141,7 +12140,7 @@ function entermap(actor, mapId, x, y, mapId2) end
 ---* x 离开地图x
 ---* y 离开地图y
 ---* mapId2 进入的地图id
----@param actor table
+---@param actor number|string
 ---@param mapId string
 ---@param x integer
 ---@param y integer
@@ -12156,7 +12155,7 @@ function leavemap(actor, mapId, x, y, mapId2) end
 ---镜像地图销毁前触发
 ---* sysobj 系统对象
 ---* mapId 地图id
----@param sysobj table
+---@param sysObj number|string
 ---@param mapId string
 ---```lua
 ---function mirrormapend(sysobj,mapId)
@@ -12170,7 +12169,7 @@ function mirrormapend(sysobj, mapId) end
 ---* mapid 地图id
 ---* x 地图x坐标
 ---* y 地图y坐标
----@param actor table
+---@param actor number|string
 ---@param mapid string
 ---@param x integer
 ---@param y integer
@@ -12186,8 +12185,8 @@ function beforeroute(actor, mapid, x, y) end
 ---* actor 玩家对象
 ---* itemMakeIndex 物品唯一id
 ---* itemIndex 物品id
----@param actor table
----@param itemMakeIndex integer
+---@param actor number|string
+---@param itemMakeIndex string
 ---@param itemIndex integer
 ---```lua
 ---function pickupitemex(actor,itemMakeIndex,itemIndex)
@@ -12198,7 +12197,7 @@ function pickupitemex(actor, itemMakeIndex, itemIndex) end
 
 ---骑马跑步触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function horserun(actor)
 ---    release_print("骑马跑步触发")
@@ -12208,7 +12207,7 @@ function horserun(actor) end
 
 ---跑步触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function run(actor)
 ---    release_print("跑步触发")
@@ -12218,7 +12217,7 @@ function run(actor) end
 
 ---走路触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function walk(actor)
 ---    release_print("走路触发")
@@ -12228,7 +12227,7 @@ function walk(actor) end
 
 ---开始挂机触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function startautoplaygame(actor)
 ---    release_print("开始挂机触发")
@@ -12238,7 +12237,7 @@ function startautoplaygame(actor) end
 
 ---停止挂机触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function stopautoplaygame(actor)
 ---    release_print("停止挂机触发")
@@ -12248,7 +12247,7 @@ function stopautoplaygame(actor) end
 
 ---属性变化时触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function sendability(actor)
 ---    release_print("属性变化时触发")
@@ -12259,7 +12258,7 @@ function sendability(actor) end
 ---角色获取经验前触发
 ---* actor 玩家对象
 ---* exp 获取经验值
----@param actor table
+---@param actor number|string
 ---@param exp integer
 ---@return integer "修改后的经验值"
 ---```lua
@@ -12272,8 +12271,8 @@ function getexp(actor, exp) end
 ---拾取前触发
 ---* actor 玩家对象
 ---* makeIndex 物品唯一ID
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@return boolean "true = 允许拾取 false = 阻止拾取"
 ---```lua
 ---function pickupitemfrontex(actor,makeIndex)
@@ -12284,7 +12283,7 @@ function pickupitemfrontex(actor, makeIndex) end
 
 ---点击背包锁头触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function closedbagitemclick(actor)
 ---    release_print("点击背包锁头触发")
@@ -12295,7 +12294,7 @@ function closedbagitemclick(actor) end
 ---套装激活触发
 ---* actor 玩家对象
 ---* suitIndex 套装id
----@param actor table
+---@param actor number|string
 ---@param suitIndex table
 ---```lua
 ---function groupitemonX(actor,suitIndex)
@@ -12307,7 +12306,7 @@ function groupitemonX(actor, suitIndex) end
 ---穿套装触发
 ---* actor 玩家对象
 ---* suiId 套装id
----@param actor table
+---@param actor number|string
 ---@param suiId integer
 ---```lua
 ---function groupitemonex(actor,suiId)
@@ -12319,7 +12318,7 @@ function groupitemonex(actor, suiId) end
 ---脱套装触发
 ---* actor 玩家对象
 ---* suiId 套装id
----@param actor table
+---@param actor number|string
 ---@param suiId integer
 ---```lua
 ---function groupitemoffex(actor,suiId)
@@ -12331,8 +12330,8 @@ function groupitemoffex(actor, suiId) end
 ---交易前触发
 ---* acceptActor 接收交易请求对象
 ---* launchActor 发起交易请求对象
----@param acceptActor table
----@param launchActor table
+---@param acceptActor number|string
+---@param launchActor number|string
 ---```lua
 ---function dealbefore(acceptActor,launchActor)
 ---    release_print("交易前触发")
@@ -12344,8 +12343,8 @@ function dealbefore(acceptActor, launchActor) end
 ---* actor 交易对象A
 ---* buyer 交易对象B
 ---* itemjson 交易物品json
----@param actor table
----@param buyer table
+---@param actor number|string
+---@param buyer number|string
 ---@param itemjson string
 ---```tips
 ---堆叠物品进包不建议操作其唯一id，因其进包后的物品对象仅首个会保留，第二个起皆会被销毁，操作其唯一id会出现错误
@@ -12359,7 +12358,7 @@ function dealend(actor, buyer, itemjson) end
 
 ---摆摊触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```tips
 ---注意:阻止摆摊需使用接口ForbidMyShop
 ---```
@@ -12376,7 +12375,7 @@ function startmyshop(actor) end
 
 ---摆摊成功触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function startmyshopok(actor)
 ---    release_print("摆摊成功触发")
@@ -12386,7 +12385,7 @@ function startmyshopok(actor) end
 
 ---摆摊结束触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function stopmyshop(actor)
 ---    release_print("摆摊结束触发")
@@ -12402,13 +12401,13 @@ function stopmyshop(actor) end
 ---* itemIndex 道具idx
 ---* makeindex 唯一id
 ---* sellactor 卖家对象
----@param actor table
+---@param actor number|string
 ---@param seller string
 ---@param moneyType integer
 ---@param moneyNum integer
 ---@param itemIndex integer
 ---@param makeindex string
----@param sellactor table
+---@param sellactor number|string
 ---```lua
 ---function buyusershopitem(actor,seller,moneyType,moneyNum,itemIndex,makeindex,sellactor)
 ---    release_print("摆摊购买前触发")
@@ -12422,7 +12421,7 @@ function buyusershopitem(actor, seller, moneyType, moneyNum, itemIndex, makeinde
 ---* overlap 叠加数量</br>`非叠加物品=1`
 ---* moneytype 货币类型
 ---* moneyNum 货币数量
----@param actor table
+---@param actor number|string
 ---@param itemname string
 ---@param overlap integer
 ---@param moneytype integer
@@ -12442,13 +12441,13 @@ function sellstallitem(actor, itemname, overlap, moneytype, moneyNum) end
 ---* moneyNum 货币数量
 ---* makeindex 物品唯一id
 ---* sellactor 卖家对象
----@param actor table
+---@param actor number|string
 ---@param itemname string
 ---@param overlap integer
 ---@param moneytype integer
 ---@param moneyNum integer
----@param makeindex integer
----@param sellactor table
+---@param makeIndex string
+---@param sellactor number|string
 ---```lua
 ---function buystallitem(actor,itemname,overlap,moneytype,moneyNum,makeindex,sellactor)
 ---    release_print("摆摊购买触发")
@@ -12462,7 +12461,7 @@ function buystallitem(actor, itemname, overlap, moneytype, moneyNum, makeindex,s
 ---* itemName 物品名称
 ---* itemNum 物品数量
 ---* money_list 货币消耗(json)
----@param actor table
+---@param actor number|string
 ---@param makeIndexList string
 ---@param itemName string
 ---@param itemNum integer
@@ -12476,7 +12475,7 @@ function buyshopitem(actor, makeIndexList, itemName, itemNum, money_list) end
 
 ---人物勾选外显时装生效触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function showfashion(actor)
 ---    release_print("人物勾选外显时装生效触发")
@@ -12486,7 +12485,7 @@ function showfashion(actor) end
 
 ---人物取消外显时装生效触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function notshowfashion(actor)
 ---    release_print("人物取消外显时装生效触发")
@@ -12496,7 +12495,7 @@ function notshowfashion(actor) end
 
 ---加好友前触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function addfriendrequest(actor)
 ---    release_print("加好友前触发")
@@ -12507,7 +12506,7 @@ function addfriendrequest(actor) end
 ---角色pk值变化触发
 ---* actor 玩家对象
 ---* pkpoint pk值
----@param actor table
+---@param actor number|string
 ---@param pkpoint integer
 ---```lua
 ---function pkpointchanged(actor,pkpoint)
@@ -12520,8 +12519,8 @@ function pkpointchanged(actor, pkpoint) end
 ---* actor 玩家对象
 ---* hitter 击杀者对象
 ---* isplayer 0=击杀者非玩家<br>1=击杀者是玩家
----@param actor table
----@param hitter table
+---@param actor number|string
+---@param hitter number|string
 ---@param isplayer integer
 ---```lua
 ---function nextdie(actor,hitter,isplayer)
@@ -12534,7 +12533,7 @@ function nextdie(actor, hitter, isplayer) end
 ---* actor 玩家对象
 ---* actorInsId 被查看的玩家实例id
 ---* name 被查看的玩家名
----@param actor table
+---@param actor number|string
 ---@param actorInsId integer
 ---@param name string
 ---```lua
@@ -12548,7 +12547,7 @@ function lookhuminfo(actor, actorInsId, name) end
 ---* actor 玩家对象
 ---* mailID 邮件id
 ---* mailTitle 邮件标题
----@param actor table
+---@param actor number|string
 ---@param mailID integer
 ---@param mailTitle string
 ---```lua
@@ -12564,7 +12563,7 @@ function readmail(actor, mailID, mailTitle) end
 ---* mailTitle 邮件标题
 ---* itemJson 提取物品的json
 ---* diyid 邮件自定义id(sendmail里的自定义邮件ID)
----@param actor table
+---@param actor number|string
 ---@param mainID integer
 ---@param mailTitle string
 ---@param itemJson string
@@ -12580,7 +12579,7 @@ function getmailitem(actor, mainID, mailTitle, itemJson,diyid) end
 ---* actor 玩家对象
 ---* X X坐标
 ---* Y Y坐标
----@param actor table
+---@param actor number|string
 ---@param X integer
 ---@param Y integer
 ---@return boolean "true=允许传送; false=阻止传送"
@@ -12596,8 +12595,8 @@ function beginteleport(actor, X, Y) end
 ---* bindingType 绑定类型(1：背包满通知)
 ---* isOpen 是否开启(0：关闭，1：开启)
 ---* callbackFunc 回调函数(QF)
----@param actor table
----@param bindingType table
+---@param actor number|string
+---@param bindingType integer
 ---@param isOpen integer
 ---@param callbackFunc string
 ---```lua
@@ -12613,7 +12612,7 @@ function bindevent(actor, bindingType, isOpen, callbackFunc) end
 
 ---回收触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function recycling(actor, ...)
 ---    release_print("======================")
@@ -12627,7 +12626,7 @@ function recycling(actor) end
 
 ---寻路开启触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function findpathbegin(actor)
 ---    release_print("findpathstop",getbaseinfo(actor,1),getconst(actor, ""),getconst(actor, ""))
@@ -12637,7 +12636,7 @@ function findpathbegin(actor) end
 
 ---寻路中断触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function findpathstop(actor)
 ---    release_print("findpathstop",getbaseinfo(actor,1))
@@ -12647,7 +12646,7 @@ function findpathstop(actor) end
 
 ---寻路结束触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function findpathend(actor)
 ---    release_print("findpathend",getbaseinfo(actor,1))
@@ -12658,8 +12657,8 @@ function findpathend(actor) end
 ---玩家捡取物品前触发(X=物品idx)
 ---* actor 玩家对象
 ---* makeIndex 物品唯一ID
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@return boolean "true = 允许拾取 false = 阻止拾取"
 ---```lua
 ---function pickupitemfrontX(actor,makeIndex)
@@ -12671,7 +12670,7 @@ function pickupitemfrontX(actor, makeIndex) end
 ---装备从背包掉落前触发
 ---* actor actor
 ---* makeIndex 物品唯一ID
----@param actor table
+---@param actor number|string
 ---@param makeIndex string
 ---@return boolean "true = 允许掉落 false = 阻止掉落"
 ---```lua
@@ -12685,7 +12684,7 @@ function itemdropfrombagbefore(actor, makeIndex) end
 ---称号改变触发
 ---* actor 玩家对象
 ---* titleIndex 称号索引
----@param actor table
+---@param actor number|string
 ---@param titleIndex integer
 ---```tips
 ---玩家佩戴某个称号时触发
@@ -12700,7 +12699,7 @@ function titlechangedex(actor, titleIndex) end
 ---称号卸下触发
 ---* actor 玩家对象
 ---* titleIndex 称号索引
----@param actor table
+---@param actor number|string
 ---@param titleIndex integer
 ---```lua
 ---function untitledex(actor,titleIndex)
@@ -12711,7 +12710,7 @@ function untitledex(actor, titleIndex) end
 
 ---人物复活时
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function revival(actor)
 ---    release_print("人物复活时触发")
@@ -12721,7 +12720,7 @@ function revival(actor) end
 
 ---人物改变称号X时触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function titlechanged_X(actor)
 ---    release_print("人物改变称号X时触发")
@@ -12731,7 +12730,7 @@ function titlechanged_X(actor) end
 
 ---人物卸下称号X时触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function titlechanged_X(actor)
 ---    release_print("人物取消称号X时触发")
@@ -12744,9 +12743,9 @@ function titlechanged_X(actor) end
 ---* killer 击杀者对象
 ---* mon 怪物对象
 ---* exp 经验数
----@param actor table
----@param killer table
----@param mon table
+---@param actor number|string
+---@param killer number|string
+---@param mon number|string
 ---@param exp integer
 ---```lua
 ---function getexpbykillmon(actor,killer,mon,exp)
@@ -12757,7 +12756,7 @@ function getexpbykillmon(actor, killer, mon, exp) end
 
 ---玩家跨天登录触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function resetday(actor)
 ---    release_print("玩家",actor,"跨天登录触发")
@@ -12768,7 +12767,7 @@ function resetday(actor) end
 ---前端请求打开ui界面触发
 ---* actor actor
 ---* id [界面id](https://engine-doc.996m2.com/web/#/88/36493 "界面id")
----@param actor table
+---@param actor number|string
 ---@param id number
 ---@return boolean "能否打开"
 ---```tips
@@ -12786,7 +12785,7 @@ function clientbeforeopenpanel(actor, id) end
 ---* actor actor
 ---* goldNum 金币数量
 ---* result 是否允许丢弃</br>true=允许丢弃</br>false=不允许丢弃
----@param actor table
+---@param actor number|string
 ---@param goldNum number
 ---@param result boolean
 ---@return boolean "true=允许丢弃,false=不允许丢弃"
@@ -12800,8 +12799,8 @@ function dropgoldfront(actor, goldNum, result) end
 ---人物复活前触发(复活类技能)
 ---* actor 技能释放对象
 ---* hiter 复活对象
----@param actor table
----@param hiter table
+---@param actor number|string
+---@param hiter number|string
 ---@return boolean "true = 允许复活; false = 阻止复活  ------------ - 复活类技能参考自定义技能表中2004技能 ![](https://engine-doc.996m2.com/server/index.php?s=/api/attachment/visitFile&sign=70d559ec7b9356214c01fcfa997acaf7)"
 ---```lua
 ---function revivalex(actor,hiter)
@@ -12815,8 +12814,8 @@ function revivalex(actor, hiter) end
 ---* target 受击对象
 ---* damage 伤害
 ---* magicId 技能id
----@param actor table
----@param target table
+---@param actor number|string
+---@param target number|string
 ---@param damage integer
 ---@param magicId integer
 ---@return integer "修改后的伤害"
@@ -12833,8 +12832,8 @@ function ignoredef(actor, target, damage, magicId) end
 ---* target 受击对象
 ---* skillid 技能id
 ---* SysCanPush 引擎判断流程是否可以击退
----@param actor table
----@param target table
+---@param actor number|string
+---@param target number|string
 ---@param skillid integer
 ---@param SysCanPush boolean
 ---@return boolean "true=可以击退,false=不可以击退"
@@ -12854,7 +12853,7 @@ function on_push_pre(actor, target, skillid, SysCanPush) end
 ---* param2 参数2
 ---* param3 参数3
 ---* sMsg 消息体
----@param actor table
+---@param actor number|string
 ---@param msgId integer
 ---@param param1 integer
 ---@param param2 integer
@@ -12884,7 +12883,7 @@ function startup() end
 ---* sMsg 说话内容
 ---* chat <br>聊天频道<br>0:综合<br>1:私聊<br>2:附近<br>3:喊话<br>4:组队<br>5:行会<br>6:结盟频道<br>7:世界<br>8:国家消息<br>9:系统
 ---* msgType <br>消息类型<br>0:普通消息<br>1:坐标<br>2:装备
----@param self table
+---@param self number|string
 ---@param sMsg string
 ---@param chat integer
 ---@param msgType integer
@@ -12899,7 +12898,7 @@ function triggerchat(self, sMsg, chat, msgType) end
 
 ---小退触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function playreconnection(actor)
 ---    release_print("小退触发")
@@ -12909,7 +12908,7 @@ function playreconnection(actor) end
 
 ---大退与关闭客户端触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function playoffline(actor)
 ---    release_print("大退与关闭客户端触发")
@@ -12944,7 +12943,7 @@ function getcastle0() end
 ---公众号获取KEY成功触发
 ---* actor 玩家对象
 ---* key 公众号key
----@param actor table
+---@param actor number|string
 ---@param key string
 ---```lua
 ---function bindwechat(actor,key)
@@ -12959,7 +12958,7 @@ function bindwechat(actor, key) end
 ---* inputkey 输入的微信key
 ---* name 微信名称
 ---* openid 微信id
----@param actor table
+---@param actor number|string
 ---@param key string
 ---@param inputkey string
 ---@param name string
@@ -12979,7 +12978,7 @@ function bindrewechat(actor, key, inputkey, name, openid) end
 ---* UserName 玩家名称
 ---* varName 变量名
 ---* varValue 变量值
----@param SysID table
+---@param SysID number|string
 ---@param UserID string
 ---@param UserName string
 ---@param varName string
@@ -13032,7 +13031,7 @@ function qfloadend() end
 
 ---玩家穴位点击触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```tips
 ---pulseX-X(第一个X为经络(0-4))-(第二个X为穴位(1-5))
 ---```
@@ -13052,7 +13051,7 @@ function pulse(actor) end
 
 ---英雄穴位点击触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```tips
 ---heropulseX-X(第一个X为经络(0-4))-(第二个X为穴位(1-5))
 ---```
@@ -13072,7 +13071,7 @@ function heropulse(actor) end
 
 ---玩家修炼经络触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function pulselvupX(actor)
 ---    release_print("玩家修炼经络触发")
@@ -13082,7 +13081,7 @@ function pulselvupX(actor) end
 
 ---英雄修炼经络触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function heropulselvupX(actor)
 ---    release_print("英雄修炼经络触发")
@@ -13099,9 +13098,9 @@ function heropulselvupX(actor) end
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* itemName 物品名
 ---* idx 物品id
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---@param where integer
 ---@param itemName string
 ---@param idx integer
@@ -13119,9 +13118,9 @@ function herotakeonex(actor, hero, makeIndex, where, itemName, idx) end
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* itemName 物品名
 ---* idx 物品id
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---@param where integer
 ---@param itemName string
 ---@param idx integer
@@ -13137,9 +13136,9 @@ function herotakeoffex(actor, hero, makeIndex, where, itemName, idx) end
 ---* hero 英雄对象
 ---* makeIndex 唯一Id
 ---* itemName 物品名字
----@param actor table
----@param hero table
----@param makeIndex table
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---@param itemName string
 ---```lua
 ---function heroitemexpired(actor,hero,makeIndex,itemName)
@@ -13152,9 +13151,9 @@ function heroitemexpired(actor, hero, makeIndex, itemName) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* makeIndex 物品唯一ID
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---```lua
 ---function herotakeoffexchange(actor,hero,makeIndex)
 ---    release_print("英雄脱下装备进入背包前触发")
@@ -13166,8 +13165,8 @@ function herotakeoffexchange(actor, hero, makeIndex) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* makeIndex 物品唯一Id
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---@param makeIndex string
 ---```lua
 ---function addherobag(actor,hero,makeIndex)
@@ -13180,9 +13179,9 @@ function addherobag(actor, hero, makeIndex) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* makeIndex 物品唯一ID
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---```lua
 ---function herodropitemfrontX(actor,hero,makeIndex)
 ---    release_print("英雄扔掉物品前触发")
@@ -13194,9 +13193,9 @@ function herodropitemfrontX(actor, hero, makeIndex) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* makeIndex 物品唯一ID
----@param actor table
----@param hero table
----@param makeIndex table
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---```lua
 ---function herodropitemX(actor,hero,makeIndex)
 ---    release_print("英雄扔掉物品后触发")
@@ -13208,9 +13207,9 @@ function herodropitemX(actor, hero, makeIndex) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* makeIndex 物品唯一ID
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---```lua
 ---function herodropitemfrontex(actor,hero,makeIndex)
 ---    release_print("英雄扔掉物品前触发")
@@ -13222,9 +13221,9 @@ function herodropitemfrontex(actor, hero, makeIndex) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* makeIndex 物品唯一ID
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---```lua
 ---function herodropitemex(actor,hero,makeIndex)
 ---    release_print("英雄扔掉物品后触发")
@@ -13238,9 +13237,9 @@ function herodropitemex(actor, hero, makeIndex) end
 ---* hitter 攻击对象
 ---* magicId 技能id 负数
 ---* damage 伤害
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---@param damage integer
 ---@return integer "修改后的伤害"
@@ -13257,9 +13256,9 @@ function attackdamagebb(actor, target, hitter, magicId, damage) end
 ---* hitter 攻击对象
 ---* magicId 技能id
 ---* damage 伤害
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---@param damage integer
 ---@return integer "修改后的伤害"
@@ -13276,9 +13275,9 @@ function heroattackdamage(actor, target, hitter, magicId, damage) end
 ---* hitter 攻击对象
 ---* magicId 技能id
 ---* damage 伤害
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---@param damage integer
 ---@return integer "修改后的伤害"
@@ -13294,9 +13293,9 @@ function heroattackdamagebb(actor, target, hitter, magicId, damage) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function attackpet(actor,target,hitter,magicId)
@@ -13310,9 +13309,9 @@ function attackpet(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function magicattackpet(actor,target,hitter,magicId)
@@ -13326,9 +13325,9 @@ function magicattackpet(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function heroattack(actor,target,hitter,magicId)
@@ -13342,9 +13341,9 @@ function heroattack(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function heromagicattack(actor,target,hitter,magicId)
@@ -13358,9 +13357,9 @@ function heromagicattack(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function heroattackpet(actor,target,hitter,magicId)
@@ -13374,9 +13373,9 @@ function heroattackpet(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function heromagicattackpet(actor,target,hitter,magicId)
@@ -13391,9 +13390,9 @@ function heromagicattackpet(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* magicId 技能id
 ---* damage 伤害
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---@param damage integer
 ---@return integer "修改后的伤害"
@@ -13410,9 +13409,9 @@ function struckdamagebb(actor, hitter, target, magicId, damage) end
 ---* target 受击对象
 ---* magicId 技能id
 ---* damage 伤害
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---@param damage integer
 ---@return integer "修改后的伤害"
@@ -13429,9 +13428,9 @@ function herostruckdamage(actor, hitter, target, magicId, damage) end
 ---* target 受击对象
 ---* magicId 技能id
 ---* damage 伤害
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---@param damage integer
 ---@return integer "修改后的伤害"
@@ -13447,9 +13446,9 @@ function herostruckdamagebb(actor, hitter, target, magicId, damage) end
 ---* hitter 攻击对象
 ---* target 受击对象
 ---* magicId 技能id
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---```lua
 ---function struckpet(actor,hitter,target,magicId)
@@ -13463,9 +13462,9 @@ function struckpet(actor, hitter, target, magicId) end
 ---* hitter 攻击对象
 ---* target 受击对象
 ---* magicId 技能id
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---```lua
 ---function magicstruckpet(actor,hitter,target,magicId)
@@ -13479,9 +13478,9 @@ function magicstruckpet(actor, hitter, target, magicId) end
 ---* hitter 攻击对象
 ---* target 受击对象
 ---* magicId 技能id
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---```lua
 ---function herostruck(actor,hitter,target,magicId)
@@ -13495,9 +13494,9 @@ function herostruck(actor, hitter, target, magicId) end
 ---* hitter 攻击对象
 ---* target 受击对象
 ---* magicId 技能id
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---```lua
 ---function heromagicstruck(actor,hitter,target,magicId)
@@ -13511,9 +13510,9 @@ function heromagicstruck(actor, hitter, target, magicId) end
 ---* hitter 攻击对象
 ---* target 受击对象
 ---* magicId 技能id
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---```lua
 ---function heromagicstruckpet(actor,hitter,target,magicId)
@@ -13527,9 +13526,9 @@ function heromagicstruckpet(actor, hitter, target, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param hitter table
----@param target table
+---@param actor number|string
+---@param hitter number|string
+---@param target number|string
 ---@param magicId integer
 ---```lua
 ---function herostruckpet(actor,hitter,target,magicId)
@@ -13546,11 +13545,11 @@ function herostruckpet(actor, hitter, target, magicId) end
 ---* target 受击对象
 ---* x 受击对象x坐标
 ---* y 受击对象y坐标
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---@param magicId integer
 ---@param magicName string
----@param target table
+---@param target number|string
 ---@param x integer
 ---@param y integer
 ---@return boolean "true/nil=允许施法 false=阻止施法"
@@ -13566,9 +13565,9 @@ function herobeginmagic(actor, hero, magicId, magicName, target, x, y) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---@return integer "0=不执行推动 1=执行推动 2=根据M2上的推动条件判断是否执行"
 ---```lua
@@ -13583,9 +13582,9 @@ function herocanpush(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---@return integer "0=不执行推动 1=执行推动 2=根据M2上的推动条件判断是否执行"
 ---```lua
@@ -13600,9 +13599,9 @@ function petcanpush(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---@return integer "0=不执行推动 1=执行推动 2=根据M2上的推动条件判断是否执行"
 ---```lua
@@ -13617,9 +13616,9 @@ function bbcanpush(actor, target, hitter, magicId) end
 ---* target 受击对象
 ---* hitter 攻击对象
 ---* magicId 技能id
----@param actor table
----@param target table
----@param hitter table
+---@param actor number|string
+---@param target number|string
+---@param hitter number|string
 ---@param magicId integer
 ---@return integer "0=不执行推动 1=执行推动 2=根据M2上的推动条件判断是否执行"
 ---```lua
@@ -13632,8 +13631,8 @@ function herobbcanpush(actor, target, hitter, magicId) end
 ---宝宝死亡触发，触发对象 主人
 ---* actor 玩家对象
 ---* mon 宝宝/怪物对象
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---```lua
 ---function selfkillslave(actor,mon)
 ---    release_print("宝宝死亡触发，触发对象 主人")
@@ -13644,8 +13643,8 @@ function selfkillslave(actor, mon) end
 ---杀掉宝宝触发，触发对象 攻击者
 ---* actor 玩家对象
 ---* mon 宝宝/怪物对象
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---```lua
 ---function killslave(actor,mon)
 ---    release_print("杀掉宝宝触发，触发对象 攻击者")
@@ -13660,10 +13659,10 @@ function killslave(actor, mon) end
 ---* kill 击杀者对象(凶手)
 ---* monName 怪物名称
 ---* mapID 地图id
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---@param itype integer
----@param kill table
+---@param kill number|string
 ---@param monName string
 ---@param mapID string
 ---```lua
@@ -13676,8 +13675,8 @@ function killmon(actor, mon, itype, kill, monName, mapID) end
 ---杀怪触发(需要在mapinfo地图参数增加onkillmon)
 ---* actor 玩家对象
 ---* mon 宝宝/怪物对象
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---```lua
 ---function onkillmob(actor,mon)
 ---    release_print("杀怪触发，触发对象 攻击者")
@@ -13688,8 +13687,8 @@ function onkillmob(actor, mon) end
 ---英雄被杀触发
 ---* actor 被杀英雄玩家
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function herodie(actor,hero)
 ---    release_print("英雄被杀触发")
@@ -13704,9 +13703,9 @@ function herodie(actor, hero) end
 ---* nX 掉落坐标x
 ---* nY 掉落坐标y
 ---* index 物品序号
----@param actor table
----@param makeIndex table
----@param mon table
+---@param actor number|string
+---@param makeIndex string
+---@param mon number|string
 ---@param nX integer
 ---@param nY integer
 ---@param index integer
@@ -13722,8 +13721,8 @@ function mondropitemex(actor, makeIndex, mon, nX, nY, index) end
 ---* actor 玩家对象
 ---* mon 宝宝对象
 ---* level 当前等级
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---@param level integer
 ---```lua
 ---function slaveupgrade(actor,mon,level)
@@ -13735,8 +13734,8 @@ function slaveupgrade(actor, mon, level) end
 ---角色获得宝宝触发
 ---* actor 玩家对象
 ---* mon 宝宝对象
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---```lua
 ---function slavebb(actor,mon)
 ---    release_print("角色获得宝宝触发")
@@ -13748,9 +13747,9 @@ function slavebb(actor, mon) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* mon 宝宝对象
----@param actor table
----@param hero table
----@param mon table
+---@param actor number|string
+---@param hero number|string
+---@param mon number|string
 ---```lua
 ---function heroslavebb(actor,hero,mon)
 ---    release_print("英雄获得宝宝触发")
@@ -13761,8 +13760,8 @@ function heroslavebb(actor, hero, mon) end
 ---角色宝宝叛变触发
 ---* actor 玩家对象
 ---* mon 宝宝对象
----@param actor table
----@param mon table
+---@param actor number|string
+---@param mon number|string
 ---```lua
 ---function mobtreachery(actor,mon)
 ---    release_print("角色宝宝叛变触发")
@@ -13774,9 +13773,9 @@ function mobtreachery(actor, mon) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* mon 宝宝对象
----@param actor table
----@param hero table
----@param mon table
+---@param actor number|string
+---@param hero number|string
+---@param mon number|string
 ---```lua
 ---function heromobtreachery(actor,hero,mon)
 ---    release_print("英雄宝宝叛变触发")
@@ -13788,8 +13787,8 @@ function heromobtreachery(actor, hero, mon) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* suitId 套装id
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---@param suitId integer
 ---```lua
 ---function herogroupitemonex(actor,hero,suitId)
@@ -13802,8 +13801,8 @@ function herogroupitemonex(actor, hero, suitId) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* suitId 套装id
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---@param suitId integer
 ---```lua
 ---function herogroupitemoffex(actor,hero,suitId)
@@ -13815,8 +13814,8 @@ function herogroupitemoffex(actor, hero, suitId) end
 ---英雄套装激活触发
 ---* actor 玩家对象
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function herogroupitemonX(actor,hero)
 ---    release_print("英雄套装激活触发")
@@ -13827,8 +13826,8 @@ function herogroupitemonX(actor, hero) end
 ---英雄开启首饰盒触发(神佑/生肖)
 ---* actor 玩家对象
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function heroopensndaitembox(actor,hero)
 ---    release_print("英雄开启首饰盒触发(神佑/生肖)")
@@ -13840,8 +13839,8 @@ function heroopensndaitembox(actor, hero) end
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* luckNum 忠诚度
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---@param luckNum integer
 ---```lua
 ---function heroluck(actor,hero,luckNum)
@@ -13853,8 +13852,8 @@ function heroluck(actor, hero, luckNum) end
 ---英雄勾选外显时装生效触发
 ---* actor 玩家对象
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function heroshowfashion(actor,hero)
 ---    release_print("英雄勾选外显时装生效触发")
@@ -13865,8 +13864,8 @@ function heroshowfashion(actor, hero) end
 ---英雄取消外显时装生效触发
 ---* actor 玩家对象
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function heronotshowfashion(actor,hero)
 ---    release_print("英雄取消外显时装生效触发")
@@ -13877,8 +13876,8 @@ function heronotshowfashion(actor, hero) end
 ---英雄登陆触发
 ---* actor 玩家对象
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function herologin(actor,hero)
 ---    release_print("英雄登陆触发")
@@ -13889,7 +13888,7 @@ function herologin(actor, hero) end
 ---角色升级触发
 ---* actor 玩家对象
 ---* level 升级后等级
----@param actor table
+---@param actor number|string
 ---@param level integer
 ---```lua
 ---function playlevelup(actor,level)
@@ -13901,8 +13900,8 @@ function playlevelup(actor, level) end
 ---英雄升级触发
 ---* actor 玩家对象
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function herolevelup(actor,hero)
 ---    release_print("英雄升级触发")
@@ -13912,7 +13911,7 @@ function herolevelup(actor, hero) end
 
 ---英雄创建触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function createherook(actor)
 ---    release_print("英雄创建触发")
@@ -13922,7 +13921,7 @@ function createherook(actor) end
 
 ---英雄取名成功触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function checkusernameok(actor)
 ---    release_print("英雄取名成功触发")
@@ -13932,7 +13931,7 @@ function checkusernameok(actor) end
 
 ---英雄取名失败触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---local role_name = getbaseinfo(actor,1)
 ---local hero_name = role_name.."A英雄"
@@ -13976,7 +13975,7 @@ function checkusernameno(actor) end
 ---* petIndex 宠物编号
 ---* level 等级
 ---* zsLevel 转生等级
----@param actor table
+---@param actor number|string
 ---@param petIndex integer
 ---@param level integer
 ---@param zsLevel integer
@@ -13988,7 +13987,7 @@ function petlevelup(actor, petIndex, level, zsLevel) end
 ---获得宠物触发[人物上线首次加载宠物时也会触发]
 ---* actor 玩家对象
 ---* petIndex 宠物编号
----@param actor table
+---@param actor number|string
 ---@param petIndex integer
 ---```lua
 ---function getnewpet(actor,petIndex)
@@ -14001,8 +14000,8 @@ function getnewpet(actor, petIndex) end
 ---* actor 玩家对象
 ---* makeIndex 物品唯一id
 ---* itemIndex 物品id
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---@param itemIndex integer
 ---```lua
 ---function usepetitem(actor,makeIndex,itemIndex)
@@ -14014,7 +14013,7 @@ function usepetitem(actor, makeIndex, itemIndex) end
 ---宠物死亡触发
 ---* actor 玩家对象
 ---* petIndex 宠物编号
----@param actor table
+---@param actor number|string
 ---@param petIndex integer
 ---```lua
 ---function petdie(actor,petIndex)
@@ -14026,8 +14025,8 @@ function petdie(actor, petIndex) end
 ---宠物变蛋触发
 ---* actor 玩家对象
 ---* makeIndex 物品唯一id
----@param actor table
----@param makeIndex integer
+---@param actor number|string
+---@param makeIndex string
 ---```lua
 ---function pettoitem(actor,makeIndex)
 ---    release_print("宠物变蛋触发")
@@ -14041,9 +14040,9 @@ function pettoitem(actor, makeIndex) end
 ---* target 目标对象
 ---* magicId 技能id
 ---* isImportant 是否主目标
----@param actor table
+---@param actor number|string
 ---@param petIndex integer
----@param target table
+---@param target number|string
 ---@param magicId integer
 ---@param isImportant integer
 ---```lua
@@ -14061,9 +14060,9 @@ function attackbypet(actor, petIndex, target, magicId, isImportant) end
 ---* damage 伤害值
 ---* isImportant 是否主目标
 ---* model 攻击模式<br>0=正常,1=暴击,2=格挡
----@param actor table
----@param target table
----@param petObj table
+---@param actor number|string
+---@param target number|string
+---@param petObj number|string
 ---@param magicId integer
 ---@param damage integer
 ---@param isImportant integer
@@ -14082,9 +14081,9 @@ function attackdamagepet(actor, target, petObj, magicId, damage, isImportant, mo
 ---* petIndex 宠物编号
 ---* magicId 技能id
 ---* damage 伤害值
----@param actor table
----@param hitter table
----@param petIndex table
+---@param actor number|string
+---@param hitter number|string
+---@param petIndex number
 ---@param magicId integer
 ---@param damage integer
 ---@return integer "修改后的伤害"
@@ -14100,9 +14099,9 @@ function struckdamagepet(actor, hitter, petIndex, magicId, damage) end
 ---* petIndex 宠物编号
 ---* hitter 攻击者对象
 ---* magicId 技能id
----@param actor table
----@param petIndex table
----@param hitter table
+---@param actor number|string
+---@param petIndex number
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function struckofpet(actor,petIndex,hitter,magicId)
@@ -14116,9 +14115,9 @@ function struckofpet(actor, petIndex, hitter, magicId) end
 ---* petIndex 宠物编号
 ---* hitter 攻击者对象
 ---* magicId 技能id
----@param actor table
----@param petIndex table
----@param hitter table
+---@param actor number|string
+---@param petIndex number
+---@param hitter number|string
 ---@param magicId integer
 ---```lua
 ---function magicstruckofpet(actor,petIndex,hitter,magicId)
@@ -14133,9 +14132,9 @@ function magicstruckofpet(actor, petIndex, hitter, magicId) end
 ---* makeIndex 装备唯一ID
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* idx 物品id
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---@param where integer
 ---@param idx integer
 ---```lua
@@ -14151,9 +14150,9 @@ function herotakeoffbeforeex(actor, hero, makeIndex, where, idx) end
 ---* makeIndex 物品唯一ID
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* idx 物品id
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---@param where integer
 ---@param idx integer
 ---```lua
@@ -14168,9 +14167,9 @@ function herotakeonbeforeex(actor, hero, makeIndex, where, idx) end
 ---* hero 英雄对象
 ---* makeIndex 物品唯一ID
 ---* idx 物品id
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---@param idx integer
 ---```lua
 ---function herotakeonbeforeX(actor,hero,makeIndex,idx)
@@ -14184,9 +14183,9 @@ function herotakeonbeforeX(actor, hero, makeIndex, idx) end
 ---* hero 英雄对象
 ---* makeIndex 装备唯一ID
 ---* idx 物品id
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---@param idx integer
 ---```lua
 ---function herotakeoffbeforeex(actor,hero,makeIndex,idx)
@@ -14200,9 +14199,9 @@ function herotakeoffbeforeX(actor, hero, makeIndex, idx) end
 ---* hero 英雄对象
 ---* makeIndex 物品唯一ID
 ---* idx 物品id
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---@param idx integer
 ---```lua
 ---function herotakeoffX(actor,hero,makeIndex,idx)
@@ -14215,8 +14214,8 @@ function herotakeoffX(actor, hero, makeIndex, idx) end
 ---* actor 玩家对象
 ---* itemMakeIndex 物品唯一index
 ---* itemIndex 物品index
----@param actor table
----@param itemMakeIndex integer
+---@param actor number|string
+---@param itemMakeIndex string
 ---@param itemIndex integer
 ---```lua
 ---function addherobagbefore(actor,itemMakeIndex,itemIndex)
@@ -14230,9 +14229,9 @@ function addherobagbefore(actor, itemMakeIndex, itemIndex) end
 ---* hero 英雄对象
 ---* makeIndex 装备唯一ID
 ---* idx 物品id
----@param actor table
----@param hero table
----@param makeIndex integer
+---@param actor number|string
+---@param hero number|string
+---@param makeIndex string
 ---@param idx integer
 ---```lua
 ---function herotakeonX(actor,hero,makeIndex,idx)
@@ -14244,8 +14243,8 @@ function herotakeonX(actor, hero, makeIndex, idx) end
 ---英雄属性改变时触发
 ---* actor 玩家对象
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function herosendability(actor,hero)
 ---    release_print("英雄属性改变时触发")
@@ -14258,8 +14257,8 @@ function herosendability(actor, hero) end
 ---* hero 英雄对象
 ---* where [装备位置](https://engine-doc.996m2.com/web/#/91/51214 "装备位置")
 ---* itemIndex 装备Index
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---@param where integer
 ---@param itemIndex integer
 ---@return boolean "true = 允许掉落 false = 阻止掉落"
@@ -14276,9 +14275,9 @@ function herocheckdropuseitems(actor, hero, where, itemIndex) end
 ---* hero 英雄对象
 ---* hitter 击杀者对象
 ---* isplayer 0=击杀者非玩家<br>1=击杀者是玩家
----@param actor table
----@param hero table
----@param hitter table
+---@param actor number|string
+---@param hero number|string
+---@param hitter number|string
 ---@param isplayer integer
 ---```lua
 ---function heronextdie(actor,hero,hitter,isplayer)
@@ -14290,8 +14289,8 @@ function heronextdie(actor, hero, hitter, isplayer) end
 ---英雄套装失效触发
 ---* actor 玩家对象
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function herogroupitemoffX(actor,hero)
 ---    release_print("英雄套装失效触发")
@@ -14302,8 +14301,8 @@ function herogroupitemoffX(actor, hero) end
 ---英雄复活时触发
 ---* actor 玩家对象
 ---* hero 英雄对象
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---```lua
 ---function herorevival(actor,hero)
 ---    release_print("英雄复活时触发")
@@ -14317,8 +14316,8 @@ function herorevival(actor, hero) end
 ---* itemIndex 道具index
 ---* itemNum 道具数量
 ---* stdMode 物品表stdMode参数
----@param actor table
----@param itemMakeIndex integer
+---@param actor number|string
+---@param itemMakeIndex string
 ---@param itemIndex integer
 ---@param itemNum integer
 ---@param stdMode integer
@@ -14335,8 +14334,8 @@ function herobeforeeatitem(actor, itemMakeIndex, itemIndex, itemNum, stdMode) en
 ---* actor 玩家对象
 ---* hero 英雄对象
 ---* makeIndex 物品唯一ID
----@param actor table
----@param hero table
+---@param actor number|string
+---@param hero number|string
 ---@param makeIndex string
 ---@return boolean "true=允许使用 false=禁止使用"
 ---```lua
@@ -14351,9 +14350,9 @@ function herostdmodefuncX(actor, hero, makeIndex) end
 ---* actor 镖车主人对象
 ---* hitter 攻击者对象
 ---* retinue 镖车对象
----@param actor table
----@param hitter table
----@param retinue table
+---@param actor number|string
+---@param hitter number|string
+---@param retinue number|string
 ---```lua
 ---function slavedamage(actor,hitter,retinue)
 ---    release_print("镖车被攻击触发")
@@ -14365,9 +14364,9 @@ function slavedamage(actor, hitter, retinue) end
 ---* actor 攻击者对象
 ---* master 随从主人对象
 ---* retinue 随从对象
----@param actor table
----@param master table
----@param retinue table
+---@param actor number|string
+---@param master number|string
+---@param retinue number|string
 ---```lua
 ---function hitslave(actor,master,retinue)
 ---    release_print("攻击别人镖车触发")
@@ -14380,7 +14379,7 @@ function hitslave(actor, master, retinue) end
 ---创建行会前触发
 ---* actor 玩家对象
 ---* guildName 行会名
----@param actor table
+---@param actor number|string
 ---@param guildName string
 ---```lua
 ---function checkbuildguild(actor,guildName)
@@ -14392,8 +14391,8 @@ function checkbuildguild(actor, guildName) end
 ---创建行会时触发
 ---* actor 引擎启动时传入系统对象<br>创建行会时传入玩家对象
 ---* guild 行会对象
----@param actor table
----@param guild table
+---@param actor number|string
+---@param guild number|string
 ---```lua
 ---function loadguild(actor,guild)
 ---    release_print("创建(初始化)行会时触发",getguildinfo(guild, 1))
@@ -14403,7 +14402,7 @@ function loadguild(actor, guild) end
 
 ---更新行会公告触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return boolean "true:更新，false:不更新"
 ---```lua
 ---function updateguildnotice(actor)
@@ -14416,8 +14415,8 @@ function updateguildnotice(actor) end
 ---加入行会前触发
 ---* actor 玩家对象
 ---* guild 行会对象
----@param actor table
----@param guild table
+---@param actor number|string
+---@param guild number|string
 ---```lua
 ---function guildaddmember(actor,guild)
 ---    release_print("加入行会前触发")
@@ -14429,8 +14428,8 @@ function guildaddmember(actor, guild) end
 ---* actor 玩家对象
 ---* guild 行会对象
 ---* guildName 行会名
----@param actor table
----@param guild table
+---@param actor number|string
+---@param guild number|string
 ---@param guildName string
 ---```lua
 ---function guildaddmemberafter(actor,guild,guildName)
@@ -14441,7 +14440,7 @@ function guildaddmemberafter(actor, guild, guildName) end
 
 ---退出行会前触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function guilddelmemberbefore(actor)
 ---    release_print("退出行会前触发")
@@ -14451,7 +14450,7 @@ function guilddelmemberbefore(actor) end
 
 ---退出行会时触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function guilddelmember(actor)
 ---    release_print("退出行会时触发")
@@ -14461,7 +14460,7 @@ function guilddelmember(actor) end
 
 ---解散行会前触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function guildclosebefore(actor)
 ---    release_print("解散行会前触发")
@@ -14471,7 +14470,7 @@ function guildclosebefore(actor) end
 
 ---解散行会后触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function guildclose(actor)
 ---    release_print("解散行会后触发")
@@ -14485,7 +14484,7 @@ function guildclose(actor) end
 ---* time 结盟时长(小时)
 ---* moneyType 货币类型
 ---* moneyNum 货币数量
----@param actor table
+---@param actor number|string
 ---@param guildName string
 ---@param time integer
 ---@param moneyType integer
@@ -14500,7 +14499,7 @@ function guildapplybefore(actor, guildName, time, moneyType, moneyNum) end
 
 ---行会编辑封号前触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---@return boolean "true=允许编辑 false=阻止编辑"
 ---```tips
 ---1. X代表行会职务(1~5)
@@ -14517,7 +14516,7 @@ function setranknameX(actor) end
 ---* actor 玩家对象
 ---* target 被任命玩家对象(触发时对象可能不在线)
 ---* targetName 被任命玩家名字
----@param actor table
+---@param actor number|string
 ---@param target string
 ---@param targetName string
 ---@return boolean "true=允许任命 false=阻止任命"
@@ -14535,7 +14534,7 @@ function setguildrankX(actor, target, targetName) end
 ---掌门踢出行会成员前触发
 ---* actor 玩家对象
 ---* userId 被踢玩家userID
----@param actor table
+---@param actor number|string
 ---@param userId string
 ---@return boolean "true=允许踢 false=不允许踢"
 ---```lua
@@ -14547,7 +14546,7 @@ function guildchiefdelmember(actor, userId) end
 
 ---创建组队前触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function startgroup(actor)
 ---    if getbaseinfo(actor,6) < 50 then
@@ -14561,7 +14560,7 @@ function startgroup(actor) end
 
 ---创建组队后触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function groupcreate(actor)
 ---    release_print("创建组队后触发")
@@ -14572,8 +14571,8 @@ function groupcreate(actor) end
 ---添加组队成员触发
 ---* actor 玩家对象
 ---* leader 队长对象
----@param actor table
----@param leader table
+---@param actor number|string
+---@param leader number|string
 ---```lua
 -----允许主动申请加入队伍成员入队
 ---function groupaddmember(actor,leader)
@@ -14585,8 +14584,8 @@ function groupaddmember(actor, leader) end
 ---邀请组队前触发
 ---* actor1 发起邀请对象
 ---* actor2 被邀请对象
----@param actor1 table
----@param actor2 table
+---@param actor1 number|string
+---@param actor2 number|string
 ---@return integer "是否允许邀请"
 ---```lua
 ---function invitegroup(actor,role)
@@ -14602,8 +14601,8 @@ function invitegroup(actor1, actor2) end
 ---离开队伍时触发(退组)
 ---* actor 玩家对象
 ---* leader 队长对象
----@param actor table
----@param leader table
+---@param actor number|string
+---@param leader number|string
 ---```lua
 ---function leavegroup(actor,leader)
 ---    release_print("离开队伍时触发(退组)")
@@ -14614,7 +14613,7 @@ function leavegroup(actor, leader) end
 ---删除组队成员触发
 ---* actor 队长对象
 ---* name 删除成员名称
----@param actor table
+---@param actor number|string
 ---@param name string
 ---```lua
 -----队长删除小组成员
@@ -14628,8 +14627,8 @@ function groupdelmember(actor, name) end
 ---组队杀死怪物时触发
 ---* actor 玩家对象
 ---* leader 队长对象
----@param actor table
----@param leader table
+---@param actor number|string
+---@param leader number|string
 ---```lua
 -----组队杀死怪物(同地图内成员每人触发一次)
 ---function groupkillmon(actor,leader)
@@ -14643,7 +14642,7 @@ function groupkillmon(actor, leader) end
 ---* type 1:组队人数增加</br>2:组队人数减少
 ---* groupnum 组队人数
 ---* actorname 改变的玩家名称
----@param actor table
+---@param actor number|string
 ---@param type number
 ---@param groupnum number
 ---@param actorname string
@@ -14659,7 +14658,7 @@ function groupchange(actor, type, groupnum, actorname) end
 
 ---进入跨服触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function kflogin(actor)
 ---    release_print("进入跨服触发跨服,在跨服qf执行")
@@ -14669,7 +14668,7 @@ function kflogin(actor) end
 
 ---退出跨服触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function kfend(actor)
 ---    release_print("退出跨服触发,在本服qf执行")
@@ -14698,7 +14697,7 @@ function TongReadKeyXX(Param1, Param2, Param3) end
 ---* key 写数据时的<font color="FF0000">"key"</font>
 ---* id 玩家角色ID或玩家账号ID
 ---* value 写数据时的 <font color="FF0000">"value"</font>
----@param actor table
+---@param actor number|string
 ---@param key string
 ---@param id string
 ---@param value string
@@ -14760,7 +14759,7 @@ function TongClearKey(Param1) end
 ---* monIndex 怪物id
 ---* monName 怪物名字
 ---* monMakeIndex 怪物唯一id
----@param actor table
+---@param actor number|string
 ---@param monIndex integer
 ---@param monName string
 ---@param monMakeIndex integer
@@ -14774,7 +14773,7 @@ function collectmonex(actor, monIndex, monName, monMakeIndex) end
 ---玩家点击采集怪物将会触发
 ---* actor 玩家对象
 ---* mon 怪物对象
----@param actor table
+---@param actor number|string
 ---@param mon integer
 ---```lua
 ---function collectmonX(actor,mon)
@@ -14788,7 +14787,7 @@ function collectmonX(actor, mon) end
 
 ---镖车到达指定位置触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function carpathend(actor)
 ---    release_print("镖车到达指定位置触发")
@@ -14798,7 +14797,7 @@ function carpathend(actor) end
 
 ---镖车切换地图触发
 ---* actor 玩家对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function leavedart(actor)
 ---    release_print("镖车切换地图触发")
@@ -14808,7 +14807,7 @@ function leavedart(actor) end
 
 ---镖车进入自动寻路范围触发
 ---* actor 镖车主人对象
----@param actor table
+---@param actor number|string
 ---```lua
 ---function carfindmaster(actor)
 ---    release_print("镖车进入自动寻路范围触发")
@@ -14819,8 +14818,8 @@ function carfindmaster(actor) end
 ---丢失镖车触发
 ---* actor 镖车主人对象
 ---* car 镖车对象
----@param actor table
----@param car table
+---@param actor number|string
+---@param car number|string
 ---```lua
 ---function losercar(actor,car)
 ---    release_print("丢失镖车触发")
@@ -14831,8 +14830,8 @@ function losercar(actor, car) end
 ---镖车死亡触发
 ---* actor 攻击镖车对象
 ---* car 镖车对象
----@param actor table
----@param car table
+---@param actor number|string
+---@param car number|string
 ---```lua
 ---function cardie(actor,car)
 ---    release_print("镖车死亡触发")

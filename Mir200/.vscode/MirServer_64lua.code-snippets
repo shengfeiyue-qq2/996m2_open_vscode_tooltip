@@ -2303,6 +2303,12 @@
         "body": "genmon(mapId, x, y, monName, range, count, color)",
         "scope": "接口/怪物相关/刷怪"
     },
+    "刷怪(拓展)": {
+        "prefix": "genmonex",
+        "description": "刷怪(拓展)",
+        "body": "genmonex(mapId, x, y, monName, range, count, owner, color, showName, isFilt, countryName, nAttack, nNatMonPK, nPlayerPk, nNg)",
+        "scope": "接口/怪物相关/刷怪(拓展)"
+    },
     "杀怪1": {
         "prefix": "killmonsters",
         "description": "杀怪1",
