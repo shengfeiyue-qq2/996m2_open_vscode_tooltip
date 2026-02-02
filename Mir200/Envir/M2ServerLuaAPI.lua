@@ -6,6 +6,15 @@
 -- [Warn] Failed to parse function signature for: 接口速查
 
 -- [Warn] Failed to parse function signature for: 触发速查
+---@meta E996
+
+---
+---@class E996lib
+---
+---标准输入。
+---
+E996 = {}
+
 ---@diagnostic disable: missing-return, lowercase-global
 
 -- [Source: 接口^BUFF相关.lua]
