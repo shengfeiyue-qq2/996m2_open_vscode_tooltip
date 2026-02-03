@@ -1187,6 +1187,12 @@
         "body": "darttime(actor, time, isDie)",
         "scope": "接口/人物相关/人物下线，镖车存活设置"
     },
+    "获取玩家模式时间": {
+        "prefix": "getmodetime",
+        "description": "获取玩家模式时间",
+        "body": "getmodetime(actor, modeID)",
+        "scope": "接口/人物相关/获取玩家模式时间"
+    },
     "新建任务": {
         "prefix": "newpicktask",
         "description": "新建任务",
@@ -3250,6 +3256,18 @@
         "description": "精准爆率是否允许掉落",
         "body": "AllowDrop(actor, param)",
         "scope": "接口/物品操作/精准爆率是否允许掉落"
+    },
+    "获取物品属性组": {
+        "prefix": "GetItemAttrTbl",
+        "description": "获取物品属性组",
+        "body": "GetItemAttrTbl(actor, item, attr_id)",
+        "scope": "接口/物品操作/获取物品属性组"
+    },
+    "获取物品属性组数量": {
+        "prefix": "GetItemAttrCount",
+        "description": "获取物品属性组数量",
+        "body": "GetItemAttrCount(actor, item, attr_id)",
+        "scope": "接口/物品操作/获取物品属性组数量"
     },
     "发送视野内广播消息": {
         "prefix": "sendrefluamsg",
