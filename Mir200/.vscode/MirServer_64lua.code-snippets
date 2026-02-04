@@ -1496,13 +1496,13 @@
     "获取目标全部变量": {
         "prefix": "GetObjVar",
         "description": "获取目标全部变量",
-        "body": "GetObjVar(type, obj)",
+        "body": "GetObjVar(Type, actor)",
         "scope": "接口/变量相关/其他/获取目标全部变量"
     },
     "设置目标全部变量": {
         "prefix": "SetObjVar",
         "description": "设置目标全部变量",
-        "body": "SetObjVar(type, obj, json)",
+        "body": "SetObjVar(Type, actor, json)",
         "scope": "接口/变量相关/其他/设置目标全部变量"
     },
     "注册变量排行": {

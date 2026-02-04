@@ -4086,10 +4086,10 @@ function SetOffLinePlayVar(actor, targetName, varName, varValue, isInt) end
 function OffLineVar(UserID, varname) end
 
 ---获取目标全部变量
----* type 类型
----* obj 目标对象
----@param type integer
----@param obj number|string
+---* Type 类型<br>0:玩家，1:行会，2:地图，<br>3:物品，4:NPC，5:怪物，<br>6:英雄，7:宠物，8:国家
+---* actor <font color="#FF0000" style="font-family: Fixedsys;font-size: 15px;">类型=玩家-填对象<br>类型=行会-填对象<br>类型=物品-填MakeIndex<br>类型=地图-填地图ID<br>类型=NPC-填NPCID<br>类型=怪物-填对象<br>类型=英雄-填对象<br>类型=宠物-填对象<br>类型=国家-填国家ID</font>
+---@param Type integer
+---@param actor number|string
 ---@return string|nil "全部变量"
 ---```lua
 ---local mujian = getbagitems(actor, "木剑", 0)
@@ -4097,14 +4097,14 @@ function OffLineVar(UserID, varname) end
 ---local list = GetObjVar(3, mujian[1])
 ---print(list)
 ---```
-function GetObjVar(type, obj) end
+function GetObjVar(Type, actor) end
 
 ---设置目标全部变量
----* type 类型
----* obj 目标对象
----* json 目标对象
----@param type integer
----@param obj number|string
+---* Type 类型<br>0:玩家，1:行会，2:地图，<br>3:物品，4:NPC，5:怪物，<br>6:英雄，7:宠物，8:国家
+---* actor <font color="#FF0000" style="font-family: Fixedsys;font-size: 15px;">类型=玩家-填对象<br>类型=行会-填对象<br>类型=物品-填MakeIndex<br>类型=地图-填地图ID<br>类型=NPC-填NPCID<br>类型=怪物-填对象<br>类型=英雄-填对象<br>类型=宠物-填对象<br>类型=国家-填国家ID</font>
+---* json json变量字符串
+---@param Type integer
+---@param actor number|string
 ---@param json string
 ---```tips
 ---覆盖目标的全部变量，该操作相当于拷贝变量
@@ -4118,7 +4118,7 @@ function GetObjVar(type, obj) end
 ---local lists = GetObjVar(3,jia[1])
 ---print(lists)
 ---```
-function SetObjVar(type, obj, json) end
+function SetObjVar(Type, actor, json) end
 
 -- [Source: 接口^变量相关^变量排序.lua]
 
