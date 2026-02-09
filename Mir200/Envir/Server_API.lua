@@ -1819,6 +1819,9 @@ function getskilltrain(actor, skillId) end
 ---```lua
 ---setmagicpower(actor,"雷电术",100,1)
 ---```
+---```tips
+---注意：效果仅本次登录有效，下线重置。重复设置不叠加，覆盖生效。
+---```
 function setmagicpower(actor, skillName, value, type) end
 
 ---增加技能防御力
@@ -1832,6 +1835,9 @@ function setmagicpower(actor, skillName, value, type) end
 ---@param type integer
 ---```lua
 ---setmagicdefpower(play,"雷电术",500,0)
+---```
+---```tips
+---注意：效果仅本次登录有效，下线重置。重复设置不叠加，覆盖生效。
 ---```
 function setmagicdefpower(actor, skillName, value, type) end
 
@@ -4095,7 +4101,7 @@ function OffLineVar(UserID, varname) end
 ---local mujian = getbagitems(actor, "木剑", 0)
 -----失败时返回ninl 成功时返回变量 或者 "" 或者变量json
 ---local list = GetObjVar(3, mujian[1])
----print(list)
+---release_print("获取目标全部变量",list))
 ---```
 function GetObjVar(Type, actor) end
 
@@ -4112,11 +4118,11 @@ function GetObjVar(Type, actor) end
 ---```lua
 ---local mujian = getbagitems(actor, "木剑", 0)
 ---local list = GetObjVar(3, mujian[1])
----print(list)
+---release_print("list",list)
 ---local jia = getbagitems(actor, "布衣(男)", 0)
 ---SetObjVar(3, jia[1], list)
 ---local lists = GetObjVar(3,jia[1])
----print(lists)
+---release_print("lists",lists)
 ---```
 function SetObjVar(Type, actor, json) end
 
@@ -6808,9 +6814,10 @@ function changeslavelevel(actor, mon, operate, nLevel) end
 ---* monUserId 怪物唯一id(UserID)
 ---@param mapId string
 ---@param monUserId string
----@return number|string "怪物对象"
+---@return number|string|nil "怪物对象"
 ---```tips
 ---新三端中对象=唯一ID,该接口已无实际意义,保留防止转版本时报错
+---保留逻辑,判断传入的唯一ID是否是该地图的怪物
 ---```
 function getmonbyuserid(mapId, monUserId) end
 
@@ -9648,38 +9655,56 @@ function gotolabel(actor, type, label, range) end
 ---@param NPCIndex integer|string
 ---@param btnIndex integer
 ---@param sMsg string
+---```tips
+---NPCIndex:
+--- 101:主界面左上     102:主界面右上
+--- 103:主界面左下     104:主界面右下
+--- 105:主界面左中     106:主界面上中
+--- 107:主界面右中     108:主界面下中
+--- --------
+--- 0:NPC面板 btnIndex:<Text|id=221|x=25|y=20|color=255|size=18|text=NPC面板> id=221=btnIndex 
+--- 1:角色背包 btnIndex:物品唯一ID
+--- 2:角色界面
+--- 3:英雄背包 btnIndex:1:头像，2:状态，3:背包，4:召唤/收回
+--- 9:商城:装饰 btnIndex:商城序号ID
+--- 10:商城:补给 btnIndex:商城序号ID
+--- 11:商城:强化 btnIndex:商城序号ID
+--- 12:商城:好友 btnIndex:商城序号ID
+--- 41:英雄装备位 btnIndex:装备位置
+--- 40:英雄头像
+--- 110:任务导航栏 btnIndex:任务ID
+--- 200:PC端下方3个按钮 btnIndex:100:角色按钮，101:背包按钮，102:技能按钮
+--- 201:右下角切换按钮
+--- 202:玩家主面板 btnIndex:1-6装备界面页签 101-104内功界面页签 1001为顶部基础页签 1002为顶部内功页签
+--- 203:英雄主面板 btnIndex:1-6装备界面页签 101-104内功界面页签 1001为顶部基础页签 1002为顶部内功页签
+--- 204:玩家经络面板 btnIndex:人物1-5经络页签
+--- 205:英雄经络面板 btnIndex:英雄1-5经络页签
+--- --------
+--- 212:角色属性
+--- 213:角色技能
+--- 214:角色称号
+--- 215:角色时装
+--- 231-235:角色英雄      
+---```
 ---```lua
----[[
----参数2：界面ID(主界面ID;0=NPC面板;1=背包道具;2=角色界面;3=英雄背包;7=背包面板;40=英雄头像;200=PC端下方3个按钮;任务主窗口引导=任务的ID  9-12=商城面板
----201=右下角切换按钮 202=玩家主面板 203=英雄主面板)
----参数3：按钮ID(每个界面自己定义的ID)  例如：  id=221就是NPC按钮ID
----当参数1=（1=背包道具）      参数2=物品唯一ID
----当参数1=（7=背包面板)   参数2=按钮ID
----当参数1=（9-12=商城面板）   参数2=商城序号ID
----当参数1=（202=玩家主面板）  参数2=人物1-6装备界面页签
----当参数1=（203=英雄主面板）  参数2=英雄1-6装备界面页签
----参数4：引导文字内容
----]]
----
----
 ---例子一:
 ---local str = ""
 ---say(actor,str)
 ---navigation(actor,0,221,"测试提示1")
 ---
----
 ---例子二:
 ---navigation(actor,202,1,"测试提示2")
----
 ---
 ---例子三: -- 引导背包物品
 ---itemMakeIndex = getiteminfo(actor,item,1)
 ---navigation(actor,1,itemMakeIndex,"测试提示3")
 ---
----
 ---例子四: -- 引导背包按钮
 ---addbutton(actor, 7, 996, "")
 ---navigation(actor,7,996,"测试提示4")
+---
+---例子五:-- 引导任务
+---navigation(actor,110,1,"测试提示1")
 ---```
 function navigation(actor, NPCIndex, btnIndex, sMsg) end
 
