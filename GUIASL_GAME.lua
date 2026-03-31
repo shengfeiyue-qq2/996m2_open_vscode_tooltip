@@ -377,7 +377,7 @@ function SL:RequestInternalSkillData(isHero) end
 ---* isHero 是否请求英雄
 ---@param typeID integer
 ---@param aucPointID integer
----@param isHero boolean
+---@param isHero? boolean
 ---```tips
 ---旧接口名：SL:RequestAucPointOpen
 ---```
@@ -390,7 +390,7 @@ function SL:RequestMeridianAcuPointOpen(typeID, aucPointID, isHero) end
 ---* typeID 经络ID
 ---* isHero 是否请求英雄
 ---@param typeID integer
----@param isHero boolean
+---@param isHero? boolean
 ---```lua
 ---SL:RequestMeridianLevelUp(typeID, isHero)
 ---```
@@ -402,7 +402,7 @@ function SL:RequestMeridianLevelUp(typeID, isHero) end
 ---* isHero 是否请求英雄
 ---@param key integer
 ---@param skillID integer
----@param isHero boolean
+---@param isHero? boolean
 ---```lua
 ---SL:RequestSetComboSkill(key, skillID, isHero)
 ---```
@@ -441,7 +441,7 @@ function SL:ConvertWorldPos2MapPos(worldX, worldY) end
 ---* centerOfGrid 是否在地图格中心
 ---@param mapX integer
 ---@param mapY integer
----@param centerOfGrid boolean
+---@param centerOfGrid? boolean
 ---@return number "世界坐标X"
 ---@return number "世界坐标Y"
 ---```lua
@@ -519,7 +519,7 @@ function SL:dump(data, desciption, nesting) end
 ---* jsonStr json字符串
 ---* isfilter 是否过滤违禁词 默认为true
 ---@param jsonStr string
----@param isfilter boolean
+---@param isfilter? boolean
 ---@return table "json table"
 ---```lua
 ----- [[{"index":1, "value":2}]] --> {index = 1, value = 2}
@@ -534,7 +534,7 @@ function SL:JsonDecode(jsonStr, isfilter) end
 ---* jsonData json表
 ---* isfilter 是否过滤违禁词 默认为true
 ---@param jsonData table
----@param isfilter boolean
+---@param isfilter? boolean
 ---@return string "json string"
 ---```lua
 ----- {index = 1, value = 2} --> [[{"index":1, "value":2}]
@@ -667,7 +667,7 @@ function SL:PlayBtnClickAudio() end
 ---* id cfg_sound表对应id
 ---* isLoop 是否循环
 ---@param id integer
----@param isLoop boolean
+---@param isLoop? boolean
 ---```lua
 ---SL:PlaySound(50004, false)
 ---```
@@ -843,7 +843,7 @@ function SL:ScheduleOnce(callback, time) end
 ---* node bode节点
 ---* callback 回调函数
 ---* time 时间
----@param node table
+---@param node userdata
 ---@param callback function
 ---@param time number
 ---@return table "定时器动作对象"
@@ -858,7 +858,7 @@ function SL:schedule(node, callback, time) end
 ---* node node节点
 ---* callback 回调函数
 ---* time 时间
----@param node table
+---@param node userdata
 ---@param callback function
 ---@param time number
 ---```lua
@@ -963,7 +963,7 @@ function SL:HashToSortArray(hashTab, sortFunc) end
 ---* pos 坐标, 默认: {x = 0, y = 0}
 ---* anchorPoint 锚点, 默认: {x = 0, y = 1}
 ---@param str string
----@param width integer
+---@param width? integer
 ---@param pos table
 ---@param anchorPoint table
 ---```lua
@@ -1004,7 +1004,7 @@ function SL:LoadTxtFile(path, delimiter, callBack) end
 ---* num 数值
 ---* places 显示小数点后几位数
 ---@param num integer
----@param places integer
+---@param places? integer
 ---@return string "转换后数字"
 ---```tips
 ---将数字 num 转换成 xx万、xx亿
@@ -1019,7 +1019,7 @@ function SL:GetSimpleNumber(num, places) end
 ---* hp 血量数值
 ---* pointBit 显示小数点后几位, 默认保留后两位
 ---@param hp integer
----@param pointBit integer
+---@param pointBit? integer
 ---@return string "转换后血量"
 ---```tips
 ---将血量数值转换有单位显示 过十亿(单位：E) 10w-99999w(单位：W）
@@ -1062,8 +1062,8 @@ function SL:GetUTF8ByteLen(str) end
 ---* isToStr 是否转成字符串输出, 空或false则返回table <br>{d = 天数, h = 小时, m = 分钟, s = 秒}
 ---* isSimple 是否简化字符串[基于isToStr 为 true]
 ---@param sec integer
----@param isToStr boolean
----@param isSimple boolean
+---@param isToStr? boolean
+---@param isSimple? boolean
 ---@return table "时间格式化成字符串 格式:xx天xx时xx分xx秒"
 ---```tips
 ---秒转时分秒
@@ -1419,7 +1419,7 @@ function SL:RequestSendChatGMMsg(msg) end
 ---* targetNode 目标控件
 ---* offset 偏移位置 例: {x = 5, y = 5}
 ---@param targetNode table
----@param offset table
+---@param offset? table
 ---@return table "红点"
 ---```lua
 ---local Btn = GUI:Button_Create(GUI:Attach_Bottom(), "BtnOk", 200, 200, "res/public/061302.PNG")
@@ -1458,9 +1458,13 @@ function SL:CheckCondition(conditionStr) end
 ---* id 气泡ID
 ---* path 气泡图片资源路径
 ---* callback 气泡点击回调
+---* timeout 显示时间
+---* cancelCallBack 取消显示回调
 ---@param id number
 ---@param path string
 ---@param callback function
+---@param timeout? number
+---@param cancelCallBack? function
 ---```lua
 ---SL:AddBubbleTips(UIConst.BubbleTipsID.FriendApply, "res/private/main/bubble_tips/1900012603_1.png", function ()
 ---    local applyLayer = GUI:GetWindow(nil, UIConst.LAYERID.FriendApplyGUI)
@@ -1469,7 +1473,7 @@ function SL:CheckCondition(conditionStr) end
 ---    end
 ---end)
 ---```
-function SL:AddBubbleTips(id, path, callback) end
+function SL:AddBubbleTips(id, path, callback, timeout, cancelCallBack) end
 
 ---删除气泡提醒
 ---* ID 气泡ID
@@ -1708,7 +1712,8 @@ function SL:AttachOrUnAttachGUI(data) end
 ---* file 文件名
 ---* reload 是否重载
 ---@param file string
----@param reload boolean
+---@param reload? boolean
+---@return any
 ---```lua
 ---SL:Require("GUIValue/Test_1",true)
 ---```
@@ -2154,13 +2159,15 @@ function SL:ResquestCompoundItem(compoundID) end
 ---* str 需要检测的文本
 ---* type 文本类型 <br> 1 : 昵称类<br> 2 : 聊天类<br> 3 : 行会公告
 ---* callback 检测完毕的回调事件<br> 事件传入参数: param1: boolean 能否通过 param2: 文本
+---* params 自定义参数 
 ---@param str string
 ---@param type integer
 ---@param callback function
+---@param params? table
 ---```lua
 ---SL:RequestCheckSensitiveWord(str, type, callback)
 ---```
-function SL:RequestCheckSensitiveWord(str, type, callback) end
+function SL:RequestCheckSensitiveWord(str, type, callback, params) end
 
 ---邀请上马
 ---* uid 玩家id
@@ -2301,7 +2308,7 @@ function SL:SendLuaNetMsg(msgID, p1, p2, p3, sendStr) end
 ---* widget 绑定的界面(win)对象， 界面关闭则注销接收回调
 ---@param msgID integer
 ---@param networkCB function
----@param widget userdata
+---@param widget? userdata
 ---```lua
 ----- 客户端注册 接收消息
 ---local function networkCB(msgID, p1, p2, p3, msgData)
@@ -2591,7 +2598,7 @@ function SL:RequestCreateTeam() end
 ---* uid 玩家id
 ---* name 玩家昵称
 ---@param uid integer
----@param name string
+---@param name? string
 ---```lua
 ---SL:RequestInviteJoinTeam(uid, name)
 ---```
@@ -2802,7 +2809,7 @@ function SL:RequestHeroTakeOnEquip(itemData, pos, isFromPlayer) end
 ---* itemData 装备数据
 ---* isToPlayer 是否脱到人物背包
 ---@param itemData table
----@param isToPlayer boolean
+---@param isToPlayer? boolean
 ---```lua
 ---SL:RequestHeroTakeOffEquip(itemData, true)
 ---```
@@ -2953,7 +2960,7 @@ function SL:RequestMagicJointAttack() end
 ---* targetID 目标ID
 ---* notForbid 是否不判断地图禁止查看
 ---@param targetID integer
----@param notForbid boolean
+---@param notForbid? boolean
 ---```lua
 ---SL:RequestLookPlayer(targetId)
 ---```
