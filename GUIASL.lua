@@ -45,7 +45,7 @@ SyncObj = {}
 
 ---打开设置界面
 ---* pageID 页签ID 不填默认基础设置<br>1 : 基础设置<br>2 : 视距<br>3 : 战斗<br>4 : 保护<br>5 : 挂机<br>6 : 帮助
----@param pageID integer
+---@param pageID? integer
 ---```lua
 ---UIOperator:OpenSettingUI(1)
 ---```

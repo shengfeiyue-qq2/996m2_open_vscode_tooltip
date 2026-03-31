@@ -119,7 +119,7 @@ function SL:Get_ACTOR_IS_HUMAN(actorID) end
 
 ---获取actor 名字
 ---* actorID 玩家、怪物、NPC、人形怪等对象ID(对应服务端唯一ID/UserID)
----@param actorID number
+---@param actorID number | string
 ---@return string "actor 名字"
 ---```lua
 ---local actorID = SL:Get_USER_ID()
@@ -130,7 +130,7 @@ function SL:Get_ACTOR_NAME(actorID) end
 
 ---获取 actor Hp
 ---* actorID 玩家、怪物、NPC、人形怪等对象ID(对应服务端唯一ID/UserID)
----@param actorID number
+---@param actorID number | string
 ---@return number "actor Hp"
 ---```lua
 ---local actorID = SL:Get_USER_ID()
@@ -4933,7 +4933,7 @@ function SL:Get_CUR_ABIL_BY_ID(typeID) end
 ---* param1 装备位id 或者 装备名称
 ---* param2 是否多个装备位共享
 ---@param param1 number/string
----@param param2 boolean
+---@param param2? boolean
 ---@return table "获取玩家某一装备数据"
 ---```lua
 ---local cc = SL:Get_EQUIP_DATA(30)
@@ -5591,7 +5591,7 @@ function SL:Get_ITEM_IS_BIND(itemData) end
 ---* param1 makeIndex
 ---* param2 是否是英雄
 ---@param param1 number
----@param param2 boolean
+---@param param2? boolean
 ---@return table "装备数据"
 ---```lua
 ---local cc = SL:Get_EQUIP_DATA_BY_MAKEINDEX(150, false)
