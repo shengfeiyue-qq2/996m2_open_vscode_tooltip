@@ -26,10 +26,10 @@ E996 = {}
 ---* abil 属性表 {[1]=200, [4]=20}，属性id=值
 ---@param base number|string
 ---@param buffId integer
----@param time integer
----@param overLap integer
----@param objOwner number|string
----@param abil table
+---@param time? integer
+---@param overLap? integer
+---@param objOwner? number|string
+---@param abil? table
 ---@return boolean "是否添加成功"
 ---```tips
 ---buff触发中无法添加/删除buff
@@ -951,7 +951,7 @@ function setusebonuspoint(actor, nIndex, nValue) end
 ---@param attrIndex string
 ---@param opt string
 ---@param attrStr string
----@param type integer
+---@param type? integer
 ---```lua
 ---addattlist(actor,"属性组1","+","3#1#100|3#2#100|3#3#10|3#4#10")
 ---release_print("通过字符串增加对应属性值")
@@ -1001,7 +1001,7 @@ function setequipaddvalue(actor, where, sFlag, pro) end
 ---* where 装备部位
 ---@param actor number|string
 ---@param where integer
----@return boolean "倍数(万分比)"
+---@return integer "倍数(万分比)"
 ---```lua
 ---local val=getequipaddvalue(actor,1)
 ---release_print("获取装备部位属性加成(万分比)",val)
@@ -1217,7 +1217,7 @@ function clearplayeffect(actor, effectId) end
 ---@param delay integer
 ---@param hitter number|string
 ---@param isSend integer
----@param isRob integer
+---@param isRob? integer
 ---```lua
 ---humanhp(actor,"-",1,1,0,actor,0,1)
 ---release_print("修改人物当前血量",10)
@@ -1542,8 +1542,8 @@ function changedresseffect(actor, where, effId, selfSee) end
 ---@param type integer
 ---@param shape integer
 ---@param time integer
----@param param1 integer
----@param param2 integer
+---@param param1? integer
+---@param param2? integer
 ---```lua
 -----衣服特效
 ---setfeature(actor,0,2,65535,0,3)
@@ -2023,7 +2023,7 @@ function getattackmode(actor) end
 ---* actor 玩家对象
 ---* isOpenUI 0/nil=打开UI<br>1=只下发数据
 ---@param actor number|string
----@param isOpenUI integer
+---@param isOpenUI? integer
 ---```lua
 ---openstorage(actor,1)
 ---```
@@ -2082,10 +2082,10 @@ function map(actor, mapId) end
 ---* effect 是否播放传送特效<br>0=播放<br>1=不播放
 ---@param actor number|string
 ---@param mapId string
----@param nX integer
----@param nY integer
----@param nRange integer
----@param effect integer
+---@param nX? integer
+---@param nY? integer
+---@param nRange? integer
+---@param effect? integer
 ---```lua
 ---local mapID = getbaseinfo(actor,3)
 ---local x = getbaseinfo(actor,4)
@@ -2128,6 +2128,7 @@ function gotonow(actor, X, Y) end
 ---获取所有玩家对象列表(遍历玩家列表)
 ---* offline 是否剔除离线挂机玩家<br>0/nil=不剔除<br>1=剔除
 ---@param offline integer
+---@return table|nil "玩家对象列表"
 ---```lua
 ---local player_list = getplayerlst(0)
 ---for i, player  in ipairs(player_list or {}) do
@@ -2180,7 +2181,7 @@ function kick(actor) end
 ---@param actor number|string
 ---@param time integer
 ---@param func string
----@param del integer
+---@param del? integer
 ---```lua
 ---delaygoto(actor,1000,"test_jump,ceshi,44",0)
 ---
@@ -2599,7 +2600,7 @@ function changespeed(actor, type, level) end
 ---@param actor number|string
 ---@param model integer
 ---@param value integer
----@param time integer
+---@param time? integer
 ---```lua
 ---changespeedex(actor,1,50,65535)
 ---```
@@ -4714,10 +4715,10 @@ function iswarnation(nationIDX1, nationIDX2) end
 ---@param newName string
 ---@param time integer
 ---@param backMap string
----@param miniMapId string
----@param posMX integer
----@param posMY integer
----@param range integer
+---@param miniMapId integer
+---@param posMX? integer
+---@param posMY? integer
+---@param range? integer
 ---@return boolean "是否成功创建"
 ---```lua
 ---function main(actor)
@@ -4763,7 +4764,7 @@ function delmirrormap(mapId) end
 ---* mapId 地图ID
 ---* time 设置地图有效时间
 ---@param mapId string
----@param time integer
+---@param time? integer
 ---@return integer "返回地图有效时间"
 ---```lua
 ---local name_1 = name_1 and name_1 + 1 or 1
@@ -7929,7 +7930,7 @@ function getiteminfo(actor, makeIndex, id) end
 ---获取物品基础信息
 ---* iteminfo 物品Id/物品名称
 ---* id 0:idx<br>1:名称<br>2:StdMode<br>3:Shape<br>4:重量<br>5:AniCount<br>6:最大持久<br>7:叠加数量<br>8:价格（price）<br>9:使用条件<br>10:使用等级<br>11:自定义常量(29列)<br>12:自定义常量(30列)<br>13:道具颜色
----@param iteminfo string
+---@param iteminfo number|string
 ---@param id integer
 ---@return any "对应数值，不存在为0"
 ---```lua
@@ -8093,8 +8094,8 @@ function setitemlooks(actor, itemPos, char, picture, makeIndex) end
 ---* desc 描述
 ---@param actor number|string
 ---@param ids string
----@param count integer
----@param desc string
+---@param count? integer
+---@param desc? string
 ---@return boolean "是否扣除成功"
 ---```lua
 ---local items = getbagitems(actor)
@@ -8540,8 +8541,8 @@ function getstorageitems(actor) end
 ---* itemName 道具名字
 ---* isBind 是否绑定<br>0=忽略<br>1=非绑定<br>2=绑定
 ---@param actor number|string
----@param itemName string
----@param isBind integer
+---@param itemName? string
+---@param isBind? integer
 ---@return table "道具列表（唯一Id）"
 ---```lua
 ---local items
@@ -8628,7 +8629,7 @@ function checkitems(actor, itemStr, isBind, model, desc) end
 ---* desc 备注
 ---@param actor number|string
 ---@param itemStr string
----@param isBind string
+---@param isBind? string
 ---@param model integer
 ---@param isBindFirst integer
 ---@param desc string
